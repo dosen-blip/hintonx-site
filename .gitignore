@@ -1,0 +1,10 @@
+dist/
+.DS_Store
+
+# Local design history and research, not application source.
+archive/
+planning/
+MIGRATION_NOTES.md
+.env
+.env.*
+node_modules/

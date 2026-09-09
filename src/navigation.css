@@ -1,0 +1,75 @@
+/* Incremental header update. The original clone's page layouts remain intact. */
+.site-header{position:sticky;top:0;z-index:50;background:#000;border-bottom:1px solid #ffffff24;height:97px}
+.header-inner{position:relative}
+.desktop-nav{gap:30px;font-size:14px}
+.desktop-nav>a:not(.pill),.nav-group>summary{padding:14px 0;min-height:48px;display:flex;align-items:center}
+.desktop-nav>a[aria-current=page]{text-decoration:underline;text-underline-offset:7px}
+.desktop-nav>a:not(.pill):hover,.nav-group>summary:hover{color:#b8b8b8}
+.nav-project{display:inline-flex;align-items:center;justify-content:center;gap:23px;padding:13px 20px;min-height:46px;font-size:14px;white-space:nowrap;transition:background .15s}
+.nav-project:hover{background:#d6d6d6}
+.nav-project>span{font-size:19px;line-height:1}
+.nav-group{position:relative}
+.nav-group>summary{gap:10px;cursor:pointer;list-style:none;user-select:none}
+.nav-group>summary::-webkit-details-marker{display:none}
+.nav-chevron{width:6px;height:6px;border-right:1px solid;border-bottom:1px solid;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+.nav-group[open]>summary .nav-chevron{transform:rotate(225deg) translate(-1px,-1px)}
+.nav-dropdown{position:absolute;top:calc(100% + 13px);right:-28px;width:400px;background:#111;border:1px solid #353535;padding:24px;box-shadow:0 24px 60px #0008}
+.nav-intro{font-size:12px;line-height:1.5;color:#b1b1b1;padding-bottom:19px;border-bottom:1px solid #333}
+.nav-dropdown ul{list-style:none;padding:0;margin:0}
+.nav-dropdown li+li{border-top:1px solid #292929}
+.nav-dropdown a{display:grid;grid-template-columns:1fr 18px;gap:7px 16px;padding:17px 4px;font-size:15px;line-height:1.35}
+.nav-dropdown small{grid-row:2;font-size:11px;color:#a8a8a8}
+.nav-dropdown .nav-arrow{grid-row:1/3;grid-column:2;align-self:center;font-size:19px;color:#a8a8a8}
+.nav-dropdown a:hover{background:#202020}
+.site-header a:focus-visible,.nav-group summary:focus-visible,.nav-dropdown a:focus-visible,.nav-menu-toggle:focus-visible,#nav-dialog a:focus-visible,#nav-dialog button:focus-visible{outline:2px solid #fff;outline-offset:5px;border-radius:2px}
+.site-header .pill:focus-visible,#nav-dialog .pill:focus-visible{outline-offset:5px;border-radius:99px}
+.mobile-nav-actions{display:none;align-items:center;gap:18px}
+.nav-menu-toggle{width:44px;height:44px;background:none;border:1px solid #555;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;cursor:pointer}
+.nav-menu-toggle[hidden]{display:none}
+.nav-menu-toggle span{height:1px;width:18px;background:currentColor}
+#nav-dialog{box-sizing:border-box;position:fixed;inset:0 0 0 auto;margin:0;width:min(520px,100%);max-width:100%;height:100dvh;max-height:100dvh;border:0;border-left:1px solid #333;background:#080808;color:#fff;padding:24px;overflow:auto}
+#nav-dialog:not([open]){display:none}
+#nav-dialog::backdrop{background:#0009;backdrop-filter:blur(5px)}
+.nav-dialog-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:27px;border-bottom:1px solid #333}
+.nav-close{display:flex;align-items:center;gap:14px;min-height:44px;background:none;color:inherit;border:0;font:14px 'DM Sans',sans-serif;cursor:pointer}
+.nav-close span{font-size:24px}
+#nav-dialog nav{display:flex;flex-direction:column;margin-top:18px}
+#nav-dialog nav>a:not(.pill),#nav-dialog .nav-group>summary{font-size:28px;padding:17px 0;line-height:1.2;min-height:65px;border-bottom:1px solid #333}
+#nav-dialog .nav-group>summary{justify-content:space-between}
+#nav-dialog .nav-dropdown{position:static;width:auto;padding:8px 0 12px;border:0;box-shadow:none;background:transparent}
+#nav-dialog .nav-intro{padding:12px 0 15px;border:0}
+#nav-dialog .nav-dropdown a{padding:16px 8px;font-size:15px}
+#nav-dialog .nav-project{margin-top:30px;align-self:flex-start}
+.nav-studio{display:flex;justify-content:space-between;align-items:center;margin-top:40px;border-top:1px solid #333;padding:22px 0;font-size:13px;color:#b7b7b7}
+body.nav-open{overflow:hidden}
+.services[id],.service-row[id]{scroll-margin-top:120px}
+.nav-fallback{padding:20px;display:flex;flex-wrap:wrap;gap:25px;background:#111}
+@media(max-width:1100px) and (min-width:901px){.header-inner{padding-left:45px;padding-right:45px}.desktop-nav{gap:24px}.nav-dropdown{right:-15px}}
+@media(max-width:900px){.site-header,.header-inner{height:80px}.header-inner{width:100%;padding:16px 22px}.site-header .logo{width:44px;height:44px}.desktop-nav{display:none}.mobile-nav-actions{display:flex}.mobile-nav-actions .nav-project{padding:11px 15px;font-size:12px;gap:16px}.services[id],.service-row[id]{scroll-margin-top:100px}.nav-fallback .nav-dropdown{position:static;width:auto}}
+@media(max-width:360px){.header-inner{padding-inline:16px}.mobile-nav-actions{gap:12px}.mobile-nav-actions .nav-project{gap:10px;padding-inline:13px}#nav-dialog{padding:20px}}
+@media(prefers-reduced-motion:reduce){.nav-chevron,.nav-project{transition:none}#nav-dialog::backdrop{backdrop-filter:none}}
+@media(min-width:901px){.nav-dropdown{max-height:calc(100dvh - 125px);overflow-y:auto}}
+/* Progressive backdrop blur: strongest at the top, feathered at the lower edge. */
+.site-header{--nav-rgb:8,8,8;--nav-fg:#fff;--nav-blur-opacity:1;background:transparent;border-bottom:0;color:var(--nav-fg);transition:color .22s}
+.site-header[data-tone=light]{--nav-rgb:247,247,243;--nav-fg:#111}
+.nav-glass{position:absolute;inset:0 0 -45px;pointer-events:none;opacity:var(--nav-blur-opacity);background:linear-gradient(to bottom,rgba(var(--nav-rgb),.85),rgba(var(--nav-rgb),.54) 50%,rgba(var(--nav-rgb),.06) 86%,transparent);transition:background .22s;isolation:isolate}
+.nav-glass>span{position:absolute;inset:0;-webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
+.nav-glass>span:nth-child(1){backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);mask-image:linear-gradient(#000 65%,transparent 100%);-webkit-mask-image:linear-gradient(#000 65%,transparent 100%)}
+.nav-glass>span:nth-child(2){backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);mask-image:linear-gradient(#000 50%,transparent 94%);-webkit-mask-image:linear-gradient(#000 50%,transparent 94%)}
+.nav-glass>span:nth-child(3){backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);mask-image:linear-gradient(#000 35%,transparent 84%);-webkit-mask-image:linear-gradient(#000 35%,transparent 84%)}
+.nav-glass>span:nth-child(4){backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);mask-image:linear-gradient(#000 24%,transparent 74%);-webkit-mask-image:linear-gradient(#000 24%,transparent 74%)}
+.nav-glass>span:nth-child(5){backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);mask-image:linear-gradient(#000 12%,transparent 64%);-webkit-mask-image:linear-gradient(#000 12%,transparent 64%)}
+.nav-glass>span:nth-child(6){backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);mask-image:linear-gradient(#000 4%,transparent 52%);-webkit-mask-image:linear-gradient(#000 4%,transparent 52%)}
+.header-inner{z-index:1}.site-header .logo{border-color:currentColor}.site-header .nav-project{background:var(--nav-fg);color:rgb(var(--nav-rgb))}.site-header .nav-project:hover{opacity:.82}.site-header .nav-dropdown{color:#fff}.site-header .nav-menu-toggle{color:var(--nav-fg);border-color:currentColor}.desktop-nav>a:not(.pill):hover,.nav-group>summary:hover{color:inherit;opacity:.75}.site-header a:focus-visible,.site-header summary:focus-visible,.site-header button:focus-visible{outline-color:currentColor}
+@media(max-width:900px){.nav-glass{bottom:-35px}}
+@supports not (backdrop-filter:blur(1px)){.nav-glass{background:linear-gradient(rgb(var(--nav-rgb)) 45%,rgba(var(--nav-rgb),.85) 70%,transparent)}}
+@media(prefers-reduced-motion:reduce){.site-header,.nav-glass{transition:none}}
+/* A shared rhythm for opening, closing and directional cues. */
+.nav-chevron{transition:transform .36s cubic-bezier(.22,1,.36,1)}
+.nav-group[data-expanded=false]>summary .nav-chevron{transform:rotate(45deg) translateY(-2px)}
+#nav-dialog[data-phase=opening]::backdrop{animation:nav-backdrop-in .46s cubic-bezier(.22,1,.36,1) both}
+#nav-dialog[data-phase=closing]::backdrop{animation:nav-backdrop-out .3s cubic-bezier(.22,1,.36,1) both}
+@keyframes nav-backdrop-in{from{opacity:0}to{opacity:1}}
+@keyframes nav-backdrop-out{from{opacity:1}to{opacity:0}}
+@media(hover:hover) and (pointer:fine){body,body *,dialog::backdrop{cursor:url('/cursor-dot.svg') 9 9,auto!important}input,textarea,[contenteditable=true]{cursor:text!important}}
+@media(prefers-reduced-motion:reduce){.nav-chevron{transition:none}#nav-dialog::backdrop{animation:none!important}}
