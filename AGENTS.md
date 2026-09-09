@@ -7,6 +7,7 @@ Use [the HintonX skill](skills/hintonx-site/SKILL.md) for page changes, motion, 
 ## Working agreement
 
 - Work part by part. Preserve the approved direction outside the requested scope.
+- Do not use emojis in site UI or replies. Use SVG icons for directional and playback controls so mobile devices cannot substitute emoji glyphs.
 - Keep it sophisticated and restrained. Avoid redundant grey microcopy, decorative badges, extra metrics, frameworks and animation libraries without a concrete need.
 - Preserve existing client facts, media, attribution and routes. Do not invent project outcomes, statistics or capabilities. A visual reference is not a source for HintonX claims.
 - Edit `src/`, not generated `dist/`. Register any new browser asset in `scripts/build.mjs`.

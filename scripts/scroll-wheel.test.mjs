@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {wheelProgress,cardPose,wheelPosition,fitCardHeight,easeProgress} from '../src/scroll-wheel.mjs';
+import {wheelProgress,cardPose,wheelPosition,fitCardHeight,easeProgress,stackPose} from '../src/scroll-wheel.mjs';
 
 test('scrolling outside the pinned scene holds its first and last positions',()=>{
  assert.equal(wheelProgress(0,620,2480,4),0);
@@ -68,4 +68,31 @@ test('easing feels the same at different frame rates and can reverse immediately
  const moving=easeProgress(0,4,100);
  assert.ok(easeProgress(moving,0,16)<moving);
  assert.equal(easeProgress(2,4,0),2);
+});
+
+
+test('mobile stack preserves each earlier name strip and fits the final card',()=>{
+ for(const height of [420,500,650]){
+  for(let stop=0;stop<6;stop++){
+   for(let i=0;i<=stop;i++){
+    const pose=stackPose(i,stop,height);
+    assert.equal(pose.y,8+i*44);
+    assert.equal(pose.y+pose.height,height-8);
+    assert.equal(pose.reachable,true);
+    if(i<stop)assert.equal(stackPose(i+1,stop,height).y-pose.y,44);
+   }
+   for(let i=stop+1;i<6;i++)assert.equal(stackPose(i,stop,height).near,false);
+  }
+ }
+});
+
+test('incoming mobile cards rise continuously and reverse along the same path',()=>{
+ for(let i=1;i<6;i++){
+  const first=stackPose(i,i-1,500),mid=stackPose(i,i-.5,500),end=stackPose(i,i,500);
+  assert.ok(first.y>mid.y&&mid.y>end.y);
+  assert.ok(Math.abs(stackPose(i,i-.499,500).y-mid.y)<1);
+  assert.deepEqual(stackPose(i,i-.5,500),mid);
+ }
+ assert.deepEqual(stackPose(5,6,500),stackPose(5,5,500));
+ assert.deepEqual(stackPose(0,-1,500),stackPose(0,0,500));
 });

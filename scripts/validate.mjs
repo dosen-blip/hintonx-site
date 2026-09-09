@@ -23,6 +23,8 @@ const errors = [];
 
 for (const path of htmlFiles) {
   const html = pages.get(path);
+  const visibleText = html.replace(/<[^>]+>/g, '');
+  if (/[\p{Extended_Pictographic}\u2190-\u21ff\uFE0F]/u.test(visibleText)) errors.push(`${path}: use SVG icons instead of emoji or arrow glyphs`);
   if (!/<title>[^<]+<\/title>/.test(html)) errors.push(`${path}: missing title`);
   if (!/class="site-header"/.test(html)) errors.push(`${path}: missing header`);
   if (!/class="site-footer/.test(html)) errors.push(`${path}: missing footer`);

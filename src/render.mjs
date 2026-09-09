@@ -1,3 +1,4 @@
+import { renderIcons } from './icons.mjs';
 import { caseBody } from './case-render.mjs';
 import { workBody } from './work-render.mjs';
 import { homeBody } from './home-render.mjs';
@@ -49,7 +50,7 @@ function footer() {
 }
 
 function layout({ title = "HintonX", description = "HintonX — Design + Technology", body, pageClass = "" }) {
-  return `<!doctype html>
+  return renderIcons(`<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -59,10 +60,10 @@ function layout({ title = "HintonX", description = "HintonX — Design + Technol
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=20260909-icons">
   <link rel="stylesheet" href="/navigation.css">
   <script src="/navigation.js" type="module"></script>
-  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260909-auto"><script src="/home.js?v=20260909-auto" type="module"></script>' : ''}
+  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260909-stack3"><script src="/home.js?v=20260909-stack3" type="module"></script>' : ''}
 ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script src="/case.js" type="module"></script>' : ''}
 <link rel="stylesheet" href="/accent.css">
 </head>
@@ -71,13 +72,13 @@ ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script s
   <main>${body}</main>
   ${footer()}
 </body>
-</html>`;
+</html>`);
 }
 
 function projectCard(project, mode = "grid") {
   return `<a class="project-card project-card--${mode}" href="/projects/${project.slug}/">
     <img src="${project.thumbnail}" alt="${esc(project.alt)}" loading="lazy">
-    <span class="project-label"><span>${esc(project.client)}</span><span>${esc(project.title)}</span></span>
+    <span class="project-label"><span>${esc(project.client)} <span aria-hidden="true">↗</span></span><span>${esc(project.title)}</span></span>
   </a>`;
 }
 

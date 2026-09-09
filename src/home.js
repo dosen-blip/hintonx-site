@@ -1,5 +1,5 @@
 import {disclosure,revealOnScroll} from './motion.mjs';
-import {clamp,wheelProgress,cardPose,wheelPosition,fitCardHeight,easeProgress} from './scroll-wheel.mjs';
+import {clamp,wheelProgress,cardPose,wheelPosition,fitCardHeight,easeProgress,stackPose} from './scroll-wheel.mjs?v=20260909-stack';
 const $=(selector,root=document)=>root.querySelector(selector),$$=(selector,root=document)=>[...root.querySelectorAll(selector)];
 const root=$('[data-wheel]'),cards=$$('[data-wheel-card]'),header=$('.site-header');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)'),phone=matchMedia('(max-width:760px)');
@@ -19,17 +19,17 @@ function paint(time){
   if(p!==target)frame=requestAnimationFrame(paint);
   root.style.setProperty('--wheel-progress',p/geometry.steps);
   cards.forEach((card,i)=>{
-   const pose=cardPose(i,p,geometry.width,phone.matches);
-   card.style.transform=`translate3d(calc(-50% + ${pose.x.toFixed(2)}px), ${pose.y.toFixed(2)}px, 0) rotate(${pose.angle.toFixed(3)}deg)`;
+   const pose=phone.matches?stackPose(i,p,geometry.viewportHeight):cardPose(i,p,geometry.width);
+   card.style.transform=phone.matches?`translate3d(0,${pose.y.toFixed(2)}px,0)`:`translate3d(calc(-50% + ${pose.x.toFixed(2)}px), ${pose.y.toFixed(2)}px, 0) rotate(${pose.angle.toFixed(3)}deg)`;
    card.style.visibility=pose.near?'visible':'hidden';
-   card.style.zIndex=String(1000-Math.round(Math.abs(pose.angle)*10));
+   card.style.zIndex=String(phone.matches?i+1:1000-Math.round(Math.abs(pose.angle)*10));
    if(!pose.reachable&&card.contains(document.activeElement))$('.wheel-viewport').focus({preventScroll:true});
    card.tabIndex=pose.reachable?0:-1;
    card.setAttribute('aria-hidden',String(!pose.reachable));
   });
   $('[data-wheel-prev]').disabled=target<.015;
   $('[data-wheel-next]').disabled=target>geometry.steps-.015;
-  const pair=clamp(Math.round(p),0,geometry.steps);
+  const pair=clamp(phone.matches?Math.floor(p+.001):Math.round(p),0,geometry.steps);
   if(pair!==lastPair){
    lastPair=pair;
    const n=String(pair+1).padStart(2,'0');
@@ -45,24 +45,27 @@ function requestPaint(){if(!frame){lastTime=0;frame=requestAnimationFrame(paint)
 function measure(){
  let enhanced=!reduced.matches&&innerHeight>=560;
  const headerHeight=header.offsetHeight;
+ root.dataset.mode=phone.matches?'stack':'wheel';
  root.dataset.enhanced=String(enhanced);
  if(enhanced){
   geometry.steps=cards.length-(phone.matches?1:2);
   geometry.width=root.clientWidth;
-  const pinHeight=Math.max(420,innerHeight-headerHeight);
-  geometry.travel=geometry.steps*Math.max(380,innerHeight*.62);
-  root.style.setProperty('--pin-height',`${pinHeight}px`);
+  root.style.setProperty('--pin-height',phone.matches?`calc(100svh - ${headerHeight}px)`:`${Math.max(420,innerHeight-headerHeight)}px`);
   root.style.setProperty('--pin-top',`${headerHeight}px`);
-  const cardHeight=fitCardHeight(cards[0].offsetWidth,$('.wheel-viewport').clientHeight,geometry.width,phone.matches);
-  enhanced=cardHeight>=270;
+  const pinHeight=$('.wheel-pin').getBoundingClientRect().height;
+  geometry.viewportHeight=$('.wheel-viewport').clientHeight;
+  const cardHeight=phone.matches?stackPose(cards.length-1,geometry.steps,geometry.viewportHeight).height:fitCardHeight(cards[0].offsetWidth,geometry.viewportHeight,geometry.width);
+  enhanced=cardHeight>=(phone.matches?175:270);
   root.dataset.enhanced=String(enhanced);
+  geometry.travel=geometry.steps*Math.max(380,(phone.matches?pinHeight:innerHeight)*.62);
   root.style.setProperty('--wheel-card-height',`${cardHeight}px`);
-  root.style.height=`${pinHeight+geometry.travel}px`;
+  cards.forEach((card,i)=>{card.style.height=phone.matches?`${stackPose(i,0,geometry.viewportHeight).height}px`:''});
+  root.style.height=`${pinHeight+geometry.travel+(phone.matches?160:0)}px`;
   geometry.start=root.getBoundingClientRect().top+scrollY-headerHeight;
  }
  if(!enhanced){
   root.style.height='';
-  cards.forEach(card=>{card.style.transform='';card.style.visibility='';card.style.zIndex='';card.removeAttribute('tabindex');card.removeAttribute('aria-hidden')});
+  cards.forEach(card=>{card.style.transform='';card.style.visibility='';card.style.zIndex='';card.style.height='';card.removeAttribute('tabindex');card.removeAttribute('aria-hidden')});
   $('[data-wheel-status]').textContent='All six projects are displayed below.';
  }
  bands=$$('[data-tone].home-band').map(el=>({top:el.getBoundingClientRect().top+scrollY,tone:el.dataset.tone}));
@@ -77,8 +80,8 @@ $('[data-wheel-prev]').addEventListener('click',()=>go(Math.ceil(current()-.05)-
 $('[data-wheel-next]').addEventListener('click',()=>go(Math.floor(current()+.05)+1));
 $('.wheel-viewport').addEventListener('keydown',event=>{
  if(root.dataset.enhanced!=='true'||event.altKey||event.ctrlKey||event.metaKey)return;
- if(event.key==='ArrowRight'){event.preventDefault();go(Math.floor(current()+.05)+1)}
- if(event.key==='ArrowLeft'){event.preventDefault();go(Math.ceil(current()-.05)-1)}
+ if(event.key==='ArrowRight'||(phone.matches&&event.key==='ArrowDown')){event.preventDefault();go(Math.floor(current()+.05)+1)}
+ if(event.key==='ArrowLeft'||(phone.matches&&event.key==='ArrowUp')){event.preventDefault();go(Math.ceil(current()-.05)-1)}
 });
 // Native page scrolling drives a sticky scene. No wheel interception or body locking.
 window.addEventListener('scroll',requestPaint,{passive:true});

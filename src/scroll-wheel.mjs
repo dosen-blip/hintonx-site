@@ -17,3 +17,12 @@ export function fitCardHeight(cardWidth,viewportHeight,sceneWidth,mobile=false){
 export function easeProgress(current,target,elapsed,timeConstant=115){
  return target+(current-target)*Math.exp(-Math.max(0,elapsed)/timeConstant);
 }
+
+// Cards settle one header-height lower than the previous card; later cards cover
+// imagery while preserving every earlier project name. The scene stays native-scroll driven.
+export function stackPose(index,progress,viewportHeight,tabHeight=44){
+ const settledY=8+index*tabHeight;
+ const phase=index===0?1:clamp(progress-index+1,0,1);
+ const y=settledY+(viewportHeight+24-settledY)*(1-phase);
+ return {y,height:Math.max(1,viewportHeight-settledY-8),near:y<viewportHeight,reachable:viewportHeight-y>=tabHeight};
+}

@@ -26,10 +26,11 @@ The initial Cloudflare deployment used source commit `3c9d2ef3fd75ba0f7b0eed4d6d
 - Keep the original HintonX identity and improve it incrementally. Earlier broad redesigns were rejected.
 - Use black (`#080808`) and warm white (`#f7f7f3`) sections, oversized DM Sans typography, generous spacing, and imagery as the main visual interest.
 - Cobalt `#345CFF` is the chosen accent, defined in `src/accent.css`. Use it sparingly for actions, arrows, progress and punctuation. Preserve the white-dot cursor.
+- Use no emojis in UI or project replies. Arrow, play and close symbols render as inline SVG through `src/icons.mjs`; HTML validation rejects emoji/arrow text glyphs. Existing project media is preserved.
 - Avoid redundant grey taglines and self-explanatory captions. The user explicitly removed the extra homepage microcopy. Keep useful project information and accessible control labels.
 - Motion should feel eased and quiet. Reuse existing reveals and disclosure transitions. Respect reduced motion and keep keyboard interaction usable.
 - The homepage headline cycles upward through Design, Video, UX, Generative AI, Development and Branding. It has no visible play/pause control, by explicit user request. Reduced motion disables cycling; offscreen/hidden pages stop scheduling it.
-- The homepage work wheel visually pins while native document scrolling drives its circular rotation. Do not replace it with wheel-event cancellation or a body-scroll lock. Preserve previous/next, keyboard, skip, mobile and reduced-motion behavior.
+- Desktop retains the circular project wheel. At widths up to 760px, the homepage uses a scroll-driven stack: cards rise over earlier cards, preserving 44px project-name strips, and hold briefly on the final card before releasing the section. Earlier strips remain links to their case studies. Both modes use native document scrolling and a sticky scene; no wheel/touch cancellation or body-scroll lock. Preserve previous/next, keyboard and skip controls. Reduced motion and insufficient viewport height use a static grid. Mobile scene height uses `svh` to avoid browser-toolbar resize jumps.
 - Case studies share a restrained hierarchy: client/title, lead visual, light overview/facts, gallery where available, result, next project. Hinton Press uses a more spacious editorial gallery; single-image cases remain compact. Preserve natural image proportions.
 
 Huge, Neiden and Dosen.ca informed the exploration. They are visual references, not specifications to clone or authority to overwrite the accepted implementation.
@@ -48,7 +49,8 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Cobalt accents | `src/accent.css` |
 | Navbar blur, menus, white cursor | `src/navigation.css`, `src/navigation.js`, `src/cursor-dot.svg` |
 | Shared reveals and animated disclosures | `src/motion.mjs` |
-| Wheel geometry and easing | `src/scroll-wheel.mjs` |
+| Build-time SVG icon rendering | `src/icons.mjs` |
+| Wheel and mobile-stack geometry and easing | `src/scroll-wheel.mjs` |
 | Static generation, asset copy list, optional URL prefix | `scripts/build.mjs`, `scripts/base-path.mjs` |
 | HTML/link/fragment checks and wheel tests | `scripts/validate.mjs`, `scripts/scroll-wheel.test.mjs` |
 | Deployment configuration/command | `wrangler.jsonc`, `package.json` |
@@ -64,7 +66,7 @@ Media currently lives on Framer and YouTube. Films on Home and case studies crea
 - `npm ci`: install the locked deployment tooling after cloning.
 - `npm run dev`: rebuild, then serve `dist/` on port 4173. This is a plain Python static server, **not** a hot-reload server.
 - `npm run build`: rebuild before refreshing an existing preview.
-- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run seven wheel geometry/easing tests.
+- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run nine wheel/stack geometry and easing tests.
 - `BASE_PATH=/hintonx-site npm run validate`: optional subdirectory test only. Run a normal build afterwards; production on Cloudflare uses no prefix.
 
 Choose browser checks based on the change: layout at desktop and phone widths, overflow, image visibility, keyboard controls, menu reversal, deep links, reduced motion or player dismissal. Structural validation cannot establish visual quality, working external media, or live deployment.
