@@ -12,14 +12,14 @@ function paint(time){
   const target=wheelProgress(scroll,geometry.start,geometry.travel,geometry.steps);
   const elapsed=lastTime?Math.min(64,time-lastTime):1000/60;
   const offscreen=scroll<geometry.start-innerHeight||scroll>geometry.start+geometry.travel+innerHeight;
-  displayedProgress=displayedProgress===null||offscreen?target:easeProgress(displayedProgress,target,elapsed);
+  displayedProgress=reduced.matches||displayedProgress===null||offscreen?target:easeProgress(displayedProgress,target,elapsed);
   if(Math.abs(displayedProgress-target)<.0005)displayedProgress=target;
   const p=displayedProgress;
   lastTime=time;
   if(p!==target)frame=requestAnimationFrame(paint);
   root.style.setProperty('--wheel-progress',p/geometry.steps);
   cards.forEach((card,i)=>{
-   const pose=phone.matches?stackPose(i,p,geometry.viewportHeight):cardPose(i,p,geometry.width);
+   const pose=phone.matches?stackPose(i,p,geometry.viewportHeight,geometry.tabHeight):cardPose(i,p,geometry.width);
    card.style.transform=phone.matches?`translate3d(0,${pose.y.toFixed(2)}px,0)`:`translate3d(calc(-50% + ${pose.x.toFixed(2)}px), ${pose.y.toFixed(2)}px, 0) rotate(${pose.angle.toFixed(3)}deg)`;
    card.style.visibility=pose.near?'visible':'hidden';
    card.style.zIndex=String(phone.matches?i+1:1000-Math.round(Math.abs(pose.angle)*10));
@@ -43,7 +43,7 @@ function paint(time){
 }
 function requestPaint(){if(!frame){lastTime=0;frame=requestAnimationFrame(paint)}}
 function measure(){
- let enhanced=!reduced.matches&&innerHeight>=560;
+ let enhanced=phone.matches||(!reduced.matches&&innerHeight>=560);
  const headerHeight=header.offsetHeight;
  root.dataset.mode=phone.matches?'stack':'wheel';
  root.dataset.enhanced=String(enhanced);
@@ -54,12 +54,14 @@ function measure(){
   root.style.setProperty('--pin-top',`${headerHeight}px`);
   const pinHeight=$('.wheel-pin').getBoundingClientRect().height;
   geometry.viewportHeight=$('.wheel-viewport').clientHeight;
-  const cardHeight=phone.matches?stackPose(cards.length-1,geometry.steps,geometry.viewportHeight).height:fitCardHeight(cards[0].offsetWidth,geometry.viewportHeight,geometry.width);
-  enhanced=cardHeight>=(phone.matches?175:270);
+  geometry.tabHeight=clamp((geometry.viewportHeight-156)/(cards.length-1),32,44);
+  root.style.setProperty('--stack-tab-height',`${geometry.tabHeight}px`);
+  const cardHeight=phone.matches?stackPose(cards.length-1,geometry.steps,geometry.viewportHeight,geometry.tabHeight).height:fitCardHeight(cards[0].offsetWidth,geometry.viewportHeight,geometry.width);
+  enhanced=phone.matches||cardHeight>=270;
   root.dataset.enhanced=String(enhanced);
   geometry.travel=geometry.steps*Math.max(380,(phone.matches?pinHeight:innerHeight)*.62);
   root.style.setProperty('--wheel-card-height',`${cardHeight}px`);
-  cards.forEach((card,i)=>{card.style.height=phone.matches?`${stackPose(i,0,geometry.viewportHeight).height}px`:''});
+  cards.forEach((card,i)=>{card.style.height=phone.matches?`${stackPose(i,0,geometry.viewportHeight,geometry.tabHeight).height}px`:''});
   root.style.height=`${pinHeight+geometry.travel+(phone.matches?160:0)}px`;
   geometry.start=root.getBoundingClientRect().top+scrollY-headerHeight;
  }

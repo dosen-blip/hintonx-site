@@ -95,15 +95,20 @@ details[data-expanded=false]>summary .home-plus:after{transform:rotate(90deg)}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-viewport{margin:0 20px;overflow:clip}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-cards{inset:0;width:100%}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card{left:0;top:0;width:100%;border-radius:12px 12px 0 0;background:#f7f7f3;border:1px solid #9c9c97;box-shadow:0 -7px 25px #0003;transform-origin:center top}
- .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card-top{inset:0 0 auto;height:44px;padding:0 15px;align-items:center;gap:15px;background:#f7f7f3;color:#111;z-index:2}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card-top{inset:0 0 auto;height:var(--stack-tab-height,44px);padding:0 15px;align-items:center;gap:15px;background:#f7f7f3;color:#111;z-index:2}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card-top strong{font-size:17px;letter-spacing:-.035em;line-height:1;text-shadow:none}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card-top>span{color:var(--accent);padding:0;font-size:10px}
- .wheel-track[data-mode=stack][data-enhanced=true] .wheel-image{top:44px;height:calc(100% - 44px);object-position:center}
- .wheel-track[data-mode=stack][data-enhanced=true] .wheel-shade{top:44px;background:linear-gradient(transparent 25%,#000b)}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-image{top:var(--stack-tab-height,44px);height:calc(100% - var(--stack-tab-height,44px));object-position:center}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-shade{top:var(--stack-tab-height,44px);background:linear-gradient(transparent 25%,#000b)}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card-bottom{left:16px;right:16px;bottom:18px;gap:8px;padding-right:28px}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-title{font-size:clamp(24px,7vw,31px)}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-discipline{display:none}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card:focus-visible{outline-offset:-4px}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-bottom{padding-top:7px;min-height:50px}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-bottom:before{display:none}
+}
+
+@media(max-width:760px) and (max-height:650px){
+ .wheel-track[data-mode=stack][data-enhanced=true] .home-marker{display:none}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-title{font-size:22px}
 }

@@ -63,7 +63,7 @@ function layout({ title = "HintonX", description = "HintonX — Design + Technol
   <link rel="stylesheet" href="/styles.css?v=20260909-icons">
   <link rel="stylesheet" href="/navigation.css">
   <script src="/navigation.js" type="module"></script>
-  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260909-stack3"><script src="/home.js?v=20260909-stack3" type="module"></script>' : ''}
+  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260909-stack4"><script src="/home.js?v=20260909-stack4" type="module"></script>' : ''}
 ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script src="/case.js" type="module"></script>' : ''}
 <link rel="stylesheet" href="/accent.css">
 </head>
