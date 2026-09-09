@@ -12,7 +12,7 @@ function paint(time){
   const target=wheelProgress(scroll,geometry.start,geometry.travel,geometry.steps);
   const elapsed=lastTime?Math.min(64,time-lastTime):1000/60;
   const offscreen=scroll<geometry.start-innerHeight||scroll>geometry.start+geometry.travel+innerHeight;
-  displayedProgress=reduced.matches||displayedProgress===null||offscreen?target:easeProgress(displayedProgress,target,elapsed);
+  displayedProgress=reduced.matches||displayedProgress===null||offscreen?target:easeProgress(displayedProgress,target,elapsed,phone.matches?190:115);
   if(Math.abs(displayedProgress-target)<.0005)displayedProgress=target;
   const p=displayedProgress;
   lastTime=time;

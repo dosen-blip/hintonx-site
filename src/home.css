@@ -112,3 +112,14 @@ details[data-expanded=false]>summary .home-plus:after{transform:rotate(90deg)}
  .wheel-track[data-mode=stack][data-enhanced=true] .home-marker{display:none}
  .wheel-track[data-mode=stack][data-enhanced=true] .wheel-title{font-size:22px}
 }
+
+@media(max-width:760px){
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-pin::before,
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-pin::after{content:'';position:absolute;right:8px;top:38%;width:3px;height:42%;border-radius:3px;pointer-events:none;z-index:5}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-pin::before{background:#ffffff26}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-pin::after{background:var(--accent);transform:scaleY(var(--wheel-progress,0));transform-origin:top}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card:nth-child(even){background:var(--accent);border-color:var(--accent)}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card:nth-child(even) .wheel-card-top{background:var(--accent);color:#fff}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card:nth-child(even) .wheel-card-top>span{color:#fff}
+ .wheel-track[data-mode=stack][data-enhanced=true] .wheel-card:nth-child(even) .wheel-image{left:7px;width:calc(100% - 14px);height:calc(100% - var(--stack-tab-height,44px) - 7px)}
+}
