@@ -6,6 +6,10 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && python3 -m http.server 4173 -d dist",
-    "validate": "npm run build && node scripts/validate.mjs && node --test scripts/scroll-wheel.test.mjs"
+    "validate": "npm run build && node scripts/validate.mjs && node --test scripts/scroll-wheel.test.mjs",
+    "deploy": "npm run validate && wrangler pages deploy dist --project-name=hintonx-site --branch=main"
+  },
+  "devDependencies": {
+    "wrangler": "^4.130.0"
   }
 }

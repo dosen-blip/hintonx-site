@@ -2,17 +2,20 @@
 
 HintonX’s static website, with an interactive homepage, editorial Work showcase, and eight project case studies. Built with native HTML, CSS and JavaScript, with no package dependencies.
 
-## GitHub Pages
+## Hosting
 
-Pushes to `main` run validation and deploy `dist/` through GitHub Actions. The workflow uses `BASE_PATH=/hintonx-site` so routes and assets work beneath the repository URL. Local builds use the site root by default.
+Source: https://github.com/dosen-blip/hintonx-site
+
+Production: https://hintonx-site.pages.dev (Cloudflare Pages). Custom domain setup is deferred. GitHub Pages is disabled to avoid inheriting the portfolio domain.
+
+GitHub Actions validates pushes and pull requests. Deployments use the authenticated local Cloudflare CLI; pushing alone does not publish.
 
 ```bash
-BASE_PATH=/hintonx-site npm run validate
-npm run build # restore the local-preview build
+npm ci
+npm run deploy
 ```
 
-Design archives and planning documents remain local. External project images and video hosting are unchanged.
-
+Builds use root-relative paths for the standalone hostname. `BASE_PATH` remains available for subdirectory previews. Local design archives and planning notes are excluded from Git.
 
 ## Local preview
 

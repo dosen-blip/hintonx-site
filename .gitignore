@@ -8,3 +8,5 @@ MIGRATION_NOTES.md
 .env
 .env.*
 node_modules/
+
+.wrangler/
