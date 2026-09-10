@@ -1,3 +1,4 @@
+import {verticalBody} from './vertical-render.mjs';
 import { renderIcons } from './icons.mjs';
 import { caseBody } from './case-render.mjs';
 import { workBody } from './work-render.mjs';
@@ -63,9 +64,11 @@ function layout({ title = "HintonX", description = "HintonX — Design + Technol
   <link rel="stylesheet" href="/styles.css?v=20260909-icons">
   <link rel="stylesheet" href="/navigation.css">
   <script src="/navigation.js" type="module"></script>
-  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260909-stack5"><script src="/home.js?v=20260909-stack5" type="module"></script>' : ''}
+  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css?v=20260910-work-heading"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260910-clean"><script src="/home.js?v=20260910-clean" type="module"></script>' : ''}
 ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script src="/case.js" type="module"></script>' : ''}
-<link rel="stylesheet" href="/accent.css">
+<link rel="stylesheet" href="/vertical.css">
+${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></script>' : ''}
+<link rel="stylesheet" href="/accent.css?v=20260910-film">
 </head>
 <body class="${pageClass}"${pageClass === "work-page" ? ' id="top"' : ''}>
   ${header()}
@@ -136,3 +139,5 @@ export function renderVideo() {
     </section>
     <section class="video-grid container">${videoProjects.map(video => `<article><div class="video-thumb"><img src="${video.src}" alt="${esc(video.title)}" loading="lazy"><span class="play-mark">▶</span></div><h2>${esc(video.title)}</h2><p>${esc(video.subtitle)}</p></article>`).join("")}</section>` });
 }
+
+export function renderVertical(v){return layout({title:`${v.title} — HintonX`,description:v.intro,pageClass:"vertical-page",body:verticalBody(v)})}

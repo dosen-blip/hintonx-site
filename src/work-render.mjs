@@ -1,3 +1,4 @@
+import {verticalNav} from './vertical-render.mjs';
 import {projects} from './site-data.mjs';
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const project = slug => projects.find(p => p.slug === slug);
@@ -19,8 +20,8 @@ export function workBody() {
   return `
   <section class="work-band work-dark work-opening" data-work-tone="dark"><div class="work-container">
     <div class="work-opening-top"><p>Selected projects.<br>Different challenges. Shared curiosity.</p><a href="#work-index" class="work-index-jump">Explore the index <span aria-hidden="true">↓</span></a></div>
-    <div class="work-wordmark"><h1>Work<span>.</span></h1><span class="work-total"><span>01—08</span><span>DESIGN + TECHNOLOGY</span></span></div>
-    <div class="work-opening-bottom"><p>Digital experiences, connected platforms<br>and brands with a point of view.</p><nav aria-label="Explore work disciplines"><a href="#work-platforms">Products & platforms <span aria-hidden="true">↘</span></a><a href="#work-experiences">Digital experiences <span aria-hidden="true">↘</span></a><a href="#work-editorial">Brand & editorial <span aria-hidden="true">↘</span></a></nav></div>
+    <div class="work-wordmark"><h1>Work<span>.</span></h1></div>
+    <div class="work-opening-bottom"><p>Digital experiences, connected platforms<br>and brands with a point of view.</p>${verticalNav('all')}</div>
   </div></section>
   <section class="work-band work-light work-platforms" id="work-platforms" data-work-tone="light"><div class="work-container">
     ${marker('01','Connected living','1VALET / Smart building platform')}

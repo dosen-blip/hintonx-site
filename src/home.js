@@ -27,13 +27,9 @@ function paint(time){
    card.tabIndex=pose.reachable?0:-1;
    card.setAttribute('aria-hidden',String(!pose.reachable));
   });
-  $('[data-wheel-prev]').disabled=target<.015;
-  $('[data-wheel-next]').disabled=target>geometry.steps-.015;
   const pair=clamp(phone.matches?Math.floor(p+.001):Math.round(p),0,geometry.steps);
   if(pair!==lastPair){
    lastPair=pair;
-   const n=String(pair+1).padStart(2,'0');
-   $('[data-wheel-count]').textContent=phone.matches?`${n} / 06`:`${n}—${String(pair+2).padStart(2,'0')} / 06`;
    $('[data-wheel-status]').textContent=`Showing ${phone.matches?'project':'projects'} ${pair+1}${phone.matches?'':' and '+(pair+2)} of ${cards.length}.`;
   }
  }
@@ -78,8 +74,6 @@ function go(index){
  window.scrollTo({top:wheelPosition(target,geometry.start,geometry.travel,geometry.steps),behavior:reduced.matches?'instant':'smooth'});
 }
 const current=()=>wheelProgress(scrollY,geometry.start,geometry.travel,geometry.steps);
-$('[data-wheel-prev]').addEventListener('click',()=>go(Math.ceil(current()-.05)-1));
-$('[data-wheel-next]').addEventListener('click',()=>go(Math.floor(current()+.05)+1));
 $('.wheel-viewport').addEventListener('keydown',event=>{
  if(root.dataset.enhanced!=='true'||event.altKey||event.ctrlKey||event.metaKey)return;
  if(event.key==='ArrowRight'||(phone.matches&&event.key==='ArrowDown')){event.preventDefault();go(Math.floor(current()+.05)+1)}

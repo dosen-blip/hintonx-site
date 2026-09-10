@@ -1,9 +1,10 @@
+import {verticals} from '../src/verticals.mjs';
 import { basePath } from './base-path.mjs';
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { projects } from "../src/site-data.mjs";
-import { renderCaseStudy, renderContact, renderHome, renderProjects, renderStudio, renderVideo } from "../src/render.mjs";
+import { renderVertical, renderCaseStudy, renderContact, renderHome, renderProjects, renderStudio, renderVideo } from "../src/render.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(root, "dist");
@@ -25,12 +26,14 @@ await output("Studio/index.html", renderStudio());
 await output("Contact/index.html", renderContact());
 await output("matiadosen/index.html", renderVideo());
 
+for (const vertical of verticals) await output(`work/${vertical.slug}/index.html`, renderVertical(vertical));
+
 for (const project of projects) {
   await output(`projects/${project.slug}/index.html`, renderCaseStudy(project));
 }
 
 await output("styles.css", await readFile(resolve(root, "src/styles.css"), "utf8"));
-for (const file of ["case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "work.css", "work.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
+for (const file of ["vertical.css", "vertical.js", "case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "work.css", "work.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
 await output("404.html", renderHome());
 await output(".nojekyll", "");
-console.log(`Built ${projects.length + 6} static pages in ${dist}`);
+console.log(`Built ${projects.length + verticals.length + 6} static pages in ${dist}`);

@@ -12,4 +12,4 @@
 .wheel-track[data-enhanced=true] .wheel-bottom:before{background:linear-gradient(to right,var(--accent) calc(var(--wheel-progress,0)*100%),#ffffff30 0)}
 .home-solution[open] .home-plus,.home-service[open] .home-plus{color:var(--accent)}
 .work-index-row[data-active=true] .work-row-arrow{color:var(--accent)}
-.home-film-button{background:var(--accent);color:#fff}
+.home-film-button{color:#fff}

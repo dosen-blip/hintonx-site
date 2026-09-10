@@ -1,21 +1,10 @@
+import {verticals,verticalHref} from './verticals.mjs';
 export const site = {
   name: "HintonX",
   year: "2025",
   navigation: [
     { label: "Work", href: "/projects/" },
-    { label: "Solutions", intro: "Start with what you want to change.", children: [
-      { label: "Launch a digital product", href: "/#solution-launch", note: "Explore the solution" },
-      { label: "Modernize a platform", href: "/#solution-modernize", note: "Explore the solution" },
-      { label: "Build or reposition a brand", href: "/#solution-brand", note: "Explore the solution" },
-      { label: "Introduce AI into an experience", href: "/#solution-intelligence", note: "Explore the solution" },
-    ] },
-    { label: "Services", intro: "Five disciplines. A connected approach.", children: [
-      { label: "Product Design", href: "/#product-design", note: "Explore the service" },
-      { label: "Branding", href: "/#branding", note: "Explore the service" },
-      { label: "Generative AI", href: "/#generative-ai", note: "Explore the service" },
-      { label: "Digital Product Development", href: "/#development", note: "Explore the service" },
-      { label: "Video Production", href: "/matiadosen/", note: "Explore the films" },
-    ] },
+    { label: "Services", intro: "Explore the work by discipline.", children: verticals.map(v=>({label:v.title,href:verticalHref(v),note:''})) },
     { label: "Contact", href: "/Contact/" },
     { label: "Start a project", href: "/Contact/", button: true },
   ],

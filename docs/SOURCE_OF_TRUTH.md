@@ -27,10 +27,12 @@ The initial Cloudflare deployment used source commit `3c9d2ef3fd75ba0f7b0eed4d6d
 - Use black (`#080808`) and warm white (`#f7f7f3`) sections, oversized DM Sans typography, generous spacing, and imagery as the main visual interest.
 - Cobalt `#345CFF` is the chosen accent, defined in `src/accent.css`. Use it sparingly for actions, arrows, progress and punctuation. Preserve the white-dot cursor.
 - Use no emojis in UI or project replies. Arrow, play and close symbols render as inline SVG through `src/icons.mjs`; HTML validation rejects emoji/arrow text glyphs. Existing project media is preserved.
+- Shared navigation currently contains Work, Services, Contact and Start a project. Solutions is removed from navigation; its homepage content remains. Work uses the same horizontal discipline navigation as the vertical pages, a smaller heading with cobalt punctuation, and no project-count badge. The homepage film control has a transparent background with its play icon and text retained.
+- Homepage section eyebrows, numbers and their divider rules are removed; let the main headings and alternating backgrounds separate sections.
 - Avoid redundant grey taglines and self-explanatory captions. The user explicitly removed the extra homepage microcopy. Keep useful project information and accessible control labels.
 - Motion should feel eased and quiet. Reuse existing reveals and disclosure transitions. Respect reduced motion and keep keyboard interaction usable.
 - The homepage headline cycles upward through Design, Video, UX, Generative AI, Development and Branding. It has no visible play/pause control, by explicit user request. Reduced motion disables cycling; offscreen/hidden pages stop scheduling it.
-- Desktop retains the circular project wheel. At widths up to 760px, the homepage uses a scroll-driven stack: cards rise over earlier cards, preserving 32–44px project-name strips sized to the available height, and hold briefly on the final card before releasing the section. Earlier strips remain links to their case studies. Both modes use native document scrolling and a sticky scene; no wheel/touch cancellation or body-scroll lock. Preserve previous/next, keyboard and skip controls. Desktop reduced motion and insufficient viewport height use a static grid. Mobile keeps the stack on shorter viewports; reduced motion maps the cards directly to scroll without easing. Mobile scene height uses `svh` to avoid browser-toolbar resize jumps. Stack movement uses 190ms damping (desktop remains 115ms); a slim vertical cobalt rail follows the eased progress. Every second mobile card has a cobalt frame and header with white text.
+- Desktop retains the circular project wheel. At widths up to 760px, the homepage uses a scroll-driven stack: cards rise over earlier cards, preserving 32–44px project-name strips sized to the available height, and hold briefly on the final card before releasing the section. Earlier strips remain links to their case studies. Both modes use native document scrolling and a sticky scene; no wheel/touch cancellation or body-scroll lock. Keep keyboard navigation and native scrolling. The visible previous/next buttons, counter and Continue link have been removed. Desktop reduced motion and insufficient viewport height use a static grid. Mobile keeps the stack on shorter viewports; reduced motion maps the cards directly to scroll without easing. Mobile scene height uses `svh` to avoid browser-toolbar resize jumps. Stack movement uses 190ms damping (desktop remains 115ms); a slim vertical cobalt rail follows the eased progress. Every second mobile card has a cobalt frame and header with white text.
 - Case studies share a restrained hierarchy: client/title, lead visual, light overview/facts, gallery where available, result, next project. Hinton Press uses a more spacious editorial gallery; single-image cases remain compact. Preserve natural image proportions.
 
 Huge, Neiden and Dosen.ca informed the exploration. They are visual references, not specifications to clone or authority to overwrite the accepted implementation.
@@ -43,6 +45,7 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Homepage selections and discipline copy | `src/home-content.mjs` |
 | Shared document shell, header, footer; Studio, Contact, Video | `src/render.mjs` |
 | Homepage markup, styling, behavior | `src/home-render.mjs`, `src/home.css`, `src/home.js` |
+| Vertical pages and project classification | `src/verticals.mjs`, `src/vertical-render.mjs`, `src/vertical.css`, `src/vertical.js` |
 | Work listing | `src/work-render.mjs`, `src/work.css`, `src/work.js` |
 | All eight case studies | `src/case-render.mjs`, `src/case.css`, `src/case.js` |
 | Base typography/layout and original secondary pages | `src/styles.css` |
@@ -55,7 +58,9 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | HTML/link/fragment checks and wheel tests | `scripts/validate.mjs`, `scripts/scroll-wheel.test.mjs` |
 | Deployment configuration/command | `wrangler.jsonc`, `package.json` |
 
-No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 14 HTML files: home, Work, eight cases, Studio, Contact, Video and a homepage-based 404. `dist/` is recreated on every build.
+No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 19 HTML files: home, Work, five vertical pages, eight cases, Studio, Contact, legacy Video and a homepage-based 404. `dist/` is recreated on every build.
+
+Work is organized into five dedicated collections: `/work/product-design/`, `/work/web-development/`, `/work/ai/`, `/work/branding/`, and `/work/video/`. Services navigation, the Work introduction and homepage service links lead to these pages. Project membership is curated in `verticals.mjs`; a project may span disciplines. AI entries describe documented UX and product-strategy contributions, not model development. The new Video collection links to the seven existing YouTube films; `/matiadosen/` remains available.
 
 Routes are case-sensitive: `/`, `/projects/`, `/Studio/`, `/Contact/`, `/matiadosen/` (Video), and `/projects/<slug>/`. Obtain project slugs from `site-data.mjs`; do not rename routes as part of visual polish. Studio, Contact and the standalone Video page retain their original layouts; the new case-study treatment does not imply they have been redesigned.
 
