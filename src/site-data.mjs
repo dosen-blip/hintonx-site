@@ -4,7 +4,7 @@ export const site = {
   year: "2025",
   navigation: [
     { label: "Work", href: "/projects/" },
-    { label: "Services", intro: "Explore the work by discipline.", children: verticals.map(v=>({label:v.title,href:verticalHref(v),note:''})) },
+    { label: "Services", intro: "Discover how we can help.", children: verticals.map(v=>({label:v.title,href:verticalHref(v),note:''})) },
     { label: "Contact", href: "/Contact/" },
     { label: "Start a project", href: "/Contact/", button: true },
   ],

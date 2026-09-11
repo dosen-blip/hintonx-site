@@ -45,7 +45,8 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Homepage selections and discipline copy | `src/home-content.mjs` |
 | Shared document shell, header, footer; Studio, Contact, Video | `src/render.mjs` |
 | Homepage markup, styling, behavior | `src/home-render.mjs`, `src/home.css`, `src/home.js` |
-| Vertical pages and project classification | `src/verticals.mjs`, `src/vertical-render.mjs`, `src/vertical.css`, `src/vertical.js` |
+| Service-page copy and curated features | `src/service-content.mjs` |
+| Service-page rendering, styling, behavior and discipline membership | `src/verticals.mjs`, `src/vertical-render.mjs`, `src/vertical.css`, `src/vertical.js` |
 | Work listing | `src/work-render.mjs`, `src/work.css`, `src/work.js` |
 | All eight case studies | `src/case-render.mjs`, `src/case.css`, `src/case.js` |
 | Base typography/layout and original secondary pages | `src/styles.css` |
@@ -60,11 +61,13 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 
 No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 19 HTML files: home, Work, five vertical pages, eight cases, Studio, Contact, legacy Video and a homepage-based 404. `dist/` is recreated on every build.
 
-Work is organized into five dedicated collections: `/work/product-design/`, `/work/web-development/`, `/work/ai/`, `/work/branding/`, and `/work/video/`. Services navigation, the Work introduction and homepage service links lead to these pages. Project membership is curated in `verticals.mjs`; a project may span disciplines. AI entries describe documented UX and product-strategy contributions, not model development. The new Video collection links to the seven existing YouTube films; `/matiadosen/` remains available.
+Five dedicated service pages use the existing routes: `/work/product-design/`, `/work/web-development/`, `/work/ai/`, `/work/branding/`, and `/work/video/`. Each has five sections: a service introduction with lead media, four capabilities, selected work with discipline-specific contribution copy, a three-part approach, and a service-specific project enquiry linking to Contact. Keep the shared black/warm-white structure and restrained cobalt punctuation. Branding gives Hinton Press a single expanded editorial feature; Video has a featured film, two selected films and four additional films. Its seven film links open a native dialog with a YouTube iframe created on demand and removed on dismissal, returning focus to the opening link; ordinary YouTube links remain the fallback, including a direct link inside the player. `/matiadosen/` remains available.
+
+Services navigation, the Work introduction and homepage service links lead to these pages. Work remains the portfolio overview, with discipline navigation retained as a secondary route between service pages. Project membership is curated in `verticals.mjs`; a project may span disciplines. `service-content.mjs` owns service copy and feature selections while client facts and media remain in `site-data.mjs`. Remaining projects in each discipline stay accessible through a compact related-work list. AI entries describe documented UX and product-strategy contributions, not model development.
 
 Routes are case-sensitive: `/`, `/projects/`, `/Studio/`, `/Contact/`, `/matiadosen/` (Video), and `/projects/<slug>/`. Obtain project slugs from `site-data.mjs`; do not rename routes as part of visual polish. Studio, Contact and the standalone Video page retain their original layouts; the new case-study treatment does not imply they have been redesigned.
 
-Media currently lives on Framer and YouTube. Films on Home and case studies create an iframe when opened and remove it on close. External hosting availability is not covered by local validation. The standalone Video page still uses static thumbnails; do not describe every video on the site as playable.
+Media currently lives on Framer and YouTube. Films on Home, case studies and the Video service page create an iframe when opened and remove it on close. External hosting availability is not covered by local validation. The legacy standalone Video page still uses static thumbnails; do not describe every video on the site as playable.
 
 ## Development and validation
 

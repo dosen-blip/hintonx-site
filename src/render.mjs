@@ -1,4 +1,5 @@
 import {verticalBody} from './vertical-render.mjs';
+import {serviceContent} from './service-content.mjs';
 import { renderIcons } from './icons.mjs';
 import { caseBody } from './case-render.mjs';
 import { workBody } from './work-render.mjs';
@@ -140,4 +141,4 @@ export function renderVideo() {
     <section class="video-grid container">${videoProjects.map(video => `<article><div class="video-thumb"><img src="${video.src}" alt="${esc(video.title)}" loading="lazy"><span class="play-mark">▶</span></div><h2>${esc(video.title)}</h2><p>${esc(video.subtitle)}</p></article>`).join("")}</section>` });
 }
 
-export function renderVertical(v){return layout({title:`${v.title} — HintonX`,description:v.intro,pageClass:"vertical-page",body:verticalBody(v)})}
+export function renderVertical(v){return layout({title:`${v.title} — HintonX`,description:serviceContent[v.slug].intro,pageClass:"vertical-page",body:verticalBody(v)})}
