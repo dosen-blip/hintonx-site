@@ -62,10 +62,10 @@ function layout({ title = "HintonX", description = "HintonX — Design + Technol
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260909-icons">
+  <link rel="stylesheet" href="/styles.css?v=20260912-logo">
   <link rel="stylesheet" href="/navigation.css">
   <script src="/navigation.js" type="module"></script>
-  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css?v=20260910-work-heading"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260910-clean"><script src="/home.js?v=20260910-clean" type="module"></script>' : ''}
+  ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css?v=20260910-work-heading"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260912-mobile-hero-2"><script src="/home.js?v=20260912-mobile-hero-2" type="module"></script>' : ''}
 ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script src="/case.js" type="module"></script>' : ''}
 <link rel="stylesheet" href="/vertical.css">
 ${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></script>' : ''}

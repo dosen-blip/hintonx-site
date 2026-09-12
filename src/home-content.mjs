@@ -1,3 +1,13 @@
+// Opening spotlights use documented work; the AI example demonstrates UX contributions.
+export const homeSpotlights = [
+ {word:'Design',slug:'social-platform',caption:'Product design'},
+ {word:'Video',film:0,caption:'Documentary teaser'},
+ {word:'UX',slug:'spectrum-management-platform',caption:'Research & experience'},
+ {word:'Generative AI',slug:'canada-border-services-agency',caption:'Related UX work · ELVIS'},
+ {word:'Development',slug:'1valet',caption:'Product development'},
+ {word:'Branding',slug:'press',media:4,crop:true,caption:'Brand & editorial'}
+];
+
 export const wheelProjects = [
   {slug:'mobile-app', title:'A little more connection.', discipline:'Product design & development', color:'#274cdf'},
   {slug:'press', title:'Greatness, in print.', discipline:'Brand, editorial & commerce', color:'#9e6b3e'},
