@@ -27,7 +27,7 @@ The initial Cloudflare deployment used source commit `3c9d2ef3fd75ba0f7b0eed4d6d
 - Use black (`#080808`) and warm white (`#f7f7f3`) sections, oversized DM Sans typography, generous spacing, and imagery as the main visual interest.
 - Cobalt `#345CFF` is the chosen accent, defined in `src/accent.css`. Use it sparingly for actions, arrows, progress and punctuation. Preserve the white-dot cursor. The HX navbar wordmark uses DM Sans Bold (700).
 - Use no emojis in UI or project replies. Arrow, play and close symbols render as inline SVG through `src/icons.mjs`; HTML validation rejects emoji/arrow text glyphs. Existing project media is preserved.
-- Shared navigation currently contains Work, Services, Contact and Start a project. Solutions is removed from navigation; its homepage content remains. Work uses the same horizontal discipline navigation as the vertical pages, a smaller heading with cobalt punctuation, and no project-count badge. The homepage film control has a transparent background with its play icon and text retained.
+- Shared navigation contains Work, Services, Public Sector Solutions, Contact and Start a project. Public Sector Solutions links to `/publicsector/` in desktop and mobile navigation. The previous generic Solutions item remains removed; its homepage content remains. Work retains horizontal discipline navigation; service pages have no secondary discipline navbar. Work uses a smaller heading with cobalt punctuation, and no project-count badge. The homepage film control has a transparent background with its play icon and text retained.
 - Homepage section eyebrows, numbers and their divider rules are removed; let the main headings and alternating backgrounds separate sections.
 - Avoid redundant grey taglines and self-explanatory captions. The user explicitly removed the extra homepage microcopy. Keep useful project information and accessible control labels.
 - Motion should feel eased and quiet. Reuse existing reveals and disclosure transitions. Respect reduced motion and keep keyboard interaction usable.
@@ -49,7 +49,10 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Service-page copy and curated features | `src/service-content.mjs` |
 | Service-page rendering, styling, behavior and discipline membership | `src/verticals.mjs`, `src/vertical-render.mjs`, `src/vertical.css`, `src/vertical.js` |
 | Work listing | `src/work-render.mjs`, `src/work.css`, `src/work.js` |
-| All eight case studies | `src/case-render.mjs`, `src/case.css`, `src/case.js` |
+| Public-sector content, cases, client groups, asset references and preview indexing state | `src/publicsector-content.mjs` |
+| Public-sector overview and case templates, styles and browser hooks | `src/publicsector-render.mjs`, `src/publicsector.css`, `src/publicsector.js` |
+| Public-sector asset inventory and outstanding content review | `docs/PUBLIC_SECTOR_REVIEW.md` |
+| All eight original case studies | `src/case-render.mjs`, `src/case.css`, `src/case.js` |
 | Base typography/layout and original secondary pages | `src/styles.css` |
 | Cobalt accents | `src/accent.css` |
 | Navbar blur, menus, white cursor | `src/navigation.css`, `src/navigation.js`, `src/cursor-dot.svg` |
@@ -57,25 +60,37 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Build-time SVG icon rendering | `src/icons.mjs` |
 | Wheel and mobile-stack geometry and easing | `src/scroll-wheel.mjs` |
 | Static generation, asset copy list, optional URL prefix | `scripts/build.mjs`, `scripts/base-path.mjs` |
-| HTML/link/fragment checks and wheel tests | `scripts/validate.mjs`, `scripts/scroll-wheel.test.mjs` |
+| HTML/link/fragment checks, wheel and public-sector tests | `scripts/validate.mjs`, `scripts/scroll-wheel.test.mjs`, `scripts/publicsector.test.mjs` |
 | Deployment configuration/command | `wrangler.jsonc`, `package.json` |
 
-No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 19 HTML files: home, Work, five vertical pages, eight cases, Studio, Contact, legacy Video and a homepage-based 404. `dist/` is recreated on every build.
+No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 26 HTML files: home, Work, five vertical pages, eight original cases, the Public Sector overview and six public-sector cases, Studio, Contact, legacy Video and a homepage-based 404. `dist/` is recreated on every build.
 
 Five dedicated service pages use the existing routes: `/work/product-design/`, `/work/web-development/`, `/work/ai/`, `/work/branding/`, and `/work/video/`. Each has five sections: a service introduction with lead media, four capabilities, selected work with discipline-specific contribution copy, a three-part approach, and a service-specific project enquiry linking to Contact. Keep the shared black/warm-white structure and restrained cobalt punctuation. Branding gives Hinton Press a single expanded editorial feature; Video has a featured film, two selected films and four additional films. Its seven film links open a native dialog with a YouTube iframe created on demand and removed on dismissal, returning focus to the opening link; ordinary YouTube links remain the fallback, including a direct link inside the player. `/matiadosen/` remains available.
 
-Services navigation, the Work introduction and homepage service links lead to these pages. Work remains the portfolio overview, with discipline navigation retained as a secondary route between service pages. Project membership is curated in `verticals.mjs`; a project may span disciplines. `service-content.mjs` owns service copy and feature selections while client facts and media remain in `site-data.mjs`. Remaining projects in each discipline stay accessible through a compact related-work list. AI entries describe documented UX and product-strategy contributions, not model development.
+Services navigation, the Work introduction and homepage service links lead to these pages. Work remains the portfolio overview and retains its discipline navigation. Service pages omit the secondary discipline navbar and use the shared Services menu. Project membership is curated in `verticals.mjs`; a project may span disciplines. `service-content.mjs` owns service copy and feature selections while client facts and media remain in `site-data.mjs`. Remaining projects in each discipline stay accessible through a compact related-work list. AI entries describe documented UX and product-strategy contributions, not model development.
 
 Routes are case-sensitive: `/`, `/projects/`, `/Studio/`, `/Contact/`, `/matiadosen/` (Video), and `/projects/<slug>/`. Obtain project slugs from `site-data.mjs`; do not rename routes as part of visual polish. Studio, Contact and the standalone Video page retain their original layouts; the new case-study treatment does not imply they have been redesigned.
 
 Media currently lives on Framer and YouTube. Films on Home, case studies and the Video service page create an iframe when opened and remove it on close. External hosting availability is not covered by local validation. The legacy standalone Video page still uses static thumbnails; do not describe every video on the site as playable.
+
+## Public Sector Solutions
+
+The `/publicsector/` section uses the existing shell and visual system. Its six detail routes are owned by `publicsector-content.mjs` and are ordered OSFI OASIS, Government of Alberta Atlas, ISED Spectrum Cloud, CBSA Traveller Modernization, Federal Judicial Affairs Phoenix, and CBSA Import Information. Existing portfolio entries remain unchanged. Each case has the supplied content, optional overview/gallery support, a contact action, breadcrumbs and non-wrapping previous/next navigation. The overview has eight services, ISED recognition and 13 clients grouped by government organization type.
+
+The user explicitly approved building complete page scaffolds with labelled placeholders. No approved project images or client marks were supplied for this section: image slots show a stable placeholder, client names use text treatments, and the seven social images are labelled previews. Atlas displays supplied draft material and explicit Services/Outcome placeholders. Keep these distinctions visible until approved replacements arrive; never invent facts or government marks. See `PUBLIC_SECTOR_REVIEW.md` for the current inventory and remaining review items.
+
+The shared shell accepts optional canonical, social metadata, robots and JSON-LD inputs. The section supplies unique metadata, WebPage and BreadcrumbList data, and uses `site.origin` for absolute URLs. `publicSector.indexable` is false while the section is incomplete: all seven pages emit `noindex, follow` and stay out of the generated sitemap. The sitemap currently includes the 18 existing non-404 routes. `robots.txt` allows crawling so the noindex directive can be read and points to the sitemap. A future approved content release can set `indexable` true; this changes both metadata and sitemap inclusion. Do not enable indexing simply because implementation checks pass.
+
+The content image shape is `{src, width, height, alt, srcset?, webpSrcset?, caption?}`. Use approved exports with intrinsic dimensions; preserve original proportions. Local assets referenced by this content, including srcset candidates, are copied by the build. High-quality originals remain outside the delivery bundle. Null/incomplete image data uses a CSS placeholder; runtime image failures show the fallback without changing layout.
+
+The section script emits a `hintonx:analytics` CustomEvent on window for contact and case actions. Event detail contains `name` (`publicsector_contact_click` or `publicsector_case_study_click`), `path`, `destination`, and `caseSlug` where relevant. Header contact links are included. Hooks do not prevent navigation or store/transmit data. Provider integration and live event collection are deferred by the user.
 
 ## Development and validation
 
 - `npm ci`: install the locked deployment tooling after cloning.
 - `npm run dev`: rebuild, then serve `dist/` on port 4173. This is a plain Python static server, **not** a hot-reload server.
 - `npm run build`: rebuild before refreshing an existing preview.
-- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run nine wheel/stack geometry and easing tests.
+- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run nine wheel/stack geometry and easing tests and seven public-sector content, template, metadata and indexing tests.
 - `BASE_PATH=/hintonx-site npm run validate`: optional subdirectory test only. Run a normal build afterwards; production on Cloudflare uses no prefix.
 
 Choose browser checks based on the change: layout at desktop and phone widths, overflow, image visibility, keyboard controls, menu reversal, deep links, reduced motion or player dismissal. Structural validation cannot establish visual quality, working external media, or live deployment.

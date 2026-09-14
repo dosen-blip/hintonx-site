@@ -5,6 +5,8 @@ import { caseBody } from './case-render.mjs';
 import { workBody } from './work-render.mjs';
 import { homeBody } from './home-render.mjs';
 import { projects, site, videoProjects } from "./site-data.mjs";
+import { publicSectorBody, publicSectorCaseBody } from './publicsector-render.mjs';
+import { publicSector, publicSectorPath, publicSectorHref } from './publicsector-content.mjs';
 
 const esc = (value = "") => String(value)
   .replaceAll("&", "&amp;")
@@ -51,14 +53,19 @@ function footer() {
   </footer>`;
 }
 
-function layout({ title = "HintonX", description = "HintonX — Design + Technology", body, pageClass = "" }) {
+function layout({ title = "HintonX", description = "HintonX — Design + Technology", body, pageClass = "", canonicalPath, socialImage, socialTitle = title, socialDescription = description, noindex = false, structuredData }) {
   return renderIcons(`<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
+  ${canonicalPath ? `<link rel="canonical" href="${esc(new URL(canonicalPath, site.origin).href)}"><meta property="og:url" content="${esc(new URL(canonicalPath, site.origin).href)}"><meta property="og:type" content="website"><meta property="og:site_name" content="HintonX"><meta property="og:title" content="${esc(socialTitle)}"><meta property="og:description" content="${esc(socialDescription)}"><meta name="twitter:title" content="${esc(socialTitle)}"><meta name="twitter:description" content="${esc(socialDescription)}">` : ''}
+  ${socialImage ? `<meta property="og:image" content="${esc(new URL(socialImage, site.origin).href)}"><meta property="og:image:alt" content="${esc(socialTitle)} — preview image"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${esc(new URL(socialImage, site.origin).href)}">` : ''}
+  ${noindex ? '<meta name="robots" content="noindex, follow">' : ''}
+  ${structuredData ? `<script type="application/ld+json">${JSON.stringify(structuredData).replaceAll('<', '\\u003c')}</script>` : ''}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -67,13 +74,15 @@ function layout({ title = "HintonX", description = "HintonX — Design + Technol
   <script src="/navigation.js" type="module"></script>
   ${pageClass === "work-page" ? '<link rel="stylesheet" href="/work.css?v=20260910-work-heading"><script src="/work.js" type="module"></script>' : ''}${pageClass === "home" ? '<link rel="stylesheet" href="/home.css?v=20260912-mobile-hero-2"><script src="/home.js?v=20260912-mobile-hero-2" type="module"></script>' : ''}
 ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script src="/case.js" type="module"></script>' : ''}
+${pageClass === "publicsector-page" ? '<link rel="stylesheet" href="/publicsector.css"><script src="/publicsector.js" type="module"></script>' : ''}
 <link rel="stylesheet" href="/vertical.css">
 ${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></script>' : ''}
 <link rel="stylesheet" href="/accent.css?v=20260910-film">
 </head>
 <body class="${pageClass}"${pageClass === "work-page" ? ' id="top"' : ''}>
+  ${pageClass === 'publicsector-page' ? '<a class="ps-skip" href="#publicsector-main">Skip to content</a>' : ''}
   ${header()}
-  <main>${body}</main>
+  <main${pageClass === 'publicsector-page' ? ' id="publicsector-main" tabindex="-1"' : ''}>${body}</main>
   ${footer()}
 </body>
 </html>`);
@@ -142,3 +151,19 @@ export function renderVideo() {
 }
 
 export function renderVertical(v){return layout({title:`${v.title} — HintonX`,description:serviceContent[v.slug].intro,pageClass:"vertical-page",body:verticalBody(v)})}
+
+function publicSectorLayout(body, story) {
+  const metadata = story?.metadata || publicSector.metadata;
+  const canonicalPath = story ? publicSectorHref(story) : publicSectorPath;
+  const url = new URL(canonicalPath, site.origin).href;
+  const crumbs = [{name:'Home',item:`${site.origin}/`},{name:'Public Sector',item:`${site.origin}${publicSectorPath}`}];
+  if (story) crumbs.push({name:story.title,item:url});
+  const structuredData = {'@context':'https://schema.org','@graph':[
+    {'@type':'WebPage','@id':url,name:metadata.title,description:metadata.description,url,breadcrumb:{'@id':`${url}#breadcrumb`}},
+    {'@type':'BreadcrumbList','@id':`${url}#breadcrumb`,itemListElement:crumbs.map((crumb,index) => ({'@type':'ListItem',position:index+1,...crumb}))},
+  ]};
+  return layout({...metadata,canonicalPath,noindex:!publicSector.indexable,structuredData,pageClass:'publicsector-page',body});
+}
+
+export function renderPublicSector() { return publicSectorLayout(publicSectorBody()); }
+export function renderPublicSectorCase(story) { return publicSectorLayout(publicSectorCaseBody(story), story); }

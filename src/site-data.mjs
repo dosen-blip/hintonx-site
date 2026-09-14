@@ -1,10 +1,12 @@
 import {verticals,verticalHref} from './verticals.mjs';
 export const site = {
   name: "HintonX",
+  origin: "https://hintonx-site.pages.dev",
   year: "2025",
   navigation: [
     { label: "Work", href: "/projects/" },
     { label: "Services", intro: "Discover how we can help.", children: verticals.map(v=>({label:v.title,href:verticalHref(v),note:''})) },
+    { label: "Public Sector Solutions", href: "/publicsector/" },
     { label: "Contact", href: "/Contact/" },
     { label: "Start a project", href: "/Contact/", button: true },
   ],

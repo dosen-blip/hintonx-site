@@ -30,7 +30,7 @@ export function verticalBody(v){
  <section class="service-opening" data-service-tone="dark" aria-labelledby="service-title"><div class="container">
  <div class="service-heading"><h1 id="service-title">${esc(v.title)}<span>.</span></h1><div><h2>${esc(content.headline)}</h2><p>${esc(content.intro)}</p></div></div>
  ${visual(content.hero,{eager:true})}${v.slug==='video'?`<p class="service-hero-caption">${esc(videoProjects[content.hero.film].title)} <span>${esc(videoProjects[content.hero.film].subtitle)}</span></p>`:''}
- ${verticalNav(v.slug)}</div></section>
+ </div></section>
  <section class="service-capabilities service-light" data-service-tone="light" aria-labelledby="capabilities-title"><div class="container service-split"><h2 id="capabilities-title">What we do<span>.</span></h2><div class="service-capability-list">${content.capabilities.map(([title,body])=>`<article><h3>${esc(title)}</h3><p>${esc(body)}</p></article>`).join('')}</div></div></section>
  <section class="service-selected" data-service-tone="dark" aria-labelledby="selected-title"><div class="container"><div class="service-section-heading"><h2 id="selected-title">${v.slug==='video'?'Selected films':'Selected work'}<span>.</span></h2>${v.note?`<p>${esc(v.note)}</p>`:''}</div>${content.features.map(feature).join('')}
  ${otherProjects.length?`<div class="service-related"><h3>More in this discipline</h3><div>${otherProjects.map(slug=>{const p=projectFor(slug);return `<a href="${projectHref(p)}"><span>${esc(p.shortClient||p.client)}<small>${esc(p.title)}</small></span>${arrow}</a>`}).join('')}</div></div>`:''}
