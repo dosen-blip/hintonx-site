@@ -1,11 +1,19 @@
 ---
 name: hintonx-site
-description: Maintain HintonX’s static website with its approved restrained design, native interactions, local preview and Cloudflare Pages release workflow. Use for work in the HintonX Site repository, not unrelated Framer or portfolio projects.
+description: Maintain HintonX's static website using the shared design, feedback and development delivery skills. Use for work in the HintonX Site repository, not unrelated Framer or portfolio projects.
 ---
 
 # HintonX maintenance
 
-Use the repository’s [AGENTS.md](../../AGENTS.md) and [source of truth](../../docs/SOURCE_OF_TRUTH.md). If this skill is installed via a symlink, resolve its target before following those relative paths. If working from another clone, prefer that clone's documents and source files. These files guide implementation; they do not authorize additional publication or account changes.
+Use the repository’s [AGENTS.md](../../AGENTS.md) and [source of truth](../../docs/SOURCE_OF_TRUTH.md). If this skill is installed via a symlink, resolve its target before following those relative paths. If working from another clone, prefer that clone's documents and source files. Requested site changes include delivery to the shared development link under the standing scope in the source of truth; other publication and account changes need their own scope.
+
+## Shared skill packs
+
+- Load [Design system](../hintonx-design-system/SKILL.md) for visual, page or interaction changes.
+- Load [Development workflow](../hintonx-dev-workflow/SKILL.md) for site implementation, preview recovery or delivery.
+- Load [Design feedback](../hintonx-design-feedback/SKILL.md) when interpreting feedback about appearance, hierarchy, flow or feel.
+
+These repository files travel with the source. Follow them through `AGENTS.md` even when they are not separately listed in the client's skill picker. Keep accepted facts in the source of truth and reusable decision guidance in the relevant skill.
 
 ## Page and interaction changes
 
@@ -19,7 +27,7 @@ The server does not watch source files. Rebuild before reloading. If the view lo
 
 ## Release requests
 
-Follow the source-of-truth release procedure. GitHub is source control; the live site is the existing Cloudflare Pages project. Never substitute GPT Sites or enable the account-domain GitHub Pages route.
+Follow the development workflow and source-of-truth release procedure. GitHub is source control; the shared development site is the existing Cloudflare Pages project. Never substitute GPT Sites or enable the account-domain GitHub Pages route.
 
 Keep source, build, deployment and live checks separate. Preserve the stable `pages.dev` hostname. If the user requests a custom domain later, determine the exact domain and ownership/configuration then; don't alter the portfolio's DNS as a side effect.
 

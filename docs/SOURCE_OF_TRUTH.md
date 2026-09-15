@@ -1,6 +1,6 @@
 # HintonX source of truth
 
-Baseline reviewed: 2026-09-09. This document records accepted decisions and code ownership. Runtime status can change; check the live service before claiming a release is current.
+This document records accepted decisions and code ownership. Shared development convention accepted: 2026-09-15. Runtime status can change; check the live service before claiming a release is current.
 
 ## Identity and hosting
 
@@ -10,7 +10,8 @@ Baseline reviewed: 2026-09-09. This document records accepted decisions and code
 | Default branch | `main` |
 | Host | Cloudflare Pages, direct upload |
 | Pages project | `hintonx-site` |
-| Public URL | https://hintonx-site.pages.dev/ |
+| Shared development/review URL (publicly reachable) | https://hintonx-site.pages.dev/ |
+| Cloudflare deployment target | Existing project's production deployment, branch `main`; used by the team for development review |
 | Custom domain | None configured; planned for later |
 | Build output | `dist/` |
 | Production base path | Empty: site runs at the hostname root |
@@ -97,13 +98,23 @@ Choose browser checks based on the change: layout at desktop and phone widths, o
 
 For a stalled preview, identify the listener on port 4173 before stopping anything. Restart only this project's server. Keep local preview, git HEAD, CI and public-host evidence distinct. Reload stale pages/assets before diagnosing a code failure; version URLs only when needed for an actual cache issue.
 
+## Shared development
+
+All routine requested site changes are delivered to **https://hintonx-site.pages.dev/** after validation and inspection. This is standing authorization for the intended source commits, pushes and uploads needed to update this development link. An explicit request for a plan, local-only work or no publication overrides that default. Documentation and skill edits alone do not require a site upload.
+
+The team calls this the development link. Cloudflare technically serves it from the existing project's production branch, `main`; no separate `dev` deployment or custom domain is being introduced. It remains publicly reachable. A future launch on a custom domain or change of hosting target is separate work requiring authorization.
+
+Collaborators use focused source changes, preserve others' unfinished edits, and integrate the latest shared source before delivery. Use isolated worktrees when edits overlap; do not overwrite a shared working directory or force-push. Deploy from a clean checkout matching integrated `origin/main`, recheck remote HEAD before upload, and coordinate so only one collaborator uploads at a time. The hostname serves the latest upload; it does not combine separate collaborators' builds. These are workflow conventions, not an automated deployment lock or access-control system.
+
+Repository skill packs are routed by `AGENTS.md` and `skills/hintonx-site/SKILL.md`: `hintonx-design-system` applies the visual baseline, `hintonx-dev-workflow` handles shared delivery, and `hintonx-design-feedback` turns design intent into scoped changes. Keep accepted decisions here and workflow guidance in those skills. Each clone uses its own copies.
+
 ## Release procedure
 
-1. Confirm the requested scope includes publication. Check the worktree and inspect changes; validate the site and affected interactions.
+1. Apply the shared-development default above, respecting any explicit local-only or no-publish instruction. Check the worktree and inspect changes; validate the site and affected interactions.
 2. Verify GitHub access and `npx wrangler whoami`. Confirm `hintonx-site` in `npx wrangler pages project list --json`. Do not infer login state from old notes.
-3. Commit and push the intended source. Use `npm run deploy` from a clean checkout with `BASE_PATH` unset; it validates and directly uploads `dist/` to the existing Pages project on `main`.
-4. Check deployment success, the production hostname, affected routes and their assets. Verify content belongs to the expected revision, not just an HTTP 200. If reporting CI, check the run's commit and conclusion separately.
-5. Report the public link and any real limitation. A push or successful build alone is not a release.
+3. Integrate the latest shared source, commit and push the intended changes, then recheck remote HEAD and coordinate the upload. Use `env -u BASE_PATH npm run deploy` from a clean checkout matching integrated `origin/main`; it validates and directly uploads `dist/` to the existing Pages project on `main`.
+4. Check deployment success, the shared development hostname, affected routes and their assets. Verify content belongs to the expected revision, not just an HTTP 200, and inspect changed behavior remotely. If reporting CI, check the run's commit and conclusion separately.
+5. Report the direct development-page link and any real limitation. A push or successful build alone does not prove the development site was updated.
 
 The CLI needed `--force` once to create this legacy Pages project because Wrangler 4.130.0 tried to delegate creation to Workers. The existing project deploys with the normal command. Do not recreate it, add force flags indiscriminately, or migrate hosting to resolve a routine CLI problem.
 
