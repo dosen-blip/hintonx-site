@@ -66,7 +66,7 @@ export const publicSector = {
           "logo": null
         },
         {
-          "name": "Immigration, Refugees and Citizenship Canada",
+          "name": "Immigration, Refugees and Citizenship Canada (formerly Citizenship and Immigration Canada)",
           "logo": null
         },
         {
@@ -78,7 +78,7 @@ export const publicSector = {
           "logo": null
         },
         {
-          "name": "Employment and Social Development Canada",
+          "name": "Human Resources Development Canada (now Employment and Social Development Canada)",
           "logo": null
         },
         {

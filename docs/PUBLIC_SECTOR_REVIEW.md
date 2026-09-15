@@ -6,7 +6,7 @@ Reviewed against Jira on 2026-09-15. The parent SCRUM-5 and all seven subtasks S
 
 The original copy comes from the supplied `HintonX_ Public Sector.md` and `HintonX_Public_Sector_Developer_Story.docx`. The developer story supplies structure and task coverage. User decisions authorize placeholders for missing copy, the existing development host, analytics hooks with provider setup deferred, and supplied reference imagery with accurate captions.
 
-The current Jira pass read all issues in SCRUM, including descriptions, attachments, comment fields and statuses. No comments were returned for SCRUM-5–12. The linked Google Doc could not be refreshed: the Drive connector returned 403 and the in-app browser required sign-in. Do not infer that its content is unchanged. Original attachments remain unchanged in ignored local planning storage; only web derivatives are delivered.
+The current Jira pass read all issues in SCRUM, including descriptions, attachments, comment fields and statuses. No comments were returned for SCRUM-5–12. The linked Google Doc could not be refreshed directly: the Drive connector returned 403 and the in-app browser required sign-in. The user subsequently supplied `HintonX_ Public Sector (1).md`, which was compared against the implementation: all 82 main source-copy fields match after Markdown/whitespace normalization. The IRCC and HRDC/ESDC client entries now retain the supplied historical-name qualifiers. This verifies the supplied snapshot, not subsequent changes to the online document. Original attachments remain unchanged in ignored local planning storage; only web derivatives are delivered.
 
 | Jira | Route / coverage | Current implementation |
 | --- | --- | --- |
@@ -44,7 +44,7 @@ Each source has 640, 1280 and 1920-pixel WebP exports plus a 1920-pixel progress
 - Approve Atlas draft material and supply final Services and Outcome copy. Both missing fields remain visibly labelled.
 - Confirm the overview's “Since 2013” wording alongside the 2010–2011 engagement. Existing attribution to Tony Dosen and HintonX is retained.
 - Review final client names, project titles, dates, card summaries, metadata and captions. The qualified CBSA processing-time outcome and ongoing OSFI description are preserved.
-- Refresh the linked Google Doc once accessible; this pass cannot rule out new copy or to-do points there.
+- The supplied Markdown snapshot has been reviewed; it contains no additional case-study copy or new actionable to-do items. Its editorial labels, stray sentence and internal non-publication note are not rendered. Atlas remains a clearly labelled development draft under the user's existing scaffold authorization; the source still lacks final Services and Outcome text.
 - Optional recognition imagery was not supplied. Recognition remains text with a case-study link.
 - All 13 client names remain text treatments; no independent official logo exports or mark-use instructions were supplied. Embedded marks within the supplied project mockups remain unchanged.
 - Seven 1200×630 social images remain the labelled HintonX preview artwork pending final review.
