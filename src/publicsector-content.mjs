@@ -1,5 +1,6 @@
 // Content: supplied HintonX Public Sector copy and Developer Story.
-// User-approved preview: preserve missing-content placeholders; noindex until content review.
+// Client media: SCRUM-7 through SCRUM-12; provenance in docs/PUBLIC_SECTOR_REVIEW.md.
+// Keep draft distinctions and noindex until content review.
 export const publicSector = {
   "title": "Public Sector Digital Experience and Modernization",
   "summary": "Since 2013, HintonX has delivered public-sector projects and product platforms that simplify complex services, modernize legacy systems, and improve how people complete important tasks. We connect user research, service design, UX and UI design, accessibility, content strategy, prototyping, and implementation support. The result is practical digital work that public servants can adopt, technical teams can build, and people can use with confidence.",
@@ -114,7 +115,14 @@ export const publicSector = {
     }
   ],
   "casesIntro": "These selected engagements show how research and design moved complex public-sector services toward clearer, more usable digital experiences. They are ordered from the most recent engagement to the earliest.",
-  "hero": null,
+  "hero": {
+    "src": "/assets/publicsector/osfi-oasis-projects.jpg",
+    "width": 2500,
+    "height": 1326,
+    "alt": "OASIS project dashboard and recent model runs displayed on a desktop monitor.",
+    "webpSrcset": "/assets/publicsector/osfi-oasis-projects-640.webp 640w, /assets/publicsector/osfi-oasis-projects-1280.webp 1280w, /assets/publicsector/osfi-oasis-projects-1920.webp 1920w",
+    "caption": "OSFI OASIS — project and model-run interface design."
+  },
   "cta": {
     "label": "Start a project",
     "href": "/Contact/"
@@ -149,8 +157,23 @@ export const publicSectorCases = [
     ],
     "services": "UX research, service design, workflow analysis, UX and UI design, prototyping, accessibility, MVP planning, and Agile design advisory.",
     "outcome": "The ongoing work establishes a consistent, scalable experience for actuarial modelling and supports the transition from decentralized legacy tools to a unified web application.",
-    "hero": null,
-    "images": [],
+    "hero": {
+      "src": "/assets/publicsector/osfi-oasis-projects.jpg",
+      "width": 2500,
+      "height": 1326,
+      "alt": "OASIS project dashboard and recent model runs displayed on a desktop monitor.",
+      "webpSrcset": "/assets/publicsector/osfi-oasis-projects-640.webp 640w, /assets/publicsector/osfi-oasis-projects-1280.webp 1280w, /assets/publicsector/osfi-oasis-projects-1920.webp 1920w"
+    },
+    "images": [
+      {
+        "src": "/assets/publicsector/osfi-oasis-workflows.jpg",
+        "width": 2500,
+        "height": 1326,
+        "alt": "Four OASIS desktop views showing model configuration, a settings panel, run inputs and a code editor.",
+        "webpSrcset": "/assets/publicsector/osfi-oasis-workflows-640.webp 640w, /assets/publicsector/osfi-oasis-workflows-1280.webp 1280w, /assets/publicsector/osfi-oasis-workflows-1920.webp 1920w",
+        "caption": "OASIS workflow and model-run interface designs."
+      }
+    ],
     "draft": false,
     "metadata": {
       "title": "OSFI OASIS | HintonX",
@@ -175,8 +198,23 @@ export const publicSectorCases = [
     ],
     "services": null,
     "outcome": null,
-    "hero": null,
-    "images": [],
+    "hero": {
+      "src": "/assets/publicsector/alberta-atlas.jpg",
+      "width": 4147,
+      "height": 3240,
+      "alt": "Alberta Atlas case-management income screen with reporting periods and benefit details.",
+      "webpSrcset": "/assets/publicsector/alberta-atlas-640.webp 640w, /assets/publicsector/alberta-atlas-1280.webp 1280w, /assets/publicsector/alberta-atlas-1920.webp 1920w"
+    },
+    "images": [
+      {
+        "src": "/assets/publicsector/alberta-design-system.jpg",
+        "width": 4147,
+        "height": 3240,
+        "alt": "Government of Alberta design-system website displayed on a desktop monitor.",
+        "webpSrcset": "/assets/publicsector/alberta-design-system-640.webp 640w, /assets/publicsector/alberta-design-system-1280.webp 1280w, /assets/publicsector/alberta-design-system-1920.webp 1920w",
+        "caption": "Government of Alberta design-system reference supplied with the Atlas case study."
+      }
+    ],
     "draft": true,
     "metadata": {
       "title": "Government of Alberta Atlas | HintonX",
@@ -205,7 +243,13 @@ export const publicSectorCases = [
     ],
     "services": "UX research, service design, interaction design, prototyping, accessibility, usability testing, content workflow design, and Agile delivery support.",
     "outcome": "The project introduced a self-service portal for spectrum data access and report generation, reducing dependence on manual administrative requests. ISED recognized Tony's contribution to the national user trial and platform launch in 2023.",
-    "hero": null,
+    "hero": {
+      "src": "/assets/publicsector/ised-spectrum-cloud.jpg",
+      "width": 2500,
+      "height": 1326,
+      "alt": "Spectrum Cloud dashboard with reporting cards and data visualizations on a desktop monitor.",
+      "webpSrcset": "/assets/publicsector/ised-spectrum-cloud-640.webp 640w, /assets/publicsector/ised-spectrum-cloud-1280.webp 1280w, /assets/publicsector/ised-spectrum-cloud-1920.webp 1920w"
+    },
     "images": [],
     "draft": false,
     "metadata": {
@@ -235,8 +279,32 @@ export const publicSectorCases = [
     ],
     "services": "UX research, service design, UX and UI design, mobile product design, accessibility, content strategy, information architecture, prototyping, usability testing, and Agile delivery.",
     "outcome": "The Advance Declaration tool was reported to reduce processing time by up to 50 percent and allowed travellers to edit declarations at self-service kiosks or eGates.",
-    "hero": null,
-    "images": [],
+    "hero": {
+      "src": "/assets/publicsector/cbsa-elvis.jpg",
+      "width": 2500,
+      "height": 1326,
+      "alt": "CBSA ELVIS mobile interface designs showing location selection, a worklist and shipment details.",
+      "webpSrcset": "/assets/publicsector/cbsa-elvis-640.webp 640w, /assets/publicsector/cbsa-elvis-1280.webp 1280w, /assets/publicsector/cbsa-elvis-1920.webp 1920w",
+      "caption": "ELVIS mobile inspection interface designs, part of the broader CBSA digital-product work."
+    },
+    "images": [
+      {
+        "src": "/assets/publicsector/cbsa-design-guidance.jpg",
+        "width": 2500,
+        "height": 1326,
+        "alt": "Six views of CBSA design guidance covering typography, colour, mobile platforms and interface examples.",
+        "webpSrcset": "/assets/publicsector/cbsa-design-guidance-640.webp 640w, /assets/publicsector/cbsa-design-guidance-1280.webp 1280w, /assets/publicsector/cbsa-design-guidance-1920.webp 1920w",
+        "caption": "CBSA digital-product design guidance."
+      },
+      {
+        "src": "/assets/publicsector/cbsa-mobile-flows.jpg",
+        "width": 2500,
+        "height": 1326,
+        "alt": "CBSA mobile design boards showing sign-in, location selection, shipment details and inspection flows.",
+        "webpSrcset": "/assets/publicsector/cbsa-mobile-flows-640.webp 640w, /assets/publicsector/cbsa-mobile-flows-1280.webp 1280w, /assets/publicsector/cbsa-mobile-flows-1920.webp 1920w",
+        "caption": "CBSA mobile interface flows and design specifications."
+      }
+    ],
     "draft": false,
     "metadata": {
       "title": "CBSA Traveller Modernization and Digital Traveller Products | HintonX",
@@ -265,7 +333,14 @@ export const publicSectorCases = [
     ],
     "services": "UX and UI design, usability testing, prototyping, accessibility, design standards, interaction design, and implementation support.",
     "outcome": "The engagement delivered a production interface for the judicial services application and established a more consistent experience across related systems.",
-    "hero": null,
+    "hero": {
+      "src": "/assets/publicsector/ossnr-annual-report.jpg",
+      "width": 2159,
+      "height": 1537,
+      "alt": "Two French-language OSSNR 2019 annual-report cover mockups with a Canadian flag.",
+      "webpSrcset": "/assets/publicsector/ossnr-annual-report-640.webp 640w, /assets/publicsector/ossnr-annual-report-1280.webp 1280w, /assets/publicsector/ossnr-annual-report-1920.webp 1920w",
+      "caption": "OSSNR / NSIRA annual-report design, supplied as a public-sector visual reference; this image shows a separate project from Phoenix."
+    },
     "images": [],
     "draft": false,
     "metadata": {
@@ -294,7 +369,14 @@ export const publicSectorCases = [
     ],
     "services": "Web strategy, UX and UI design, information architecture, responsive prototyping, accessibility, content review, and SEO analysis.",
     "outcome": "The work established a clearer, centralized experience for import guidance and a responsive design direction for the CBSA team.",
-    "hero": null,
+    "hero": {
+      "src": "/assets/publicsector/cbsa-elvis.jpg",
+      "width": 2500,
+      "height": 1326,
+      "alt": "CBSA ELVIS mobile interface designs showing location selection, a worklist and shipment details.",
+      "webpSrcset": "/assets/publicsector/cbsa-elvis-640.webp 640w, /assets/publicsector/cbsa-elvis-1280.webp 1280w, /assets/publicsector/cbsa-elvis-1920.webp 1920w",
+      "caption": "ELVIS mobile inspection design, supplied as a CBSA visual reference; this later project is separate from the 2010–2011 import-information engagement."
+    },
     "images": [],
     "draft": false,
     "metadata": {

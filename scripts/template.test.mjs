@@ -31,6 +31,6 @@ test('mixed page families have unique IDs and valid accessible references', () =
     for (const id of references.split(' ')) assert.ok(ids.includes(id), `missing reference: ${id}`);
   }
   assert.doesNotMatch(html, /<script src="\/(?:home|work|case|vertical|publicsector)\.js/);
-  assert.match(html, /Public sector image pending/);
+  assert.match(html, /OSFI OASIS — project and model-run interface design/);
   assert.match(html, /Project image pending/);
 });

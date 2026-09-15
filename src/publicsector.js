@@ -19,11 +19,13 @@ document.querySelectorAll('[data-ps-image]').forEach(container => {
   const image = container.querySelector('img');
   const picture = container.querySelector('picture');
   const fallback = container.querySelector('.ps-image-placeholder');
-  const showFallback = () => { picture.hidden = true; fallback.hidden = false; };
-  const showImage = () => { picture.hidden = false; fallback.hidden = true; };
+  const showFallback = () => { picture.hidden = true; fallback.hidden = false; fallback.removeAttribute('aria-hidden'); };
+  const showImage = () => { picture.hidden = false; fallback.hidden = true; fallback.setAttribute('aria-hidden', 'true'); };
   image.addEventListener('error', showFallback);
   image.addEventListener('load', showImage);
-  if (image.complete) image.naturalWidth ? showImage() : showFallback();
+  // An offscreen lazy image can be complete before the browser selects a source.
+  // Keep its picture visible so native lazy loading can start when scrolled into view.
+  if (image.complete && image.currentSrc) image.naturalWidth ? showImage() : showFallback();
 });
 
 // Match the existing header to the alternating section backgrounds.

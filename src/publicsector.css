@@ -80,3 +80,7 @@
 @media(max-width:1100px){.ps-container{width:calc(100% - 64px)}.ps-split,.ps-intro{gap:40px}.ps-service-list{column-gap:40px}.ps-card-meta{display:block}.ps-card-meta span{display:block}.ps-card-meta span+span{margin-top:8px}}
 @media(max-width:760px){.ps-container{width:calc(100% - 40px)}.ps-band{padding-block:72px;scroll-margin-top:90px}.ps-opening{padding-top:36px}.ps-page h1{font-size:clamp(40px,8.5vw,60px)}.ps-split,.ps-intro,.ps-service-list,.ps-card-grid{grid-template-columns:1fr;gap:32px}.ps-section-heading{margin-bottom:40px}.ps-intro{margin:32px 0 40px}.ps-intro p{font-size:18px}.ps-cta{justify-self:start;font-size:16px}.ps-client-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ps-client-grid li{font-size:16px;padding:20px;min-height:128px}.ps-card-grid{gap:48px}.ps-card h3{font-size:28px}.ps-details{padding-top:0}.ps-prose h2{font-size:26px}.ps-neighbours{gap:24px}.ps-neighbours a{grid-template-columns:1fr}.ps-neighbours strong{font-size:19px}.ps-contact{padding-top:0}.ps-contact .ps-split>div{justify-self:start}.ps-breadcrumb{margin-bottom:30px}}
 @media(max-width:380px){.ps-container{width:calc(100% - 32px)}.ps-client-grid,.ps-neighbours{grid-template-columns:1fr}.ps-page h1{font-size:38px}.ps-neighbours{gap:0}.ps-page h2{font-size:34px}}
+
+/* Galleries introduce a dark band, so restore space above the following light section. */
+.ps-gallery-band+.ps-details{padding-top:112px}
+@media(max-width:760px){.ps-gallery-band+.ps-details{padding-top:72px}}

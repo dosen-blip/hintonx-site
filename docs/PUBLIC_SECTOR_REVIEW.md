@@ -1,77 +1,61 @@
 # Public Sector implementation and content review
 
-The seven-page section is implemented for local review under SCRUM-5. SCRUM-5 is In Progress; SCRUM-6 through SCRUM-12 are In Review with implementation checklists and remaining publication requirements. The user approved complete page scaffolds with visible missing-copy and image placeholders, the Public Sector Solutions navigation item, the existing Pages host, and analytics hooks with provider setup deferred. This is not a claim of publication or completion of the original production Definition of Done.
+Reviewed against Jira on 2026-09-15. The parent SCRUM-5 and all seven subtasks SCRUM-6–12 remain In Review. The seven routes are delivered through the shared development site at https://hintonx-site.pages.dev/publicsector/. In Review is not final content approval or completion of the original production Definition of Done.
 
 ## Sources and Jira coverage
 
-Content comes from the supplied `HintonX_ Public Sector.md` and `HintonX_Public_Sector_Developer_Story.docx`. The developer story supplies structure and task coverage; the user's explicit placeholder and analytics decisions supersede its release assumptions. Original attachments remain unchanged. The source document's internal instructions, duplicate headings and stray sentence are excluded from rendered copy.
+The original copy comes from the supplied `HintonX_ Public Sector.md` and `HintonX_Public_Sector_Developer_Story.docx`. The developer story supplies structure and task coverage. User decisions authorize placeholders for missing copy, the existing development host, analytics hooks with provider setup deferred, and supplied reference imagery with accurate captions.
 
-- [SCRUM-5](https://tonysdosen.atlassian.net/browse/SCRUM-5): GS 06–07, CS 10, LG 01–06, SEO 01–07, IMG 01–07; shared verification and remaining publication requirements.
-- [SCRUM-6](https://tonysdosen.atlassian.net/browse/SCRUM-6): GS 01–05, CS 01–02, CS 09; overview, editable content, shared template, cards and navigation.
-- [SCRUM-7](https://tonysdosen.atlassian.net/browse/SCRUM-7): CS 03, OSFI OASIS.
-- [SCRUM-8](https://tonysdosen.atlassian.net/browse/SCRUM-8): CS 05, ISED Spectrum Cloud.
-- [SCRUM-9](https://tonysdosen.atlassian.net/browse/SCRUM-9): CS 06, CBSA Traveller Modernization.
-- [SCRUM-10](https://tonysdosen.atlassian.net/browse/SCRUM-10): CS 07, Federal Judicial Affairs Phoenix.
-- [SCRUM-11](https://tonysdosen.atlassian.net/browse/SCRUM-11): CS 08, CBSA Import Information.
-- [SCRUM-12](https://tonysdosen.atlassian.net/browse/SCRUM-12): CS 04, Government of Alberta Atlas.
+The current Jira pass read all issues in SCRUM, including descriptions, attachments, comment fields and statuses. No comments were returned for SCRUM-5–12. The linked Google Doc could not be refreshed: the Drive connector returned 403 and the in-app browser required sign-in. Do not infer that its content is unchanged. Original attachments remain unchanged in ignored local planning storage; only web derivatives are delivered.
 
-SCRUM-3 and SCRUM-4 have no defined requirements; neither is changed or treated as complete.
+| Jira | Route / coverage | Current implementation |
+| --- | --- | --- |
+| [SCRUM-5](https://tonysdosen.atlassian.net/browse/SCRUM-5) | Shared responsive behavior, content, client treatments, metadata and images | Implemented; final content and indexing review remain open |
+| [SCRUM-6](https://tonysdosen.atlassian.net/browse/SCRUM-6) | `/publicsector/` | Overview, eight services, recognition, 13 grouped clients, six cards and contact action; OSFI overview visual |
+| [SCRUM-7](https://tonysdosen.atlassian.net/browse/SCRUM-7) | `/publicsector/osfi-oasis/` | OSFI1 hero/card and OSFI2 workflow gallery |
+| [SCRUM-12](https://tonysdosen.atlassian.net/browse/SCRUM-12) | `/publicsector/government-of-alberta-atlas/` | GOVA1 hero/card and GOV2 design-system reference; draft copy retained |
+| [SCRUM-8](https://tonysdosen.atlassian.net/browse/SCRUM-8) | `/publicsector/ised-spectrum-cloud/` | ISED dashboard visual from the linked portfolio page |
+| [SCRUM-9](https://tonysdosen.atlassian.net/browse/SCRUM-9) | `/publicsector/cbsa-traveller-modernization/` | ELVIS mobile visual and two design-guidance/flow galleries from the linked portfolio page |
+| [SCRUM-10](https://tonysdosen.atlassian.net/browse/SCRUM-10) | `/publicsector/federal-judicial-affairs-phoenix/` | Supplied OSSNR report visual, captioned explicitly as a separate project |
+| [SCRUM-11](https://tonysdosen.atlassian.net/browse/SCRUM-11) | `/publicsector/cbsa-import-information/` | Supplied ELVIS reference, captioned explicitly as later work separate from the 2010–2011 engagement |
+
+SCRUM-13 (template.html) and SCRUM-14 (website editing workflow) are separate top-level items, not new children of SCRUM-5. The container template already exists in the integrated source; shared development workflow guidance is current. This Public Sector media pass does not claim SCRUM-14's full authorized-user, approval-history or rollback workflow is implemented. SCRUM-3 and SCRUM-4 still have no defined requirements.
+
+## Media inventory and attribution
+
+On 2026-09-15, the user explicitly chose to use the supplied Phoenix and older-CBSA reference images with accurate captions. Those captions appear on both the overview cards and detail pages. They do not change the client identity, engagement dates or case-study claims.
+
+| Asset stem in `src/assets/publicsector/` | Source | Original dimensions | Use |
+| --- | --- | --- | --- |
+| `osfi-oasis-projects` | SCRUM-7 attachment 10002, `OSFI1.jpg` | 2500×1326 | Overview, OSFI card and hero |
+| `osfi-oasis-workflows` | SCRUM-7 attachment 10001, `OSFI2.jpg` | 2500×1326 | OSFI gallery |
+| `alberta-atlas` | SCRUM-12 attachment 10006, `GOVA1.png` | 4147×3240 | Atlas card and hero |
+| `alberta-design-system` | SCRUM-12 attachment 10005, `GOV2.png` | 4147×3240 | Atlas gallery; identified as design-system reference |
+| `ised-spectrum-cloud` | [Client-linked ISED portfolio](https://www.hintonx.com/projects/spectrum-management-platform), `cXWEYTAhE3oHKjRb52MQZ5ix2E.png` | 2500×1326 | ISED card and hero |
+| `cbsa-elvis` | [Client-linked CBSA portfolio](https://www.hintonx.com/projects/canada-border-services-agency), `Y63ztoooToHBIkPa7aFxzznnoA.png` | 2500×1326 | CBSA cards/heroes with engagement-specific captions |
+| `cbsa-design-guidance` | Same CBSA page, `1UrUh10LnQlBIjNaAyqbbeJVDvg.png` | 2500×1326 | Later CBSA gallery |
+| `cbsa-mobile-flows` | Same CBSA page, `oTARU0JuM2gpFvZjWTMPwjRTgk.png` | 2500×1326 | Later CBSA gallery |
+| `ossnr-annual-report` | SCRUM-10 attachment 10007, `OSSNR.png` | 2159×1537 | Phoenix card/hero as clearly identified reference |
+
+Each source has 640, 1280 and 1920-pixel WebP exports plus a 1920-pixel progressive JPEG fallback. No crops or interface alterations were made. The two transparent Alberta monitor mockups are composited onto a neutral light background for JPEG/WebP consistency. Intrinsic aspect ratios and descriptive alternatives are recorded in the content module. The existing build asset collector explicitly copies each referenced source and responsive candidate; masters are not bundled. Hero images load eagerly; cards and galleries load lazily. Loaded-image fallback labels are hidden from assistive technology; actual errors expose the reserved fallback.
 
 ## Remaining content decisions
 
-- Approve Atlas's supplied draft material and supply final Services and Outcome copy. The complete layout already exists; each missing field is labelled on the page.
-- Confirm the overview's “Since 2013” wording alongside the 2010–2011 engagement. The supplied wording and the attribution to Tony Dosen and HintonX are retained.
-- Review final client names, project titles, dates, derived card summaries, metadata and captions. The CBSA reported processing-time outcome is retained verbatim; OSFI remains described as ongoing work.
-- Supply approved project images and approve any official client marks to replace the text treatments below. Text treatments are an allowed final alternative to official marks.
-- Connect an analytics provider and verify received contact/case events only when that deferred setup is requested. Local hooks do not collect or transmit data.
-- Authorize and verify publication separately. Do not enable indexing while the section contains draft copy or image placeholders.
+- Approve Atlas draft material and supply final Services and Outcome copy. Both missing fields remain visibly labelled.
+- Confirm the overview's “Since 2013” wording alongside the 2010–2011 engagement. Existing attribution to Tony Dosen and HintonX is retained.
+- Review final client names, project titles, dates, card summaries, metadata and captions. The qualified CBSA processing-time outcome and ongoing OSFI description are preserved.
+- Refresh the linked Google Doc once accessible; this pass cannot rule out new copy or to-do points there.
+- Optional recognition imagery was not supplied. Recognition remains text with a case-study link.
+- All 13 client names remain text treatments; no independent official logo exports or mark-use instructions were supplied. Embedded marks within the supplied project mockups remain unchanged.
+- Seven 1200×630 social images remain the labelled HintonX preview artwork pending final review.
+- Connect an analytics provider and verify received events when the deferred setup is requested. Browser hooks currently do not store or transmit visitor data.
+- Keep `publicSector.indexable` false until final content/indexing approval. Shared development delivery is already authorized; a custom-domain launch remains separate.
 
-## Client mark inventory
+## Validation
 
-No approved logo source files or mark-use approvals were supplied. All 13 clients currently use their written names, with no imitation or recolouring of official marks. Source, approved colour options and clear-space requirements remain pending for every official mark. If marks are supplied, record their exact source and permission before adding them to the content module. Logo images use the full client name as alt text; text treatments need no image alternative.
+- `npm run validate`: 27 HTML pages, internal links/fragments/assets and 20 tests pass, including a regression for offscreen lazy-image loading and error/recovery states.
+- Browser checks of all seven routes in 320, 390 and 1440 CSS-pixel iframe viewports: no horizontal overflow, one H1 per page, alternatives on all project images, and no failed requested images. The browser's viewport override did not take effect, so a temporary local iframe harness provided actual responsive viewports; these are not physical-device tests.
+- Real overview cards load after reaching the case-study section. Browser-selected WebP candidates, full-image proportions, supplied-reference captions and Atlas draft labels were inspected. Gallery-to-details spacing is restored when a gallery introduces a dark band.
+- The metadata, structured breadcrumbs, sitemap exclusion and noindex behavior remain validated. No claim of a full WCAG conformance audit, field Core Web Vitals, live analytics or social-platform cache refresh is made.
 
-| Group | Client | Current treatment |
-| --- | --- | --- |
-| Federal department/agency | Office of the Superintendent of Financial Institutions | Text |
-| Federal department/agency | Innovation, Science and Economic Development Canada | Text |
-| Federal department/agency | Canada Border Services Agency | Text |
-| Federal department/agency | Office of the Commissioner for Federal Judicial Affairs Canada | Text |
-| Federal department/agency | Immigration, Refugees and Citizenship Canada | Text |
-| Federal department/agency | Canadian Nuclear Safety Commission | Text |
-| Federal department/agency | Treasury Board of Canada Secretariat | Text |
-| Federal department/agency | Employment and Social Development Canada | Text |
-| Federal department/agency | Social Sciences and Humanities Research Council | Text |
-| Federal department/agency | Public Health Agency of Canada | Text |
-| Federal department/agency | Office of the Privacy Commissioner of Canada | Text |
-| Federal Crown corporation | Canada Post | Text |
-| Provincial government | Government of Alberta | Text |
-
-## Image inventory
-
-No approved source images were supplied for the new section. The image slots below therefore have no crop, caption or factual alt text to approve yet. Placeholders are HTML/CSS with visible labels, not project screenshots. A single approved case image can serve both its card and detail hero; galleries remain optional.
-
-| Slot | Current source and approval | Crop and replacement requirements |
-| --- | --- | --- |
-| Overview hero | None; “Public sector image pending” | 16:9 placeholder; use approved source proportions on replacement |
-| ISED recognition image | None; text-only recognition is rendered | Optional; do not add an empty image slot |
-| OSFI card/detail | None; “Project image pending” | Same approved source may serve card and detail; caption/alt pending |
-| Alberta card/detail | None; “Project image pending” | Same approved source may serve card and detail; caption/alt pending |
-| ISED card/detail | None; “Project image pending” | Same approved source may serve card and detail; caption/alt pending |
-| CBSA Traveller card/detail | None; “Project image pending” | Same approved source may serve card and detail; caption/alt pending |
-| Federal Judicial Affairs card/detail | None; “Project image pending” | Same approved source may serve card and detail; caption/alt pending |
-| CBSA Import card/detail | None; “Project image pending” | Same approved source may serve card and detail; caption/alt pending |
-| Seven social images | Local HintonX typography, explicitly labelled preview | 1200×630 PNG; replace or approve individually after content review |
-
-Approved image records use `src`, intrinsic `width`/`height`, `alt`, optional `caption`, and `srcset`/`webpSrcset`. Use responsive exports sized for the actual layout, preserving source proportions. Keep masters outside the delivery bundle. The build copies explicitly referenced local assets and responsive candidates. Placeholders and actual image failures retain reserved space. Do not supply stock images or invented product interfaces as evidence.
-
-## Validation record
-
-- `npm run validate`: 26 HTML pages, local links/assets/fragments, nine existing wheel tests and seven new public-sector tests passed.
-- Headless Chrome: all seven section routes checked at 1440, 1024, 901, 900, 768, 390 and 320 CSS pixels; no horizontal overflow. The 320-pixel check covers the reflow width equivalent to a 1280-pixel viewport at 400% zoom.
-- Additional checks doubled main-content text at 1440, 390 and 320 pixels; all identified overflow was corrected and rechecked. Computed main-content text contrast passed the applicable normal/large-text thresholds. Local initial layout-shift measurements were below 0.015; this is not a production performance measurement.
-- The final browser run reported no console errors. A missing favicon request was fixed with a small shared HX SVG icon.
-- Visually inspected overview, all six case layouts, the 320-pixel Federal Judicial Affairs heading, mobile Atlas, and representative share artwork.
-- Verified real card/back navigation, click and Enter activation of analytics hooks, header contact tracking, mobile menu Escape dismissal/focus return, visible focus and no-JavaScript content/navigation fallback.
-- Synthetic fixtures verified image-error fallback with unchanged dimensions and responsive WebP selection (600-pixel candidate on phone, 1200-pixel candidate on desktop). These checks validate the delivery component, not absent client imagery.
-- Smoke-checked shared header/footer and navigation on Home, Work, Product Design, Video, existing ISED and Contact.
-- Publication, external social-service rendering, physical-device testing and live analytics collection are not established by local checks.
+Accessibility review uses [WCAG 2.2](https://www.w3.org/TR/WCAG22/) as the current W3C reference. Preserve native scrolling, keyboard navigation, visible focus and reduced-motion behavior when refining these pages.

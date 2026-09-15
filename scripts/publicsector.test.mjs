@@ -88,3 +88,30 @@ test('content and metadata are escaped rather than interpreted as markup', () =>
   assert.match(html,/&lt;img onerror=/);
   assert.match(html,/\\u003c\/script>/);
 });
+
+test('unrequested lazy images remain loadable and real failures expose a recoverable fallback', async () => {
+  const {runInNewContext} = await import('node:vm');
+  const handlers = {};
+  const image = {complete:true,currentSrc:'',naturalWidth:0,addEventListener:(name,fn) => handlers[name] = fn};
+  const picture = {hidden:false};
+  const fallback = {hidden:false,ariaHidden:'true',removeAttribute(){this.ariaHidden=null;},setAttribute(name,value){this.ariaHidden=value;}};
+  const container = {querySelector:selector => ({img:image,picture,'.ps-image-placeholder':fallback})[selector]};
+  const band = {dataset:{},getBoundingClientRect:() => ({top:0})};
+  const document = {
+    addEventListener(){},
+    querySelectorAll:selector => selector === '[data-ps-image]' ? [container] : [band],
+    querySelector:selector => selector === '.site-header' ? {dataset:{},offsetHeight:80} : band,
+    fonts:{ready:Promise.resolve()},
+  };
+  runInNewContext(await readFile(new URL('../src/publicsector.js',import.meta.url),'utf8'),{
+    document,addEventListener(){},scrollY:0,requestAnimationFrame:() => 1,
+    ResizeObserver:class {observe(){}},
+  });
+  assert.equal(picture.hidden,false,'native lazy loading must retain a visible picture before source selection');
+  image.currentSrc='/photo.webp'; image.naturalWidth=640; handlers.load();
+  assert.equal(fallback.hidden,true);
+  image.naturalWidth=0; handlers.error();
+  assert.equal(picture.hidden,true); assert.equal(fallback.hidden,false); assert.equal(fallback.ariaHidden,null);
+  image.naturalWidth=640; handlers.load();
+  assert.equal(picture.hidden,false); assert.equal(fallback.hidden,true); assert.equal(fallback.ariaHidden,'true');
+});
