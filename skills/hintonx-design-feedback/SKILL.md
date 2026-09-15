@@ -33,6 +33,8 @@ These are hypotheses to check against the page and context, not automatic transf
 
 ## Close the loop
 
+After each implemented adjustment, complete the [immediate local preview loop](../hintonx-dev-workflow/SKILL.md#immediate-local-preview-loop) yourself so the collaborator can review the current change without manually rebuilding or refreshing.
+
 Describe the visible result in one or two sentences, link directly to the affected page on the shared development site, and say what was checked. Distinguish an implemented change from a suggestion and a verified preview from a local-only result. If feedback expresses dissatisfaction, use it to refine the same scope; avoid adding unrelated features or restarting the whole design without a request.
 
 Keep collaborator-facing titles and documentation focused on site decisions and visitor experience. Explain the outcome in the same natural language used in the request.

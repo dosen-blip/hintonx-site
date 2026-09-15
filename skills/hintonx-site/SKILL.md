@@ -23,7 +23,7 @@ Keep the change local to the requested page or shared feature. Prefer the existi
 
 Build and inspect the affected page. For layout changes, include a phone width; for shared navigation or motion changes, include keyboard behavior and the applicable fallback. Run `npm run validate` for site changes. Do not add tests that merely mirror markup or repeat already passing checks without a new reason.
 
-The server does not watch source files. Rebuild before reloading. If the view looks stale, distinguish browser cache from a failed build or stalled listener before editing more code.
+After every site change, immediately rebuild, refresh and verify the affected local preview using the [development workflow's preview loop](../hintonx-dev-workflow/SKILL.md#immediate-local-preview-loop). The agent handles server startup, recovery and stale previews; do not leave these routine steps to the collaborator or wait until final delivery.
 
 ## Release requests
 

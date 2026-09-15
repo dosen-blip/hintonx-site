@@ -105,6 +105,8 @@ Choose browser checks based on the change: layout at desktop and phone widths, o
 
 For a stalled preview, identify the listener on port 4173 before stopping anything. Restart only this project's server. Keep local preview, git HEAD, CI and public-host evidence distinct. Reload stale pages/assets before diagnosing a code failure; version URLs only when needed for an actual cache issue.
 
+Every site change, including minor copy and style adjustments, must be rebuilt into the local preview immediately. The agent refreshes the affected preview tab, starts or recovers this project's server when needed, and verifies the visible result before moving on. Do not leave build, server or refresh chores to the collaborator or defer them until final delivery. The [development workflow's immediate local preview loop](../skills/hintonx-dev-workflow/SKILL.md#immediate-local-preview-loop) owns the procedure. Documentation-only edits remain exempt; keeping localhost current does not replace shared development delivery.
+
 ## Shared development
 
 All routine requested site changes are delivered to **https://hintonx-site.pages.dev/** after validation and inspection. This is standing authorization for the intended source commits, pushes and uploads needed to update this development link. An explicit request for a plan, local-only work or no publication overrides that default. Documentation and skill edits alone do not require a site upload.

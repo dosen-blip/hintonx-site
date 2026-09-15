@@ -23,12 +23,21 @@ Cloudflare calls this the project's production deployment because it uses `main`
 
 ## Build, inspect and deliver
 
-1. Edit the owning source files and register new browser assets in `scripts/build.mjs`. `dist/` is regenerated output.
+1. Edit the owning source files and register new browser assets in `scripts/build.mjs`. After each site change, immediately complete the local preview loop below. `dist/` is regenerated output.
 2. Run `npm run validate`. Inspect affected layout at a desktop and phone width, and applicable keyboard, reduced-motion, menu, playback or scroll behavior. Do not claim browser/device coverage that was not checked.
 3. Follow the source-of-truth release procedure for current account/project checks, source integration, direct upload and remote verification. An authentication or deployment failure leaves a local result; report it without substituting another account or host.
 4. Open the affected routes on the stable development hostname. Compare changed content/assets against the intended build or revision, and check the changed behavior. A successful CLI command or HTTP 200 alone is insufficient.
 5. Return the direct development-page link, visible change, actual checks and any remaining limitation. A deployment-specific URL may help diagnose a race or cache issue, but the stable link is the review destination.
 
-## Local preview recovery
+## Immediate local preview loop
 
-`npm run dev` builds and serves `dist/` at `http://127.0.0.1:4173/`. It does not watch files: rebuild before refreshing. Reuse a healthy project server. Identify a stalled port listener before stopping it; restart only this project's server. Concurrent worktrees need separate server ports and their own build folders. Localhost is a diagnostic preview and cannot serve as the other collaborator's shared review link.
+After every site change, including a minor copy, style or interaction adjustment, make it visible locally immediately. Complete this loop before moving on to another change or reporting the result:
+
+1. Run `npm run build` after the change (a successful `npm run validate` also rebuilds). The preview server does not watch source files.
+2. Reuse the current clone's healthy preview server. If none is running, start `npm run dev`, which builds and serves `dist/` at `http://127.0.0.1:4173/`. Identify a stalled listener before stopping it; restart only this project's server. Concurrent worktrees need separate ports and build folders.
+3. Refresh the affected route in the existing local preview tab, or open it if needed. Preserve the collaborator's route and review position where practical. If stale content persists, check the build and serving directory, then reload without cache as needed.
+4. Inspect the refreshed page and confirm the intended change is visible. Opening a tab or getting an HTTP 200 alone is not verification.
+
+The agent owns these routine steps; do not ask the collaborator to remember to build, start the server or refresh, and do not defer the loop until final delivery. If browser control or server access is unavailable, complete the steps you can and state the specific limitation instead of claiming a refreshed preview. Documentation-only edits need document checks, not this site preview loop.
+
+Keep the local preview current throughout editing and still deliver the completed change to the shared development link. Localhost on one machine is not the other collaborator's shared review link.

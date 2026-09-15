@@ -33,6 +33,6 @@ Do not invent a universal spacing scale or normalize all pages as part of a smal
 ## Apply and review
 
 1. Identify the named page/element and inspect its current renderer, content and styles using the ownership map.
-2. Make the smallest complete change that expresses the requested outcome. Keep client facts, routes and unrelated sections intact. Broad redesigns require a request for that scope.
+2. Make the smallest complete change that expresses the requested outcome. Immediately rebuild, refresh and verify it in the local preview through the [preview loop](../hintonx-dev-workflow/SKILL.md#immediate-local-preview-loop), including for minor adjustments. Keep client facts, routes and unrelated sections intact. Broad redesigns require a request for that scope.
 3. Run `npm run validate` and inspect the affected page at desktop and phone widths. Check actual text wrapping, image crop, spacing, horizontal overflow and controls. Check keyboard/reduced-motion behavior when interactions change.
 4. Deliver through the [development workflow](../hintonx-dev-workflow/SKILL.md). Record accepted convention changes once in the source of truth.
