@@ -54,6 +54,7 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Public-sector overview and case templates, styles and browser hooks | `src/publicsector-render.mjs`, `src/publicsector.css`, `src/publicsector.js` |
 | Public-sector asset inventory and outstanding content review | `docs/PUBLIC_SECTOR_REVIEW.md` |
 | All eight original case studies | `src/case-render.mjs`, `src/case.css`, `src/case.js` |
+| Container selection preview | `src/template-render.mjs`, `src/template.css`, `src/template.js`, `scripts/template.test.mjs` |
 | Base typography/layout and original secondary pages | `src/styles.css` |
 | Cobalt accents | `src/accent.css` |
 | Navbar blur, menus, white cursor | `src/navigation.css`, `src/navigation.js`, `src/cursor-dot.svg` |
@@ -64,7 +65,7 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | HTML/link/fragment checks, wheel and public-sector tests | `scripts/validate.mjs`, `scripts/scroll-wheel.test.mjs`, `scripts/publicsector.test.mjs` |
 | Deployment configuration/command | `wrangler.jsonc`, `package.json` |
 
-No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 26 HTML files: home, Work, five vertical pages, eight original cases, the Public Sector overview and six public-sector cases, Studio, Contact, legacy Video and a homepage-based 404. `dist/` is recreated on every build.
+No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 27 HTML files: home, Work, five vertical pages, eight original cases, the Public Sector overview and six public-sector cases, Studio, Contact, legacy Video, the container template and a homepage-based 404. `dist/` is recreated on every build.
 
 Five dedicated service pages use the existing routes: `/work/product-design/`, `/work/web-development/`, `/work/ai/`, `/work/branding/`, and `/work/video/`. Each has five sections: a service introduction with lead media, four capabilities, selected work with discipline-specific contribution copy, a three-part approach, and a service-specific project enquiry linking to Contact. Keep the shared black/warm-white structure and restrained cobalt punctuation. Branding gives Hinton Press a single expanded editorial feature; Video has a featured film, two selected films and four additional films. Its seven film links open a native dialog with a YouTube iframe created on demand and removed on dismissal, returning focus to the opening link; ordinary YouTube links remain the fallback, including a direct link inside the player. `/matiadosen/` remains available.
 
@@ -73,6 +74,12 @@ Services navigation, the Work introduction and homepage service links lead to th
 Routes are case-sensitive: `/`, `/projects/`, `/Studio/`, `/Contact/`, `/matiadosen/` (Video), and `/projects/<slug>/`. Obtain project slugs from `site-data.mjs`; do not rename routes as part of visual polish. Studio, Contact and the standalone Video page retain their original layouts; the new case-study treatment does not imply they have been redesigned.
 
 Media currently lives on Framer and YouTube. Films on Home, case studies and the Video service page create an iframe when opened and remove it on close. External hosting availability is not covered by local validation. The legacy standalone Video page still uses static thumbnails; do not describe every video on the site as playable.
+
+## Container template
+
+`/template.html` is the layout review tool for SCRUM-13. It collects 46 distinct section layouts from the existing renderers, using representative supplied content across all page families. Its pull-down checklist starts with everything selected. Navigation and Footer are required and disabled in the checklist; Hero is the first optional section. Sections retain their fixed catalogue order, and deselecting one collapses it without leaving a gap. The controls sit outside the page preview. The template stays out of the sitemap and emits `noindex, follow`.
+
+`template-render.mjs` owns the catalogue and checks section counts against its labels during every build. It namespaces IDs and accessible references so layouts can coexist without collisions. Existing page output is preserved. The template uses static hero and project-collection layouts, native disclosures, project-index previews and an on-demand film dialog; it does not load page-specific scroll/entrance scripts. Public Sector placeholders remain labelled, including the optional gallery example. This tool previews selection and layout; it does not save or export a new page.
 
 ## Public Sector Solutions
 
@@ -91,7 +98,7 @@ The section script emits a `hintonx:analytics` CustomEvent on window for contact
 - `npm ci`: install the locked deployment tooling after cloning.
 - `npm run dev`: rebuild, then serve `dist/` on port 4173. This is a plain Python static server, **not** a hot-reload server.
 - `npm run build`: rebuild before refreshing an existing preview.
-- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run nine wheel/stack geometry and easing tests and seven public-sector content, template, metadata and indexing tests.
+- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run nine wheel/stack geometry and easing tests, seven public-sector content/metadata/indexing tests and three container-template structure/reference tests.
 - `BASE_PATH=/hintonx-site npm run validate`: optional subdirectory test only. Run a normal build afterwards; production on Cloudflare uses no prefix.
 
 Choose browser checks based on the change: layout at desktop and phone widths, overflow, image visibility, keyboard controls, menu reversal, deep links, reduced motion or player dismissal. Structural validation cannot establish visual quality, working external media, or live deployment.

@@ -4,6 +4,7 @@ import { renderIcons } from './icons.mjs';
 import { caseBody } from './case-render.mjs';
 import { workBody } from './work-render.mjs';
 import { homeBody } from './home-render.mjs';
+import { templateBody } from './template-render.mjs';
 import { projects, site, videoProjects } from "./site-data.mjs";
 import { publicSectorBody, publicSectorCaseBody } from './publicsector-render.mjs';
 import { publicSector, publicSectorPath, publicSectorHref } from './publicsector-content.mjs';
@@ -53,7 +54,7 @@ function footer() {
   </footer>`;
 }
 
-function layout({ title = "HintonX", description = "HintonX — Design + Technology", body, pageClass = "", canonicalPath, socialImage, socialTitle = title, socialDescription = description, noindex = false, structuredData }) {
+function layout({ title = "HintonX", description = "HintonX — Design + Technology", body, pageClass = "", canonicalPath, socialImage, socialTitle = title, socialDescription = description, noindex = false, structuredData, toolbar = '' }) {
   return renderIcons(`<!doctype html>
 <html lang="en">
 <head>
@@ -77,10 +78,10 @@ ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script s
 ${pageClass === "publicsector-page" ? '<link rel="stylesheet" href="/publicsector.css"><script src="/publicsector.js" type="module"></script>' : ''}
 <link rel="stylesheet" href="/vertical.css">
 ${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></script>' : ''}
-<link rel="stylesheet" href="/accent.css?v=20260910-film">
+${pageClass === 'template-page' ? '<link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/work.css"><link rel="stylesheet" href="/case.css"><link rel="stylesheet" href="/publicsector.css">' : ''}<link rel="stylesheet" href="/accent.css?v=20260910-film">${pageClass === 'template-page' ? '<link rel="stylesheet" href="/template.css"><script src="/template.js" type="module"></script>' : ''}
 </head>
 <body class="${pageClass}"${pageClass === "work-page" ? ' id="top"' : ''}>
-  ${pageClass === 'publicsector-page' ? '<a class="ps-skip" href="#publicsector-main">Skip to content</a>' : ''}
+${toolbar ? `  ${toolbar}\n` : ''}  ${pageClass === 'publicsector-page' ? '<a class="ps-skip" href="#publicsector-main">Skip to content</a>' : ''}
   ${header()}
   <main${pageClass === 'publicsector-page' ? ' id="publicsector-main" tabindex="-1"' : ''}>${body}</main>
   ${footer()}
@@ -97,6 +98,11 @@ function projectCard(project, mode = "grid") {
 
 export function renderHome() {
   return layout({ pageClass: "home", body: homeBody() });
+}
+
+export function renderTemplate() {
+  const {toolbar, body} = templateBody({studio: renderStudio(), contact: renderContact(), video: renderVideo()});
+  return layout({title: 'Container template — HintonX', description: 'Select HintonX page containers and preview their layout.', pageClass: 'template-page', noindex: true, toolbar, body});
 }
 
 export function renderProjects() {
