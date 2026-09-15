@@ -26,8 +26,9 @@ Cloudflare calls this the project's production deployment because it uses `main`
 1. Edit the owning source files and register new browser assets in `scripts/build.mjs`. After each site change, immediately complete the local preview loop below. `dist/` is regenerated output.
 2. Run `npm run validate`. Inspect affected layout at a desktop and phone width, and applicable keyboard, reduced-motion, menu, playback or scroll behavior. Do not claim browser/device coverage that was not checked.
 3. Follow the source-of-truth release procedure for current account/project checks, source integration, direct upload and remote verification. An authentication or deployment failure leaves a local result; report it without substituting another account or host.
-4. Open the affected routes on the stable development hostname. Compare changed content/assets against the intended build or revision, and check the changed behavior. A successful CLI command or HTTP 200 alone is insufficient.
-5. Return the direct development-page link, visible change, actual checks and any remaining limitation. A deployment-specific URL may help diagnose a race or cache issue, but the stable link is the review destination.
+4. Use a request reference with the guarded release command (`npm run deploy -- --request REFERENCE`). Keep the GitHub deployment record and Cloudflare URL as delivery evidence. See `docs/EDITING_AND_RELEASES.md` for the preflight, failure handling and recovery rehearsal.
+5. Open the affected routes on the stable development hostname. Compare changed content/assets against the intended build or revision, and check the changed behavior. A successful CLI command or HTTP 200 alone is insufficient.
+6. Return the direct development-page link, visible change, actual checks and any remaining limitation. A deployment-specific URL may help diagnose a race or cache issue, but the stable link is the review destination.
 
 ## Immediate local preview loop
 

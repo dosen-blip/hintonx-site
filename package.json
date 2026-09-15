@@ -6,8 +6,12 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && python3 -m http.server 4173 -d dist",
-    "validate": "npm run build && node scripts/validate.mjs && node --test scripts/scroll-wheel.test.mjs scripts/publicsector.test.mjs scripts/template.test.mjs",
-    "deploy": "npm run validate && wrangler pages deploy dist --project-name=hintonx-site --branch=main"
+    "validate": "npm run build && node scripts/validate.mjs && node --test scripts/scroll-wheel.test.mjs scripts/publicsector.test.mjs scripts/template.test.mjs scripts/release.test.mjs",
+    "deploy": "node scripts/release.mjs",
+    "release:check": "node scripts/release.mjs --check",
+    "release:test": "node --test scripts/release.test.mjs",
+    "release:verify": "node scripts/verify-deployment.mjs",
+    "rollback:rehearse": "node scripts/rehearse-rollback.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.130.0"

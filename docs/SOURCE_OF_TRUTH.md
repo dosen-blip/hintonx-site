@@ -63,7 +63,7 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Wheel and mobile-stack geometry and easing | `src/scroll-wheel.mjs` |
 | Static generation, asset copy list, optional URL prefix | `scripts/build.mjs`, `scripts/base-path.mjs` |
 | HTML/link/fragment checks, wheel and public-sector tests | `scripts/validate.mjs`, `scripts/scroll-wheel.test.mjs`, `scripts/publicsector.test.mjs` |
-| Deployment configuration/command | `wrangler.jsonc`, `package.json` |
+| Deployment configuration/command, verification and reconstruction rehearsal | `wrangler.jsonc`, `package.json`, `scripts/release.mjs`, `scripts/release-policy.mjs`, `scripts/verify-deployment.mjs`, `scripts/rehearse-rollback.mjs` |
 
 No frontend framework or runtime package dependencies. Wrangler is a development dependency, pinned through `package-lock.json`. The site emits 27 HTML files: home, Work, five vertical pages, eight original cases, the Public Sector overview and six public-sector cases, Studio, Contact, legacy Video, the container template and a homepage-based 404. `dist/` is recreated on every build.
 
@@ -98,7 +98,7 @@ The section script emits a `hintonx:analytics` CustomEvent on window for contact
 - `npm ci`: install the locked deployment tooling after cloning.
 - `npm run dev`: rebuild, then serve `dist/` on port 4173. This is a plain Python static server, **not** a hot-reload server.
 - `npm run build`: rebuild before refreshing an existing preview.
-- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run nine wheel/stack geometry and easing tests, eight public-sector content/metadata/indexing/image-runtime tests and three container-template structure/reference tests.
+- `npm run validate`: rebuild, validate all internal HTML links/fragments/assets, run nine wheel/stack geometry and easing tests, eight public-sector content/metadata/indexing/image-runtime tests three container-template structure/reference tests and release-safety tests.
 - `BASE_PATH=/hintonx-site npm run validate`: optional subdirectory test only. Run a normal build afterwards; production on Cloudflare uses no prefix.
 
 Choose browser checks based on the change: layout at desktop and phone widths, overflow, image visibility, keyboard controls, menu reversal, deep links, reduced motion or player dismissal. Structural validation cannot establish visual quality, working external media, or live deployment.
@@ -113,7 +113,7 @@ All routine requested site changes are delivered to **https://hintonx-site.pages
 
 The team calls this the development link. Cloudflare technically serves it from the existing project's production branch, `main`; no separate `dev` deployment or custom domain is being introduced. It remains publicly reachable. A future launch on a custom domain or change of hosting target is separate work requiring authorization.
 
-Collaborators use focused source changes, preserve others' unfinished edits, and integrate the latest shared source before delivery. Use isolated worktrees when edits overlap; do not overwrite a shared working directory or force-push. Deploy from a clean checkout matching integrated `origin/main`, recheck remote HEAD before upload, and coordinate so only one collaborator uploads at a time. The hostname serves the latest upload; it does not combine separate collaborators' builds. These are workflow conventions, not an automated deployment lock or access-control system.
+Collaborators use focused source changes, preserve others' unfinished edits, and integrate the latest shared source before delivery. Use isolated worktrees when edits overlap; do not overwrite a shared working directory or force-push. Deploy from a clean checkout matching integrated `origin/main`, recheck remote HEAD before upload, and coordinate so only one collaborator uploads at a time. The hostname serves the latest upload; it does not combine separate collaborators' builds. The release command now enforces a clean main matching remote HEAD, checks the authenticated GitHub operator has repository write access, locks releases within a clone/worktree group, and records deployment attempts and verified results in GitHub. Cross-clone upload coordination remains manual. This does not authenticate chat participants or implement a live approver policy.
 
 Repository skill packs are routed by `AGENTS.md` and `skills/hintonx-site/SKILL.md`: `hintonx-design-system` applies the visual baseline, `hintonx-dev-workflow` handles shared delivery, and `hintonx-design-feedback` turns design intent into scoped changes. Keep accepted decisions here and workflow guidance in those skills. Each clone uses its own copies.
 
@@ -121,11 +121,15 @@ Repository skill packs are routed by `AGENTS.md` and `skills/hintonx-site/SKILL.
 
 1. Apply the shared-development default above, respecting any explicit local-only or no-publish instruction. Check the worktree and inspect changes; validate the site and affected interactions.
 2. Verify GitHub access and `npx wrangler whoami`. Confirm `hintonx-site` in `npx wrangler pages project list --json`. Do not infer login state from old notes.
-3. Integrate the latest shared source, commit and push the intended changes, then recheck remote HEAD and coordinate the upload. Use `env -u BASE_PATH npm run deploy` from a clean checkout matching integrated `origin/main`; it validates and directly uploads `dist/` to the existing Pages project on `main`.
+3. Integrate the latest shared source, commit and push the intended changes, then recheck remote HEAD and coordinate the upload. Use `npm run deploy -- --request JIRA-KEY-OR-TASK-REFERENCE` from a clean checkout matching integrated `origin/main`; it validates, records the request/revision/operator and development authorization in GitHub Deployments, directly uploads `dist/` to the existing Pages project on `main`, and verifies all delivered file bytes at the immutable deployment and stable development URLs. BASE_PATH is removed by the release script. `npm run release:check -- --request REFERENCE` runs the preflight without publishing.
 4. Check deployment success, the shared development hostname, affected routes and their assets. Verify content belongs to the expected revision, not just an HTTP 200, and inspect changed behavior remotely. If reporting CI, check the run's commit and conclusion separately.
 5. Report the direct development-page link and any real limitation. A push or successful build alone does not prove the development site was updated.
 
 The CLI needed `--force` once to create this legacy Pages project because Wrangler 4.130.0 tried to delegate creation to Workers. The existing project deploys with the normal command. Do not recreate it, add force flags indiscriminately, or migrate hosting to resolve a routine CLI problem.
+
+## Editing and recovery workflow
+
+[EDITING_AND_RELEASES.md](EDITING_AND_RELEASES.md) describes request tracking, preview, release history and recovery for SCRUM-14. Only the established development target is configured; live targets fail closed pending the owner’s live domain and approver policy. The rollback rehearsal reconstructs a recorded source revision in a temporary directory, validates it and compares it with its retained Cloudflare deployment. It does not perform a live rollback or alter main. Final live approval enforcement and an actual live recovery drill remain open.
 
 ## Maintaining this document
 
