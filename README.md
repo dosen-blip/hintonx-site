@@ -20,6 +20,8 @@ The packs live in the repository and can be read directly; they do not depend on
 
 ## Local work
 
+Use Node.js 22 or newer with npm. The lockfile pins deployment tooling; `package.json` records version-specific install-script approvals for npm versions that require them.
+
 ```bash
 npm ci
 npm run dev
