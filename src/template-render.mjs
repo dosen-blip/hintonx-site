@@ -7,6 +7,7 @@ import {projects} from './site-data.mjs';
 import {verticals} from './verticals.mjs';
 import {publicSectorCases} from './publicsector-content.mjs';
 import {icon} from './icons.mjs';
+import {videoBackgroundControls} from './video-background.mjs';
 
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -68,7 +69,7 @@ export function templateBody(sources) {
   const items = templateContainers(sources);
   const option = (id, label, locked = false) => `<label class="template-option"><input type="checkbox" value="${id}" checked${locked ? ' disabled' : ` aria-controls="container-${id}"`}><span>${esc(label)}</span>${locked ? '<small>Required</small>' : ''}</label>`;
   const groups = [...new Set(items.map(item => item.group))];
-  const toolbar = `<aside class="template-toolbar" aria-label="Page layout controls"><span>Template preview</span><details class="template-picker"><summary>Containers ${icon('↓')}</summary><div class="template-menu"><p>Select the sections to preview.</p>${option('navigation', 'Navigation', true)}${groups.map(group => `<fieldset><legend>${esc(group)}</legend>${items.filter(item => item.group === group).map(item => option(item.id, item.label)).join('')}</fieldset>`).join('')}${option('footer', 'Footer', true)}</div></details><span class="template-sr" role="status" aria-live="polite" data-template-status></span></aside>`;
+  const toolbar = `<aside class="template-toolbar" aria-label="Page layout controls"><span>Template preview</span>${videoBackgroundControls()}<details class="template-picker"><summary>Containers ${icon('↓')}</summary><div class="template-menu"><p>Select the sections to preview.</p>${option('navigation', 'Navigation', true)}${groups.map(group => `<fieldset><legend>${esc(group)}</legend>${items.filter(item => item.group === group).map(item => option(item.id, item.label)).join('')}</fieldset>`).join('')}${option('footer', 'Footer', true)}</div></details><span class="template-sr" role="status" aria-live="polite" data-template-status></span></aside>`;
   const body = `<div id="template-top" class="template-sr"><h1>Page layout preview</h1></div>${items.map(item => `<div id="container-${item.id}" class="template-container ${item.className}" data-template-container="${item.id}" aria-label="${esc(item.label)}">${item.body}</div>`).join('')}
     <dialog class="template-player" aria-label="Film player"><div><span data-template-film-title>Film</span><button type="button" data-template-close>Close ${icon('×')}</button></div><div data-template-player></div><a data-template-external href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Watch on YouTube ${icon('↗')}</a></dialog>`;
   return {toolbar, body};

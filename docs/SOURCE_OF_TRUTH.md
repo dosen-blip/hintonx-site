@@ -46,7 +46,7 @@ Huge, Neiden and Dosen.ca informed the exploration. They are visual references, 
 | Shared project facts, routes, navigation labels, media URLs | `src/site-data.mjs` |
 | Homepage selections and discipline copy | `src/home-content.mjs` |
 | Shared document shell, header, footer; Studio, Contact, Video | `src/render.mjs` |
-| Homepage markup, styling, behavior | `src/home-render.mjs`, `src/home.css`, `src/home.js` |
+| Homepage markup, styling, behavior | `src/home-render.mjs`, `src/home.css`, `src/home.js`, `src/opening.js` |
 | Service-page copy and curated features | `src/service-content.mjs` |
 | Service-page rendering, styling, behavior and discipline membership | `src/verticals.mjs`, `src/vertical-render.mjs`, `src/vertical.css`, `src/vertical.js` |
 | Work listing | `src/work-render.mjs`, `src/work.css`, `src/work.js` |
@@ -75,11 +75,15 @@ Routes are case-sensitive: `/`, `/projects/`, `/Studio/`, `/Contact/`, `/matiado
 
 Media currently lives on Framer and YouTube. Films on Home, case studies and the Video service page create an iframe when opened and remove it on close. External hosting availability is not covered by local validation. The legacy standalone Video page still uses static thumbnails; do not describe every video on the site as playable.
 
+## Hero video background
+
+The SCRUM-15 implementation places the supplied Hx1 placeholder behind the existing rotating headline and coordinated project spotlight. Its upper and lower edges fade into black with a masked blur. `src/video-background.mjs` owns the default media paths and overlay, with `src/video-background.css` and `src/video-background.js` handling presentation and playback. The build copies the silent H.264 MP4 and extracted JPEG fallback from `src/assets/video-background/`; the original MOV remains untouched outside the repository. Playback uses native muted, inline autoplay and looping, with no visitor toggle as requested. A hidden tab pauses playback; returning resumes it. Reduced motion and media errors show the still image. The template’s Video settings can select local preview files and adjust the dark overlay; file selections reset on reload and do not upload or save assets. `opening.js` shares the existing rotating headline and spotlight behavior between Home and the template. The user authorized delivery of this implementation to the shared development site.
+
 ## Container template
 
 `/template.html` is the layout review tool for SCRUM-13. It collects 46 distinct section layouts from the existing renderers, using representative supplied content across all page families. Its pull-down checklist starts with everything selected. Navigation and Footer are required and disabled in the checklist; Hero is the first optional section. Sections retain their fixed catalogue order, and deselecting one collapses it without leaving a gap. The controls sit outside the page preview. The template stays out of the sitemap and emits `noindex, follow`.
 
-`template-render.mjs` owns the catalogue and checks section counts against its labels during every build. It namespaces IDs and accessible references so layouts can coexist without collisions. Existing page output is preserved. The template uses static hero and project-collection layouts, native disclosures, project-index previews and an on-demand film dialog; it does not load page-specific scroll/entrance scripts. Public Sector examples use the supplied imagery; the optional missing-gallery example remains labelled. This tool previews selection and layout; it does not save or export a new page.
+`template-render.mjs` owns the catalogue and checks section counts against its labels during every build. It namespaces IDs and accessible references so layouts can coexist without collisions. Existing page output is preserved. The template uses the shared animated hero and a static project collection, native disclosures, project-index previews and an on-demand film dialog; it does not load page-wide scroll scripts. Public Sector examples use the supplied imagery; the optional missing-gallery example remains labelled. This tool previews selection and layout; it does not save or export a new page.
 
 ## Public Sector Solutions
 

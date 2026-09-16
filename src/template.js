@@ -35,9 +35,8 @@ document.addEventListener('click', event => {
   }
 });
 
-// Layout previews use the existing static wheel and hero fallback. Native
-// disclosures, index previews and films remain usable without page-wide motion
-// scripts that assume a fixed combination of visible sections.
+// The wheel remains static; the shared opening script enhances the hero.
+// Disclosures, index previews and films remain independent of page-wide motion.
 document.querySelectorAll('.home-solution').forEach(details => {
   details.addEventListener('toggle', () => {
     if (!details.open) return;
