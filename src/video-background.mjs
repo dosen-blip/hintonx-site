@@ -2,7 +2,7 @@ import {icon} from './icons.mjs';
 
 // Default media for SCRUM-15. Replace these paths when final assets are approved.
 export const videoBackground = {
-  video: '/assets/video-background/hx1.mp4',
+  video: '/assets/video-background/hx1-loop.mp4',
   poster: '/assets/video-background/hx1-poster.jpg',
   overlay: 0.45,
 };

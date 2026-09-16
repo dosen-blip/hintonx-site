@@ -39,7 +39,7 @@ for (const project of projects) {
 await output("styles.css", await readFile(resolve(root, "src/styles.css"), "utf8"));
 for (const file of ["opening.js", "video-background.css", "video-background.js", "template.css", "template.js", "vertical.css", "vertical.js", "case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "favicon.svg", "work.css", "work.js", "publicsector.css", "publicsector.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
 // Copy only explicitly referenced section assets, including all responsive variants.
-const publicAssets = new Set(['/assets/video-background/hx1.mp4', '/assets/video-background/hx1-poster.jpg', publicSector.metadata.socialImage, ...publicSectorCases.map(story => story.metadata.socialImage)]);
+const publicAssets = new Set(['/assets/video-background/hx1-loop.mp4', '/assets/video-background/hx1-poster.jpg', publicSector.metadata.socialImage, ...publicSectorCases.map(story => story.metadata.socialImage)]);
 const images = [publicSector.hero, publicSector.recognition.image, ...publicSector.clientGroups.flatMap(group => group.clients.map(client => client.logo)), ...publicSectorCases.flatMap(story => [story.hero, ...(story.images || [])])].filter(Boolean);
 for (const image of images) {
   if (image.src) publicAssets.add(image.src);
