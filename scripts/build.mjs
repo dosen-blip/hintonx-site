@@ -1,3 +1,5 @@
+import {annotatePage} from './layout-catalog.mjs';
+import {renderLayoutEditor} from '../src/layout-editor.mjs';
 import {verticals} from '../src/verticals.mjs';
 import { basePath } from './base-path.mjs';
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
@@ -11,9 +13,14 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(root, "dist");
 const base = basePath();
 
+const layoutCatalog = [];
 await rm(dist, { recursive: true, force: true });
 
 async function output(path, contents) {
+  if(path.endsWith('.html') && !['template.html','containers.html','404.html'].includes(path)) {
+    const route=path==='index.html'?'/':'/'+path.replace(/index\.html$/,'');
+    const result=annotatePage(contents,route);contents=result.html;if(result.page)layoutCatalog.push(result.page);
+  }
   const target = resolve(dist, path);
   await mkdir(dirname(target), { recursive: true });
   if (base && path.endsWith('.html')) contents = contents.replace(/(\b(?:href|src)=")\/(?!\/)/g, `$1${base}/`);
@@ -22,7 +29,8 @@ async function output(path, contents) {
 }
 
 await output("index.html", renderHome());
-await output("template.html", renderTemplate());
+await output("template.html", renderLayoutEditor());
+await output("containers.html", renderTemplate());
 await output("projects/index.html", renderProjects());
 await output("Studio/index.html", renderStudio());
 await output("Contact/index.html", renderContact());
@@ -36,8 +44,9 @@ for (const project of projects) {
   await output(`projects/${project.slug}/index.html`, renderCaseStudy(project));
 }
 
+await output("layout-catalog.json", JSON.stringify(layoutCatalog));
 await output("styles.css", await readFile(resolve(root, "src/styles.css"), "utf8"));
-for (const file of ["opening.js", "video-background.css", "video-background.js", "template.css", "template.js", "vertical.css", "vertical.js", "case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "favicon.svg", "work.css", "work.js", "publicsector.css", "publicsector.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
+for (const file of ["layout-model.mjs", "layout-runtime.js", "layout-preview.css", "layout-editor.css", "layout-editor.js", "opening.js", "video-background.css", "video-background.js", "template.css", "template.js", "vertical.css", "vertical.js", "case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "favicon.svg", "work.css", "work.js", "publicsector.css", "publicsector.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
 // Copy only explicitly referenced section assets, including all responsive variants.
 const publicAssets = new Set(['/assets/video-background/hx1-loop.mp4', '/assets/video-background/hx1-poster.jpg', publicSector.metadata.socialImage, ...publicSectorCases.map(story => story.metadata.socialImage)]);
 const images = [publicSector.hero, publicSector.recognition.image, ...publicSector.clientGroups.flatMap(group => group.clients.map(client => client.logo)), ...publicSectorCases.flatMap(story => [story.hero, ...(story.images || [])])].filter(Boolean);
@@ -57,4 +66,4 @@ await output('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xml
 await output('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.origin}${base}/sitemap.xml\n`);
 await output("404.html", renderHome());
 await output(".nojekyll", "");
-console.log(`Built ${projects.length + verticals.length + publicSectorCases.length + 8} static pages in ${dist}`);
+console.log(`Built ${projects.length + verticals.length + publicSectorCases.length + 9} static pages in ${dist}`);

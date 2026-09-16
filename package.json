@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && python3 -m http.server 4173 -d dist",
-    "validate": "npm run build && node scripts/validate.mjs && node --test scripts/scroll-wheel.test.mjs scripts/publicsector.test.mjs scripts/template.test.mjs scripts/video-background.test.mjs scripts/release.test.mjs",
+    "validate": "npm run build && node scripts/validate.mjs && node --test scripts/scroll-wheel.test.mjs scripts/publicsector.test.mjs scripts/template.test.mjs scripts/video-background.test.mjs scripts/layout-editor.test.mjs scripts/release.test.mjs",
     "deploy": "node scripts/release.mjs",
     "release:check": "node scripts/release.mjs --check",
     "release:test": "node --test scripts/release.test.mjs",

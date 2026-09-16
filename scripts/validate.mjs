@@ -26,8 +26,10 @@ for (const path of htmlFiles) {
   const visibleText = html.replace(/<[^>]+>/g, '');
   if (/[\p{Extended_Pictographic}\u2190-\u21ff\uFE0F]/u.test(visibleText)) errors.push(`${path}: use SVG icons instead of emoji or arrow glyphs`);
   if (!/<title>[^<]+<\/title>/.test(html)) errors.push(`${path}: missing title`);
-  if (!/class="site-header"/.test(html)) errors.push(`${path}: missing header`);
-  if (!/class="site-footer/.test(html)) errors.push(`${path}: missing footer`);
+  const editor = relative(dist, path) === 'template.html';
+  if (editor && (!html.includes('id="preview"') || !html.includes('id="save"') || !html.includes('name="robots" content="noindex, follow"'))) errors.push(`${path}: incomplete local template editor`);
+  if (!editor && !/class="site-header"/.test(html)) errors.push(`${path}: missing header`);
+  if (!editor && !/class="site-footer/.test(html)) errors.push(`${path}: missing footer`);
 
   for (const [, href] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (/^(?:[a-z]+:|\/\/)/i.test(href)) continue;

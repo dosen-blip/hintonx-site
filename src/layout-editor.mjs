@@ -1,0 +1,16 @@
+export function renderLayoutEditor(){return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, follow"><title>Templates — HintonX</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"><link rel="stylesheet" href="/layout-editor.css"><script type="module" src="/layout-editor.js"></script></head><body>
+<header class="editor-bar"><a class="editor-brand" href="/">HX</a><h1>Templates</h1><span class="editor-local">Local draft</span><span id="save-state">Loading…</span><button id="save" class="primary">Save locally</button></header>
+<div class="editor-workspace"><aside class="editor-panel" aria-label="Template controls">
+<label class="field">Preview page<select id="page"></select></label>
+<label class="field">Template<select id="template"></select></label>
+<p class="hint" id="impact"></p><div class="actions"><button id="apply-family">Apply to this page family</button></div>
+<details class="template-manage"><summary>Manage templates</summary><label class="field">Template name<input id="template-name" maxlength="80"></label><div class="actions"><button id="rename">Rename</button><button id="duplicate">Save as new template</button></div></details>
+<div class="panel-heading"><h2>Containers</h2><a href="/containers.html" target="_blank" rel="noopener">Browse library</a></div>
+<p class="hint">Switch layouts without replacing the page’s text or media.</p>
+<div class="locked-row"><button data-global="navigation">Navigation</button><span>Required · shared</span></div>
+<div id="slots"></div>
+<div class="locked-row"><button data-global="footer">Footer</button><span>Required · shared</span></div>
+<section class="design-panel" aria-label="Container settings"><h2 id="container-title">Container settings</h2><label class="field">Apply design changes to<select id="scope"><option value="template">This template</option><option value="global">Shared container everywhere</option></select></label><p id="design-impact" class="hint"></p><div id="design-fields"></div><button id="inherit">Use shared defaults</button></section>
+<details class="draft-tools"><summary>Draft tools</summary><p class="hint">Saved in this browser on localhost. Export a copy to hand off. No changes are published.</p><div class="actions"><button id="export">Export draft</button><label class="file-button">Import draft<input type="file" id="import" accept="application/json,.json"></label><button id="revert">Revert unsaved changes</button><button id="reset">Restore original layouts</button><button id="undo" disabled>Undo last change</button></div></details>
+<p id="editor-status" role="status" aria-live="polite"></p>
+</aside><main class="preview-panel"><div class="preview-bar"><span id="preview-title">Preview</span><div class="actions"><button data-device="desktop" aria-pressed="true">Desktop</button><button data-device="phone" aria-pressed="false">Phone</button><a id="open-page" target="_blank" rel="noopener">Open page</a></div></div><div class="preview-stage"><iframe id="preview" title="Page preview"></iframe></div></main></div><noscript>This template editor needs JavaScript. Existing pages remain available from the HX link.</noscript></body></html>`;}
