@@ -22,6 +22,10 @@ GitHub Pages was tried and then disabled. It inherited `matiadosen.com` from the
 
 The initial Cloudflare deployment used source commit `3c9d2ef3fd75ba0f7b0eed4d6d7d6362b653e601`, deployment `69f7392a.hintonx-site.pages.dev`. At that release, 27 HTML/asset URLs passed HTTPS checks and GitHub validation succeeded. This is historical evidence, not a claim about future HEAD or deployment status.
 
+## Development search visibility
+
+The shared development site remains accessible to anyone with its link, without login. All deployed pages and local assets emit `X-Robots-Tag: noindex` through `src/_headers`, copied by the build. This is search exclusion, not access control. Crawling remains allowed so Google can read the directive; the existing sitemap does not override it. The release verifier checks this header on every delivered resource as well as checking file bytes. Previously retained deployments are immutable and do not inherit new headers. Any future public launch must explicitly revisit this development restriction. Public Sector's separate content-readiness metadata still applies independently.
+
 ## Approved visual direction
 
 - Keep the original HintonX identity and improve it incrementally. Earlier broad redesigns were rejected.

@@ -28,5 +28,10 @@ test('deployment verification rejects stale bytes and failed responses', async (
     globalThis.fetch = async () => new Response('expected',{status:500});
     await assert.rejects(verifyDeployment(dir,'https://hintonx-site.pages.dev'), /HTTP 500/);
     await assert.rejects(verifyDeployment(dir,'https://unrelated.example'), /deployment URL/);
+    await writeFile(join(dir,'_headers'),'/*\n  X-Robots-Tag: noindex\n');
+    globalThis.fetch = async () => new Response('expected');
+    await assert.rejects(verifyDeployment(dir,'https://hintonx-site.pages.dev'), /Missing noindex/);
+    globalThis.fetch = async () => new Response('expected',{headers:{'X-Robots-Tag':'noindex'}});
+    assert.equal((await verifyDeployment(dir,'https://hintonx-site.pages.dev')).files,1);
   } finally { globalThis.fetch = originalFetch; await rm(dir,{recursive:true,force:true}); }
 });

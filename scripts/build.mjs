@@ -45,6 +45,7 @@ for (const project of projects) {
 }
 
 await output("layout-catalog.json", JSON.stringify(layoutCatalog));
+await output('_headers', await readFile(resolve(root, 'src/_headers'), 'utf8'));
 await output("styles.css", await readFile(resolve(root, "src/styles.css"), "utf8"));
 for (const file of ["layout-model.mjs", "layout-runtime.js", "layout-preview.css", "layout-editor.css", "layout-editor.js", "opening.js", "video-background.css", "video-background.js", "template.css", "template.js", "vertical.css", "vertical.js", "case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "favicon.svg", "work.css", "work.js", "publicsector.css", "publicsector.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
 // Copy only explicitly referenced section assets, including all responsive variants.

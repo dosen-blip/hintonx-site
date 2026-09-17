@@ -1,0 +1,3 @@
+# Shared development site: allow link sharing, exclude all resources from search.
+/*
+  X-Robots-Tag: noindex

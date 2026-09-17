@@ -9,11 +9,12 @@ export async function verifyDeployment(directory, origin) {
   const url = new URL(origin);
   if (url.protocol !== 'https:' || !(url.hostname === 'hintonx-site.pages.dev' || /^[a-f0-9]+\.hintonx-site\.pages\.dev$/.test(url.hostname))) throw new Error('Expected this project’s HTTPS deployment URL.');
   const files = [];
+  const requiresNoindex = (await readFile(resolve(directory, '_headers'), 'utf8').catch(() => '')).includes('X-Robots-Tag: noindex');
   async function walk(dir) {
     for (const entry of await readdir(dir, {withFileTypes:true})) {
       const path = resolve(dir, entry.name);
       if (entry.isDirectory()) await walk(path);
-      else if (entry.isFile() && !entry.name.startsWith('.')) files.push(path);
+      else if (entry.isFile() && !entry.name.startsWith('.') && entry.name !== '_headers') files.push(path);
     }
   }
   await walk(resolve(directory));
@@ -25,6 +26,7 @@ export async function verifyDeployment(directory, origin) {
       try {
         const response = await fetch(new URL(assetRoute(file), url), {cache:'no-store', signal:AbortSignal.timeout(30000)});
         if (!(response.ok || (file === '404.html' && response.status === 404))) throw new Error(`HTTP ${response.status}`);
+        if (requiresNoindex && !response.headers.get('x-robots-tag')?.split(',').some(rule => rule.trim().toLowerCase() === 'noindex')) throw new Error('Missing noindex response header');
         if (hash(await readFile(path)) !== hash(Buffer.from(await response.arrayBuffer()))) throw new Error('bytes differ');
       } catch (error) { failures.push(`${file}: ${error.message}`); }
     }));
