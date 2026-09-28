@@ -3,6 +3,7 @@ export default {
   title: 'Product design & development',
   href: '/Solution/product-design.html',
   studioIntro: {
+    label: 'Product Design',
     heading: ['Designed for people.', 'Built for'],
     accent: 'growth.',
     lead: ['Exceptional UX.', 'Meaningful business impact.'],
@@ -10,7 +11,6 @@ export default {
     clientLabel: 'Selected clients & collaborators',
     clients: ['Adobe', 'Innodata', '1VALET', 'RealDecoy', 'ISED', 'CBSA'],
   },
-  heroLabel: 'Product Design',
   heroLead: 'We combine human-centred design with AI-accelerated development to create exceptional',
   heroLeadLines: ['We combine human-centred design', 'with AI-accelerated development', 'to create exceptional'],
   heroEndings: ['Platforms.', 'Mobile apps.', 'Web applications.', 'Digital experiences.'],
