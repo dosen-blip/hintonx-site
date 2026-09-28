@@ -6,8 +6,8 @@ export const videoBackground = {
   poster: '/assets/video-background/hx1-poster.jpg',
   overlay: 0.45,
 };
-export function videoBackgroundMedia() {
-  return `<div class="video-background-layers" aria-hidden="true"><img class="video-background-poster" src="${videoBackground.poster}" width="1280" height="720" alt=""><video class="video-background-media" src="${videoBackground.video}" autoplay muted loop playsinline preload="auto" tabindex="-1"></video><span class="video-background-edge video-background-edge-top"></span><span class="video-background-edge video-background-edge-bottom"></span></div>
+export function videoBackgroundMedia(media=videoBackground) {
+  return `<div class="video-background-layers" aria-hidden="true"><img class="video-background-poster" src="${media.poster}" width="1280" height="720" alt=""><video class="video-background-media" src="${media.video}" autoplay muted loop playsinline preload="auto" tabindex="-1"></video><span class="video-background-edge video-background-edge-top"></span><span class="video-background-edge video-background-edge-bottom"></span></div>
     <span class="home-sr" data-video-status role="status"></span>`;
 }
 export function videoBackgroundControls() {
