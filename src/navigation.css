@@ -73,3 +73,6 @@ body.nav-open{overflow:hidden}
 @keyframes nav-backdrop-out{from{opacity:1}to{opacity:0}}
 @media(hover:hover) and (pointer:fine){body,body *,dialog::backdrop{cursor:url('/cursor-dot.svg') 9 9,auto!important}input,textarea,[contenteditable=true]{cursor:text!important}}
 @media(prefers-reduced-motion:reduce){.nav-chevron{transition:none}#nav-dialog::backdrop{animation:none!important}}
+
+/* Keep the shared wordmark close to the left edge at desktop widths. */
+@media(min-width:901px) { .header-inner { width:100%;padding-inline:32px; } }

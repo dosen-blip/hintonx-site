@@ -5,9 +5,12 @@
 @media(max-width:760px) { .solution-hero { min-height:calc(100svh - 97px);padding:72px 0; }.solution-hero h1 { font-size:clamp(42px,10vw,72px); } }
 
 /* One type size for the complete statement, including every rotating ending. */
-.solution-hero h1.solution-statement { font-size:clamp(32px,4.8vw,72px);line-height:1.12;letter-spacing:-.045em;text-wrap:initial; }
+.solution-hero h1.solution-statement { font-size:clamp(16px,2.4vw,36px);line-height:1.12;letter-spacing:-.045em;text-wrap:initial; }
 .solution-lead { display:block; }
 .solution-rotation { display:grid;overflow:hidden;padding:.08em 0 .15em; }
-.solution-word { grid-area:1/1;opacity:0;white-space:nowrap; }
+.solution-word { color:var(--accent);grid-area:1/1;opacity:0;white-space:nowrap; }
 .solution-word[data-current] { opacity:1; }
-@media(max-width:760px) { .solution-hero h1.solution-statement { font-size:clamp(26px,7.7vw,46px); } }
+@media(max-width:760px) { .solution-hero h1.solution-statement { font-size:clamp(13px,3.85vw,23px); } }
+
+.solution-label { margin:0 0 20px;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.12em;text-transform:uppercase; }
+@media(max-width:760px) { .solution-label { font-size:10px;margin-bottom:16px; } }
