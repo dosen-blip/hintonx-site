@@ -39,3 +39,4 @@
 
 .solution-introduction .home-intro-grid h2 { font-size:var(--solution-display-size); }
 .solution-introduction .home-intro-grid > div > .home-lead { font-size:var(--solution-lead-size); }
+.solution-project-grey { background:#e8e8e5; }

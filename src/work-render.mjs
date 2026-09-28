@@ -56,7 +56,7 @@ export function workBody() {
 export function solutionProjectFeatures(features=[]) {
   return features.map((feature,index)=>{
     const p=project(feature.slug);
-    return `<section class="work-page work-band work-light work-platforms solution-project" id="solution-project-${esc(p.slug)}" data-tone="light"><div class="work-container">
+    return `<section class="work-page work-band work-light work-platforms solution-project${index % 2 === 1 ? ' solution-project-grey' : ''}" id="solution-project-${esc(p.slug)}" data-tone="light"><div class="work-container">
       ${marker(String(index+1).padStart(2,'0'),esc(feature.label),esc(feature.category))}
       <div class="work-chapter-heading"><h2>${feature.heading.map(esc).join('<br>')}</h2><div><p>${esc(feature.description)}</p>${link(href(p),`Explore ${esc(name(p))}`)}</div></div>
       <a class="work-media work-feature-art" href="${href(p)}" aria-label="Explore the ${esc(name(p))} case study">${image(p.media[feature.media].src,p.alt,{sizes:'(max-width:760px) calc(100vw - 40px), (max-width:1100px) calc(100vw - 70px), (max-width:1440px) calc(100vw - 100px), 1340px'})}<span class="work-image-arrow" aria-hidden="true">↗</span></a>
