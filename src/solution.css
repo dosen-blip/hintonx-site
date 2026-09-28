@@ -18,10 +18,10 @@
 .solution-label { margin:0 0 20px;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.12em;text-transform:uppercase; }
 @media(max-width:760px) { .solution-label { font-size:10px;margin-bottom:16px; } }
 
-/* Match the template opening's capped desktop height; keep phone framing stable. */
-.solution-hero-contained { height:min(760px,calc(100svh - 97px));min-height:540px; }
+/* Product Design expands the template hero height by 20%; keep phone framing stable. */
+.solution-hero-contained { height:min(912px,calc(120svh - 116.4px));min-height:648px; }
 .solution-introduction.home { background:#f7f7f3; }
-@media(max-width:760px) { .solution-hero-contained { height:540px;min-height:540px; } }
+@media(max-width:760px) { .solution-hero-contained { height:648px;min-height:648px; } }
 
 /* Product Design shares one content edge from navigation through the introduction. */
 .solution-page:has(.solution-introduction) { --solution-content-width:min(1340px,calc(100% - 100px)); }
