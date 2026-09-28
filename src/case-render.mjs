@@ -4,7 +4,7 @@ function mediaFigure(media,project,index,lead=false){
  const url=new URL(media.src),width=Number(url.searchParams.get('width'))||1280,height=Number(url.searchParams.get('height'))||720;
  const videoId=media.kind==='video-poster'?url.pathname.match(/\/vi_webp\/([\w-]{11})\//)?.[1]:null;
  const srcset=url.hostname==='framerusercontent.com'?` srcset="${[640,1280,2048].map(size=>{const u=new URL(url);u.searchParams.set('scale-down-to',size);return `${esc(u.href)} ${size}w`}).join(', ')}" sizes="(max-width:760px) 90vw, ${lead||project.slug==='press'?'90vw':'(min-width:1100px) 60vw, 90vw'}"`:'';
- const image=`<img src="${esc(media.src)}"${srcset} alt="${esc(project.alt)} — project view ${index+1}" width="${width}" height="${height}" loading="${lead?'eager':'lazy'}" decoding="async">`;
+ const image=`<img src="${esc(media.src)}"${srcset} alt="${esc(media.alt || `${project.alt} — project view ${index+1}`)}" width="${width}" height="${height}" loading="${lead?'eager':'lazy'}" decoding="async">`;
  return `<figure class="case-visual${lead?' case-lead':''}${videoId?' case-film':''}">${videoId?`<a href="https://www.youtube.com/watch?v=${videoId}" data-case-film="${videoId}" aria-label="Watch ${esc(project.shortClient||project.client)} project film">${image}<span class="case-play"><span aria-hidden="true">▶</span> Watch film</span></a>`:image}</figure>`;
 }
 export function caseBody(project){

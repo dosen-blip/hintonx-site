@@ -23,7 +23,8 @@ export const site = {
 export const projects = [
   {
     slug: "mobile-app",
-    client: "100",
+    client: "100 App",
+    shortClient: "100",
     title: "iMessage App",
     thumbnail: "https://framerusercontent.com/images/dbryH8RnqXV8XDzazDaXq1ts.png?scale-down-to=2048&width=2500&height=1326",
     alt: "100 iMessage App",
@@ -35,9 +36,9 @@ export const projects = [
     outcome: "The project earned “App of the Day” recognition on the Apple App Store and attracted interest from major social media platforms, influencing the integration of similar feedback features in their ecosystems.",
     media: [
       { src: "https://i.ytimg.com/vi_webp/3hpwgJC-90w/maxresdefault.webp", kind: "video-poster" },
-      { src: "https://framerusercontent.com/images/1Ies3TeNRFqHWihsNHdfYqWnpY.png?scale-down-to=2048&width=2500&height=1326", bleed: true },
-      { src: "https://framerusercontent.com/images/NfHgF3mh0k93qdLjRcg0sT8OA0Q.png?width=2500&height=1326" },
-      { src: "https://framerusercontent.com/images/2iNWjxWo0nZtLIsCwx3zL6Mjxo.png?width=2500&height=1326" },
+      { src: "https://framerusercontent.com/images/1Ies3TeNRFqHWihsNHdfYqWnpY.png?width=2500&height=1326", alt: "UX design concept by Tony Dosen, HintonX studio, Ottawa", bleed: true },
+      { src: "https://framerusercontent.com/images/NfHgF3mh0k93qdLjRcg0sT8OA0Q.png?width=2500&height=1326", alt: "UX design concept by Tony Dosen, HintonX studio, Ottawa" },
+      { src: "https://framerusercontent.com/images/2iNWjxWo0nZtLIsCwx3zL6Mjxo.png?width=2500&height=1326", alt: "UX design concept by Tony Dosen, HintonX studio, Ottawa" },
     ],
   },
   {
