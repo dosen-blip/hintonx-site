@@ -1,3 +1,4 @@
+import {videoBackgroundMedia} from './video-background.mjs';
 import {verticalBody} from './vertical-render.mjs';
 import {serviceContent} from './service-content.mjs';
 import { renderIcons } from './icons.mjs';
@@ -20,7 +21,7 @@ const logo = `<a class="logo" href="/" aria-label="HintonX home">HX</a>`;
 function navigationItems() {
   return site.navigation.map(item => item.children ? `<details class="nav-group">
     <summary>${esc(item.label)}<span class="nav-chevron" aria-hidden="true"></span></summary>
-    <div class="nav-dropdown"><p class="nav-intro">${esc(item.intro)}</p><ul>${item.children.map(child => `<li><a href="${child.href}"><span>${esc(child.label)}</span><small>${esc(child.note)}</small><span class="nav-arrow" aria-hidden="true">↗</span></a></li>`).join("")}</ul></div>
+    <div class="nav-dropdown">${item.intro ? `<p class="nav-intro">${esc(item.intro)}</p>` : ''}<ul>${item.children.map(child => `<li><a href="${child.href}"><span>${esc(child.label)}</span><small>${esc(child.note)}</small><span class="nav-arrow" aria-hidden="true">↗</span></a></li>`).join("")}</ul></div>
   </details>` : `<a${item.button ? ' class="pill nav-project"' : ''} href="${item.href}">${esc(item.label)}${item.button ? '<span aria-hidden="true">↗</span>' : ''}</a>`).join("");
 }
 
@@ -79,8 +80,9 @@ ${pageClass === "publicsector-page" ? '<link rel="stylesheet" href="/publicsecto
 <link rel="stylesheet" href="/vertical.css">
 ${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></script>' : ''}
 ${pageClass === 'template-page' ? '<link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/work.css"><link rel="stylesheet" href="/case.css"><link rel="stylesheet" href="/publicsector.css">' : ''}<link rel="stylesheet" href="/accent.css?v=20260910-film">${pageClass === 'template-page' ? '<link rel="stylesheet" href="/template.css"><script src="/template.js" type="module"></script>' : ''}
-${["home", "template-page"].includes(pageClass) ? '<link rel="stylesheet" href="/video-background.css"><script src="/video-background.js" type="module"></script>' : ''}
+${["home", "template-page", "solution-page"].includes(pageClass) ? '<link rel="stylesheet" href="/video-background.css"><script src="/video-background.js" type="module"></script>' : ''}
 ${pageClass === "template-page" ? '<script src="/opening.js" type="module"></script>' : ''}
+${pageClass === "solution-page" ? '<link rel="stylesheet" href="/solution.css">' : ''}
 </head>
 <body class="${pageClass}"${pageClass === "work-page" ? ' id="top"' : ''}>
 ${toolbar ? `  ${toolbar}\n` : ''}  ${pageClass === 'publicsector-page' ? '<a class="ps-skip" href="#publicsector-main">Skip to content</a>' : ''}
@@ -175,3 +177,11 @@ function publicSectorLayout(body, story) {
 
 export function renderPublicSector() { return publicSectorLayout(publicSectorBody()); }
 export function renderPublicSectorCase(story) { return publicSectorLayout(publicSectorCaseBody(story), story); }
+
+export function renderSolution(solution) {
+  return layout({title:`${solution.title} — HintonX`,pageClass:'solution-page',noindex:true,body:`
+    <section class="solution-hero video-background" aria-labelledby="solution-title">
+      ${videoBackgroundMedia()}
+      <div class="container"><h1 id="solution-title">${esc(solution.title)}.</h1></div>
+    </section>`});
+}

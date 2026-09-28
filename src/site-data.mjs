@@ -1,3 +1,8 @@
+import solution0 from './Solution/product-design.mjs';
+import solution1 from './Solution/web-ecommerce.mjs';
+import solution2 from './Solution/ai-enablement.mjs';
+import solution3 from './Solution/motion-video.mjs';
+export const solutions = [solution0, solution1, solution2, solution3];
 import {verticals,verticalHref} from './verticals.mjs';
 export const site = {
   name: "HintonX",
@@ -5,6 +10,7 @@ export const site = {
   year: "2025",
   navigation: [
     { label: "Work", href: "/projects/" },
+    { label: "What We Do", intro: "", children: solutions.map(s => ({label:s.title,href:s.href,note:''})) },
     { label: "Services", intro: "Discover how we can help.", children: verticals.map(v=>({label:v.title,href:verticalHref(v),note:''})) },
     { label: "Public Sector Solutions", href: "/publicsector/" },
     { label: "Contact", href: "/Contact/" },

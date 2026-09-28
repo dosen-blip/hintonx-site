@@ -7,7 +7,7 @@ import {renderHome,renderCaseStudy} from '../src/render.mjs';
 import {projects} from '../src/site-data.mjs';
 const catalog=JSON.parse(readFileSync(new URL('../dist/layout-catalog.json',import.meta.url)));
 test('all real pages have unique stable sections and compatible default assignments',()=>{
- const state=defaults(catalog);assert.equal(catalog.length,25);
+ const state=defaults(catalog);assert.equal(catalog.length,29);
  for(const p of catalog){assert.ok(p.slots.length);assert.equal(new Set(p.slots.map(s=>s.key)).size,p.slots.length);assert.equal(state.templates[state.assignments[p.path]].family,p.family);}
  assert.deepEqual(validateState(state,catalog),state);
 });

@@ -5,9 +5,9 @@ import { basePath } from './base-path.mjs';
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { projects, site } from "../src/site-data.mjs";
+import { projects, site, solutions } from "../src/site-data.mjs";
 import { publicSector, publicSectorCases, publicSectorPath, publicSectorHref } from '../src/publicsector-content.mjs';
-import { renderTemplate, renderPublicSector, renderPublicSectorCase, renderVertical, renderCaseStudy, renderContact, renderHome, renderProjects, renderStudio, renderVideo } from "../src/render.mjs";
+import { renderSolution, renderTemplate, renderPublicSector, renderPublicSectorCase, renderVertical, renderCaseStudy, renderContact, renderHome, renderProjects, renderStudio, renderVideo } from "../src/render.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(root, "dist");
@@ -29,6 +29,7 @@ async function output(path, contents) {
 }
 
 await output("index.html", renderHome());
+for (const solution of solutions) await output(solution.href.slice(1), renderSolution(solution));
 await output("template.html", renderLayoutEditor());
 await output("containers.html", renderTemplate());
 await output("projects/index.html", renderProjects());
@@ -47,7 +48,7 @@ for (const project of projects) {
 await output("layout-catalog.json", JSON.stringify(layoutCatalog));
 await output('_headers', await readFile(resolve(root, 'src/_headers'), 'utf8'));
 await output("styles.css", await readFile(resolve(root, "src/styles.css"), "utf8"));
-for (const file of ["layout-model.mjs", "layout-runtime.js", "layout-preview.css", "layout-editor.css", "layout-editor.js", "opening.js", "video-background.css", "video-background.js", "template.css", "template.js", "vertical.css", "vertical.js", "case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "favicon.svg", "work.css", "work.js", "publicsector.css", "publicsector.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
+for (const file of ["solution.css", "layout-model.mjs", "layout-runtime.js", "layout-preview.css", "layout-editor.css", "layout-editor.js", "opening.js", "video-background.css", "video-background.js", "template.css", "template.js", "vertical.css", "vertical.js", "case.css", "case.js", "accent.css", "navigation.css", "navigation.js", "home.css", "home.js", "scroll-wheel.mjs", "motion.mjs", "cursor-dot.svg", "favicon.svg", "work.css", "work.js", "publicsector.css", "publicsector.js"]) await output(file, await readFile(resolve(root, "src", file), "utf8"));
 // Copy only explicitly referenced section assets, including all responsive variants.
 const publicAssets = new Set(['/assets/video-background/hx1-loop.mp4', '/assets/video-background/hx1-poster.jpg', publicSector.metadata.socialImage, ...publicSectorCases.map(story => story.metadata.socialImage)]);
 const images = [publicSector.hero, publicSector.recognition.image, ...publicSector.clientGroups.flatMap(group => group.clients.map(client => client.logo)), ...publicSectorCases.flatMap(story => [story.hero, ...(story.images || [])])].filter(Boolean);
@@ -67,4 +68,4 @@ await output('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xml
 await output('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.origin}${base}/sitemap.xml\n`);
 await output("404.html", renderHome());
 await output(".nojekyll", "");
-console.log(`Built ${projects.length + verticals.length + publicSectorCases.length + 9} static pages in ${dist}`);
+console.log(`Built ${projects.length + verticals.length + publicSectorCases.length + solutions.length + 9} static pages in ${dist}`);
