@@ -3,3 +3,11 @@
 .solution-hero h1 { max-width:1100px;margin:0;font-size:clamp(54px,8vw,132px);font-weight:500;line-height:1.03;letter-spacing:-.055em;text-wrap:balance; }
 .solution-hero .home-sr { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
 @media(max-width:760px) { .solution-hero { min-height:calc(100svh - 97px);padding:72px 0; }.solution-hero h1 { font-size:clamp(42px,10vw,72px); } }
+
+/* One type size for the complete statement, including every rotating ending. */
+.solution-hero h1.solution-statement { font-size:clamp(32px,4.8vw,72px);line-height:1.12;letter-spacing:-.045em;text-wrap:initial; }
+.solution-lead { display:block; }
+.solution-rotation { display:grid;overflow:hidden;padding:.08em 0 .15em; }
+.solution-word { grid-area:1/1;opacity:0;white-space:nowrap; }
+.solution-word[data-current] { opacity:1; }
+@media(max-width:760px) { .solution-hero h1.solution-statement { font-size:clamp(26px,7.7vw,46px); } }

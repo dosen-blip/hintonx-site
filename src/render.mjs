@@ -82,7 +82,7 @@ ${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></sc
 ${pageClass === 'template-page' ? '<link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/work.css"><link rel="stylesheet" href="/case.css"><link rel="stylesheet" href="/publicsector.css">' : ''}<link rel="stylesheet" href="/accent.css?v=20260910-film">${pageClass === 'template-page' ? '<link rel="stylesheet" href="/template.css"><script src="/template.js" type="module"></script>' : ''}
 ${["home", "template-page", "solution-page"].includes(pageClass) ? '<link rel="stylesheet" href="/video-background.css"><script src="/video-background.js" type="module"></script>' : ''}
 ${pageClass === "template-page" ? '<script src="/opening.js" type="module"></script>' : ''}
-${pageClass === "solution-page" ? '<link rel="stylesheet" href="/solution.css">' : ''}
+${pageClass === "solution-page" ? '<link rel="stylesheet" href="/solution.css"><script src="/solution.js" type="module"></script>' : ''}
 </head>
 <body class="${pageClass}"${pageClass === "work-page" ? ' id="top"' : ''}>
 ${toolbar ? `  ${toolbar}\n` : ''}  ${pageClass === 'publicsector-page' ? '<a class="ps-skip" href="#publicsector-main">Skip to content</a>' : ''}
@@ -182,6 +182,6 @@ export function renderSolution(solution) {
   return layout({title:`${solution.title} — HintonX`,pageClass:'solution-page',noindex:true,body:`
     <section class="solution-hero video-background" aria-labelledby="solution-title">
       ${videoBackgroundMedia()}
-      <div class="container"><h1 id="solution-title">${esc(solution.title)}.</h1></div>
+      <div class="container">${solution.heroEndings ? `<h1 id="solution-title" class="solution-statement" aria-label="${esc(solution.heroLead)} ${esc(solution.heroEndings.join(' '))}"><span aria-hidden="true"><span class="solution-lead">${esc(solution.heroLead)}</span><span class="solution-rotation" data-solution-rotation>${solution.heroEndings.map((word,index) => `<span class="solution-word"${index===0?' data-current':''}>${esc(word)}</span>`).join('')}</span></span></h1>` : `<h1 id="solution-title">${esc(solution.title)}.</h1>`}</div>
     </section>`});
 }
