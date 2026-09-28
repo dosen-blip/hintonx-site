@@ -17,8 +17,3 @@
 
 .solution-label { margin:0 0 20px;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.12em;text-transform:uppercase; }
 @media(max-width:760px) { .solution-label { font-size:10px;margin-bottom:16px; } }
-
-/* Align the Product Design hero content with the shared HX wordmark. */
-.solution-hero:has(.solution-statement)>.container { width:calc(100% - 64px);max-width:none; }
-@media(max-width:900px) { .solution-hero:has(.solution-statement)>.container { width:calc(100% - 44px); } }
-@media(max-width:360px) { .solution-hero:has(.solution-statement)>.container { width:calc(100% - 32px); } }
