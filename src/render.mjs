@@ -184,5 +184,5 @@ export function renderSolution(solution) {
     <section class="solution-hero video-background${solution.studioIntro ? ' solution-hero-contained' : ''}" aria-labelledby="solution-title">
       ${videoBackgroundMedia()}
       <div class="container">${solution.heroLabel ? `<p class="solution-label">${esc(solution.heroLabel)}</p>` : ''}${solution.heroEndings ? `<h1 id="solution-title" class="solution-statement" aria-label="${esc(solution.heroLead)} ${esc(solution.heroEndings.join(' '))}"><span aria-hidden="true"><span class="solution-lead">${(solution.heroLeadLines || [solution.heroLead]).map(esc).join('<br>')}</span><span class="solution-rotation" data-solution-rotation>${solution.heroEndings.map((word,index) => `<span class="solution-word"${index===0?' data-current':''}>${esc(word.replace(/\.$/,''))}<span class="solution-period">.</span></span>`).join('')}</span></span></h1>` : `<h1 id="solution-title">${esc(solution.title)}.</h1>`}</div>
-    </section>${solution.studioIntro ? studioIntroduction('home solution-introduction') : ''}`});
+    </section>${solution.studioIntro ? studioIntroduction('home solution-introduction',solution.studioIntro) : ''}`});
 }

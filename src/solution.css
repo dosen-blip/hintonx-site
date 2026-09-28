@@ -22,3 +22,15 @@
 .solution-hero-contained { height:min(760px,calc(100svh - 97px));min-height:540px; }
 .solution-introduction.home { background:#f7f7f3; }
 @media(max-width:760px) { .solution-hero-contained { height:540px;min-height:540px; } }
+
+/* Product Design shares one content edge from navigation through the introduction. */
+.solution-page:has(.solution-introduction) { --solution-content-width:min(1340px,calc(100% - 100px)); }
+.solution-page:has(.solution-introduction) .header-inner,
+.solution-hero-contained > .container,
+.solution-introduction.home > .container { width:var(--solution-content-width); }
+.solution-page:has(.solution-introduction) .header-inner { padding-inline:0; }
+@media(max-width:1100px) { .solution-page:has(.solution-introduction) { --solution-content-width:calc(100% - 70px); } }
+@media(max-width:760px) { .solution-page:has(.solution-introduction) { --solution-content-width:calc(100% - 40px); } }
+
+.solution-clients > div { grid-template-columns:repeat(6,minmax(0,1fr)); }
+@media(max-width:760px) { .solution-clients .home-client:last-child { width:50%; } }
