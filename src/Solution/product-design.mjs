@@ -5,10 +5,8 @@ export default {
   studioIntro: {
     heading: ['Designed for people.', 'Built for'],
     accent: 'growth.',
-    lead: 'Exceptional UX. Meaningful business impact.',
+    lead: ['Exceptional UX.', 'Meaningful business impact.'],
     body: 'Since 2013, we’ve helped large enterprises, government departments and startups turn complex challenges into intuitive digital products. We combine research, design and development to create experiences that drive user adoption and business growth.',
-    linkLabel: 'Explore product design work',
-    href: '/work/product-design/',
     clientLabel: 'Selected clients & collaborators',
     clients: ['Adobe', 'Innodata', '1VALET', 'RealDecoy', 'ISED', 'CBSA'],
   },

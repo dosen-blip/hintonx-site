@@ -34,3 +34,5 @@
 
 .solution-clients > div { grid-template-columns:repeat(6,minmax(0,1fr)); }
 @media(max-width:760px) { .solution-clients .home-client:last-child { width:50%; } }
+
+.solution-introduction .home-intro-grid { align-items:start; }
