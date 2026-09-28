@@ -35,6 +35,8 @@ function header() {
 }
 
 function footer() {
+  const firstCases = ['innodata', 'social-platform', 'spectrum-management-platform'];
+  const caseStudies = [...firstCases.map(slug => projects.find(project => project.slug === slug)), ...projects.filter(project => !firstCases.includes(project.slug))];
   return `<footer class="site-footer container">
     <div class="footer-cta">
       <h2>Design-Driven Innovation</h2>
@@ -58,7 +60,7 @@ function footer() {
       </nav>
       <nav aria-label="Footer case studies">
         <h3>Case Studies</h3>
-        <ul class="footer-case-studies">${projects.map(project => `<li><a href="/projects/${esc(project.slug)}/">${esc(project.shortClient || project.client)} — ${esc(project.title)}</a></li>`).join('')}</ul>
+        <ul class="footer-case-studies">${caseStudies.map(project => `<li><a href="/projects/${esc(project.slug)}/" aria-label="${esc(project.shortClient || project.client)} — ${esc(project.title)}">${esc(project.shortClient || project.client)}</a></li>`).join('')}</ul>
       </nav>
     </div>
     <p class="copyright">${site.year} ${site.name}</p>
