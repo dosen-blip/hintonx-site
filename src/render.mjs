@@ -6,7 +6,7 @@ import { caseBody } from './case-render.mjs';
 import { workBody, solutionProjectFeatures } from './work-render.mjs';
 import { homeBody, studioIntroduction } from './home-render.mjs';
 import { templateBody } from './template-render.mjs';
-import { projects, site, videoProjects } from "./site-data.mjs";
+import { projects, site, solutions, videoProjects } from "./site-data.mjs";
 import { publicSectorBody, publicSectorCaseBody } from './publicsector-render.mjs';
 import { publicSector, publicSectorPath, publicSectorHref } from './publicsector-content.mjs';
 
@@ -50,6 +50,16 @@ function footer() {
           ${site.socials.map(item => `<a href="${item.href}">${item.label}</a>`).join("")}
         </nav>
       </div>
+    </div>
+    <div class="footer-directory">
+      <nav aria-label="Footer solutions">
+        <h3>What We Do</h3>
+        <ul>${solutions.map(solution => `<li><a href="${esc(solution.href)}">${esc(solution.title)}</a></li>`).join('')}</ul>
+      </nav>
+      <nav aria-label="Footer case studies">
+        <h3>Case Studies</h3>
+        <ul class="footer-case-studies">${projects.map(project => `<li><a href="/projects/${esc(project.slug)}/">${esc(project.shortClient || project.client)} — ${esc(project.title)}</a></li>`).join('')}</ul>
+      </nav>
     </div>
     <p class="copyright">${site.year} ${site.name}</p>
   </footer>`;
