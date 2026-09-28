@@ -4,5 +4,6 @@ export default {
   href: '/Solution/product-design.html',
   heroLabel: 'Product Design',
   heroLead: 'We combine human-centred design with AI-accelerated development to create exceptional',
+  heroLeadLines: ['We combine human-centred design', 'with AI-accelerated development', 'to create exceptional'],
   heroEndings: ['Platforms.', 'Mobile apps.', 'Web applications.', 'Digital experiences.'],
 };
