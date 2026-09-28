@@ -13,6 +13,16 @@ export default {
   },
   featuredProjects: [
     {
+      slug: 'innodata',
+      label: 'Enterprise workflows',
+      category: 'Innodata / Custom enterprise software',
+      heading: ['Complex workflows.', 'Clearer experiences.'],
+      description: 'Enterprise software that helps financial researchers and analysts navigate complex information and tasks.',
+      challenge: 'Simplify task flows across search, editorial, validation and data integration.',
+      contribution: 'UX design and product strategy for the Admin Kit, in collaboration with Zephus Limited.',
+      media: 0,
+    },
+    {
       slug: '1valet',
       label: 'Connected living',
       category: '1VALET / Smart building platform',
@@ -31,16 +41,6 @@ export default {
       challenge: 'Make sharing items and gathering feedback feel natural inside an iMessage conversation.',
       contribution: 'Product design and development, UX/UI design for iOS and go-to-market strategy.',
       media: 1,
-    },
-    {
-      slug: 'innodata',
-      label: 'Enterprise workflows',
-      category: 'Innodata / Custom enterprise software',
-      heading: ['Complex workflows.', 'Clearer experiences.'],
-      description: 'Enterprise software that helps financial researchers and analysts navigate complex information and tasks.',
-      challenge: 'Simplify task flows across search, editorial, validation and data integration.',
-      contribution: 'UX design and product strategy for the Admin Kit, in collaboration with Zephus Limited.',
-      media: 0,
     },
     {
       slug: 'spectrum-management-platform',
