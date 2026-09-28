@@ -11,7 +11,6 @@ export const site = {
     { label: "What We Do", intro: "", children: solutions.map(s => ({label:s.title,href:s.href,note:''})) },
     { label: "Our Work", href: "/projects/" },
     { label: "About", href: "/Studio/" },
-    { label: "Contact Us", href: "/Contact/" },
     { label: "Contact Us", href: "/Contact/", button: true },
   ],
   socials: [
