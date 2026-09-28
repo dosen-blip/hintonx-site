@@ -8,6 +8,9 @@ const arrow = '<span aria-hidden="true">↗</span>';
 const link = (url, label) => `<a class="work-link" href="${url}">${label}${arrow}</a>`;
 const marker = (number, label, aside = '') => `<div class="work-marker"><span>${number} / ${label}</span><span>${aside}</span></div>`;
 function image(src, alt, {eager = false, drift = false, sizes = '(max-width: 760px) 100vw, 60vw'} = {}) {
+  if (new URL(src).hostname === 'i.ytimg.com') {
+    return `<img src="${esc(src)}" alt="${esc(alt)}" width="1280" height="720" loading="${eager?'eager':'lazy'}" decoding="async"${drift?' data-work-drift':''}>`;
+  }
   const u = new URL(src), width = Number(u.searchParams.get('width')) || 2500, height = Number(u.searchParams.get('height')) || 1326;
   const srcset = [640,1024,1600,2048].map(n => {const url = new URL(src);url.searchParams.set('scale-down-to', n);return `${esc(url.href)} ${n}w`;}).join(', ');
   return `<img src="${esc(src)}" srcset="${srcset}" sizes="${sizes}" alt="${esc(alt)}" width="${width}" height="${height}" loading="${eager?'eager':'lazy'}" decoding="async"${drift?' data-work-drift':''}>`;

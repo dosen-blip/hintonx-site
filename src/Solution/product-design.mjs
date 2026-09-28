@@ -40,7 +40,7 @@ export default {
       description: 'A personal survey app that turns an iMessage conversation into quick feedback from friends.',
       challenge: 'Make sharing items and gathering feedback feel natural inside an iMessage conversation.',
       contribution: 'Product design and development, UX/UI design for iOS and go-to-market strategy.',
-      media: 1,
+      media: 0,
     },
     {
       slug: 'spectrum-management-platform',
