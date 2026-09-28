@@ -14,5 +14,5 @@ export default {
   heroMedia: { video: '/assets/video-background/hx1-product-v2.mp4', poster: '/assets/video-background/hx1-product-v2-poster.jpg' },
   heroLead: 'We combine human-centred design with AI-accelerated development to create exceptional',
   heroLeadLines: ['We combine human-centred design with', 'AI-accelerated development to create exceptional'],
-  heroEndings: ['Platforms.', 'Mobile apps.', 'Web applications.', 'Digital experiences.'],
+  heroEndings: ['Platforms.', 'Mobile apps.', 'Applications.'],
 };
