@@ -17,3 +17,8 @@
 
 .solution-label { margin:0 0 20px;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.12em;text-transform:uppercase; }
 @media(max-width:760px) { .solution-label { font-size:10px;margin-bottom:16px; } }
+
+/* Match the template opening's capped desktop height; keep phone framing stable. */
+.solution-hero-contained { height:min(760px,calc(100svh - 97px));min-height:540px; }
+.solution-introduction.home { background:#f7f7f3; }
+@media(max-width:760px) { .solution-hero-contained { height:540px;min-height:540px; } }
