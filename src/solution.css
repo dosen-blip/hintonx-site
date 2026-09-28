@@ -1,19 +1,18 @@
-.solution-page { background:#080808;color:#fff; }
+.solution-page { --solution-display-size:clamp(48px,5vw,78px);--solution-lead-size:27px;background:#080808;color:#fff; }
 .solution-hero { min-height:calc(100svh - 97px);padding:100px 0; }
 .solution-hero h1 { max-width:1100px;margin:0;font-size:clamp(54px,8vw,132px);font-weight:500;line-height:1.03;letter-spacing:-.055em;text-wrap:balance; }
 .solution-hero .home-sr { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
 @media(max-width:760px) { .solution-hero { min-height:calc(100svh - 97px);padding:72px 0; }.solution-hero h1 { font-size:clamp(42px,10vw,72px); } }
 
-/* Introduction uses its own responsive scale; rotating heading at 35% of the Work scale. */
-.solution-hero h1.solution-statement { max-width:none;font-size:20.8px;font-weight:400;line-height:1.5;letter-spacing:-.025em;text-wrap:initial; }
-.solution-lead { display:block;max-width:700px; }
-.solution-rotation { display:grid;grid-template-columns:minmax(0,1fr);overflow:hidden;margin-top:4px;padding:.06em .03em .12em 0;font-size:clamp(35px,5.25vw,77px);font-weight:500;line-height:1.08;letter-spacing:normal; }
+/* Hero and introduction share the same responsive display and supporting text sizes. */
+.solution-hero h1.solution-statement { max-width:none;font-size:var(--solution-lead-size);font-weight:400;line-height:1.5;letter-spacing:-.025em;text-wrap:initial; }
+.solution-lead { display:block;max-width:900px; }
+.solution-rotation { display:grid;grid-template-columns:minmax(0,1fr);overflow:hidden;margin-top:4px;padding:.06em .03em .12em 0;font-size:var(--solution-display-size);font-weight:500;line-height:1.08;letter-spacing:normal; }
 .solution-word { color:#fff;grid-area:1/1;opacity:0;white-space:normal;align-self:center; }
 .solution-period { color:var(--accent); }
 .solution-word[data-current] { opacity:1; }
-@media(max-width:1100px) { .solution-rotation { font-size:6.3vw; } }
-@media(max-width:760px) { .solution-hero h1.solution-statement { font-size:16.64px; }.solution-rotation { font-size:6.3vw;line-height:1;margin-top:12px; } }
-@media(max-width:360px) { .solution-hero h1.solution-statement { font-size:14.56px; } }
+@media(max-width:760px) { .solution-page { --solution-display-size:46px;--solution-lead-size:23px; }.solution-rotation { line-height:1;margin-top:12px; } }
+@media(max-width:360px) { .solution-page { --solution-display-size:41px; } }
 
 .solution-label { margin:0 0 20px;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.12em;text-transform:uppercase; }
 @media(max-width:760px) { .solution-label { font-size:10px;margin-bottom:16px; } }
@@ -37,3 +36,6 @@
 
 .solution-introduction .home-intro-grid { align-items:start;row-gap:0; }
 .solution-introduction .solution-label { grid-column:1/-1; }
+
+.solution-introduction .home-intro-grid h2 { font-size:var(--solution-display-size); }
+.solution-introduction .home-intro-grid > div > .home-lead { font-size:var(--solution-lead-size); }
