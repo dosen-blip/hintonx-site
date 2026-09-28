@@ -12,7 +12,7 @@ export const site = {
     { label: "Our Work", href: "/projects/" },
     { label: "About", href: "/Studio/" },
     { label: "Contact Us", href: "/Contact/" },
-    { label: "Start a project", href: "/Contact/", button: true },
+    { label: "Contact Us", href: "/Contact/", button: true },
   ],
   socials: [
     { label: "Linkedin", href: "https://www.linkedin.com/in/tonydosen" },

@@ -28,7 +28,7 @@ function navigationItems() {
 function header() {
   return `<header class="site-header"><div class="nav-glass" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="header-inner">${logo}
     <nav class="desktop-nav" aria-label="Main navigation">${navigationItems()}</nav>
-    <div class="mobile-nav-actions"><a class="pill nav-project" href="/Contact/">Start a project <span aria-hidden="true">↗</span></a><button class="nav-menu-toggle" aria-controls="nav-dialog" aria-expanded="false" aria-label="Open navigation" hidden><span></span><span></span></button></div>
+    <div class="mobile-nav-actions"><a class="pill nav-project" href="/Contact/">Contact Us <span aria-hidden="true">↗</span></a><button class="nav-menu-toggle" aria-controls="nav-dialog" aria-expanded="false" aria-label="Open navigation" hidden><span></span><span></span></button></div>
   </div></header>
   <dialog id="nav-dialog" aria-label="Navigation"><div class="nav-dialog-top">${logo}<button class="nav-close" aria-label="Close navigation">Close <span aria-hidden="true">×</span></button></div><nav aria-label="Mobile navigation">${navigationItems()}</nav><a class="nav-studio" href="/Studio/">Meet the studio <span aria-hidden="true">↗</span></a></dialog>
   <noscript><nav class="nav-fallback" aria-label="Navigation">${navigationItems()}</nav></noscript>`;
