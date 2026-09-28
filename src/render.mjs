@@ -3,7 +3,7 @@ import {verticalBody} from './vertical-render.mjs';
 import {serviceContent} from './service-content.mjs';
 import { renderIcons } from './icons.mjs';
 import { caseBody } from './case-render.mjs';
-import { workBody } from './work-render.mjs';
+import { workBody, solutionProjectFeatures } from './work-render.mjs';
 import { homeBody, studioIntroduction } from './home-render.mjs';
 import { templateBody } from './template-render.mjs';
 import { projects, site, videoProjects } from "./site-data.mjs";
@@ -79,7 +79,7 @@ ${pageClass === "case-page" ? '<link rel="stylesheet" href="/case.css"><script s
 ${pageClass === "publicsector-page" ? '<link rel="stylesheet" href="/publicsector.css"><script src="/publicsector.js" type="module"></script>' : ''}
 <link rel="stylesheet" href="/vertical.css">
 ${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></script>' : ''}
-${pageClass === 'solution-page' ? '<link rel="stylesheet" href="/home.css">' : ''}
+${pageClass === 'solution-page' ? '<link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/work.css">' : ''}
 ${pageClass === 'template-page' ? '<link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/work.css"><link rel="stylesheet" href="/case.css"><link rel="stylesheet" href="/publicsector.css">' : ''}<link rel="stylesheet" href="/accent.css?v=20260910-film">${pageClass === 'template-page' ? '<link rel="stylesheet" href="/template.css"><script src="/template.js" type="module"></script>' : ''}
 ${["home", "template-page", "solution-page"].includes(pageClass) ? '<link rel="stylesheet" href="/video-background.css"><script src="/video-background.js" type="module"></script>' : ''}
 ${pageClass === "template-page" ? '<script src="/opening.js" type="module"></script>' : ''}
@@ -184,5 +184,5 @@ export function renderSolution(solution) {
     <section class="solution-hero video-background${solution.studioIntro ? ' solution-hero-contained' : ''}" aria-labelledby="solution-title">
       ${videoBackgroundMedia(solution.heroMedia)}
       <div class="container">${solution.heroLabel ? `<p class="solution-label">${esc(solution.heroLabel)}</p>` : ''}${solution.heroEndings ? `<h1 id="solution-title" class="solution-statement" aria-label="${esc(solution.heroLead)} ${esc(solution.heroEndings.join(' '))}"><span aria-hidden="true"><span class="solution-lead">${(solution.heroLeadLines || [solution.heroLead]).map(esc).join('<br>')}</span><span class="solution-rotation" data-solution-rotation>${solution.heroEndings.map((word,index) => `<span class="solution-word"${index===0?' data-current':''}>${esc(word.replace(/\.$/,''))}<span class="solution-period">.</span></span>`).join('')}</span></span></h1>` : `<h1 id="solution-title">${esc(solution.title)}.</h1>`}</div>
-    </section>${solution.studioIntro ? studioIntroduction('home solution-introduction',solution.studioIntro) : ''}`});
+    </section>${solution.studioIntro ? studioIntroduction('home solution-introduction',solution.studioIntro) : ''}${solutionProjectFeatures(solution.featuredProjects)}`});
 }
