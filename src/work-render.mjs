@@ -20,6 +20,7 @@ function gridCard(card) {
  const film=card.filmId?` data-work-film="${esc(card.filmId)}" data-film-title="${esc(card.title)}"`:'';
  return `<article class="work-grid-card" data-work-card data-categories="${esc(JSON.stringify(card.categories))}">
  <a class="work-media work-grid-art" href="${esc(card.href)}"${film} aria-label="${card.filmId?'Watch':'Explore'} ${esc(card.client)} — ${esc(card.title)}">${image(card.image.src,card.image.alt,{intrinsic:card.image,sizes:'(max-width:640px) calc(100vw - 40px), (max-width:1100px) 45vw, 30vw'})}<span class="work-image-arrow" aria-hidden="true">${card.filmId?'▶':'↗'}</span></a>
+ ${!card.filmId?`<p class="work-card-client">${esc(card.client)}</p>`:''}
  <h2><a href="${esc(card.href)}"${film}>${(card.titleLines || [card.title]).map(esc).join('<br>')}</a></h2>
  <a class="work-link" href="${esc(card.href)}"${film}>View Case Study${arrow}</a></article>`;
 }
