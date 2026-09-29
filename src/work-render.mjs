@@ -21,14 +21,14 @@ function gridCard(card) {
  return `<article class="work-grid-card" data-work-card data-categories="${esc(JSON.stringify(card.categories))}">
  <a class="work-media work-grid-art" href="${esc(card.href)}"${film} aria-label="${card.filmId?'Watch':'Explore'} ${esc(card.client)} — ${esc(card.title)}">${image(card.image.src,card.image.alt,{intrinsic:card.image,sizes:'(max-width:640px) calc(100vw - 40px), (max-width:1100px) 45vw, 30vw'})}<span class="work-image-arrow" aria-hidden="true">${card.filmId?'▶':'↗'}</span></a>
  <h2><a href="${esc(card.href)}"${film}>${(card.titleLines || [card.title]).map(esc).join('<br>')}</a></h2>
- <a class="work-link" href="${esc(card.href)}"${film}>${card.filmId?'Watch video':'Explore the project'}${arrow}</a></article>`;
+ <a class="work-link" href="${esc(card.href)}"${film}>View Case Study${arrow}</a></article>`;
 }
 export function workBody() {
  return `<section class="work-band work-dark work-opening work-grid-opening" data-work-tone="dark"><div class="work-container">
  <div class="work-opening-top"><p>Selected projects.<br>Different challenges. Shared curiosity.</p><a href="#work-index" class="work-index-jump">Explore the index <span aria-hidden="true">↓</span></a></div>
  <div class="work-wordmark"><h1>Work<span>.</span></h1></div>
- <div class="work-opening-bottom"><p>Digital experiences, connected platforms<br>and brands with a point of view.</p></div></div></section>
- <section class="work-band work-dark work-gallery" id="work-index" data-work-tone="dark" aria-label="Case studies" data-work-gallery><div class="work-container">
+ </div></section>
+ <section class="work-band work-light work-gallery" id="work-index" data-work-tone="light" aria-label="Case studies" data-work-gallery><div class="work-container">
  <div class="work-filters" role="group" aria-label="Filter case studies">${workFilters.map((filter,index)=>`<button type="button" data-work-filter="${esc(filter)}" aria-pressed="${index===0}" aria-controls="work-grid">${esc(filter)}</button>`).join('')}</div>
  <p class="work-sr" role="status" aria-live="polite" data-work-status></p>
  <div class="work-grid" id="work-grid">${workCards.map(gridCard).join('')}</div></div></section>
