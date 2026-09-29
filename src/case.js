@@ -9,6 +9,7 @@ function measure(){positions=bands.map(b=>({top:b.getBoundingClientRect().top+sc
 addEventListener('scroll',requestPaint,{passive:true});addEventListener('resize',measure);
 new ResizeObserver(measure).observe($('main'));document.fonts.ready.then(measure);measure();
 const dialog=$('.case-film-dialog'),mount=$('[data-case-player]');
+if(dialog){
 let opener;
 $$('[data-case-film]').forEach(link=>link.addEventListener('click',event=>{
  if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||!dialog.showModal)return;
@@ -21,3 +22,5 @@ $$('[data-case-film]').forEach(link=>link.addEventListener('click',event=>{
 $('[data-case-close]').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('close',()=>{mount.replaceChildren();document.body.classList.remove('case-film-open');opener?.focus({preventScroll:true})});
 dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close()}});
+
+}

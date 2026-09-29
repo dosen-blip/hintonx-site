@@ -13,7 +13,7 @@ function visual(ref,{eager=false}={}){
  const src=film?film.src:ref.media!==undefined?p.media[ref.media].src:p.thumbnail;
  const url=new URL(src),width=Number(url.searchParams.get('width'))||1280,height=Number(url.searchParams.get('height'))||720;
  const img=`<img src="${esc(src)}" alt="${esc(film?`${film.title} — film still`:p.alt)}" width="${width}" height="${height}" loading="${eager?'eager':'lazy'}"${eager?' fetchpriority="high"':''} decoding="async">`;
- return `<a class="service-visual${film?' service-visual-film':''}" href="${film?`https://www.youtube.com/watch?v=${filmId(film)}`:projectHref(p)}"${film?` data-service-film="${filmId(film)}" data-film-title="${esc(film.title)}"`:''} aria-label="${esc(film?`Watch ${film.title}`:`View ${p.shortClient||p.client} case study`)}">${img}${film?`<span class="service-play">${icon('▶')} Watch film</span>`:''}</a>`;
+ return `<a class="service-visual${film?' service-visual-film':''}" href="${film?film.href:projectHref(p)}" aria-label="${esc(film?`Watch ${film.title}`:`View ${p.shortClient||p.client} case study`)}">${img}${film?`<span class="service-play">${icon('▶')} Watch film</span>`:''}</a>`;
 }
 export function verticalNav(current=''){
  return `<nav class="vertical-nav" aria-label="Work by discipline"><a href="/projects/"${current==='all'?' aria-current="page"':''}>All work</a>${verticals.map(v=>`<a href="${verticalHref(v)}"${v.slug===current?' aria-current="page"':''}>${esc(v.label)}</a>`).join('')}</nav>`;

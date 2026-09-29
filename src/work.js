@@ -10,19 +10,3 @@ function requestPaint(){if(!frame)frame=requestAnimationFrame(paint)}
 function measure(){positions=bands.map(b=>({top:b.getBoundingClientRect().top+scrollY,tone:b.dataset.workTone}));positions.push({top:$('.site-footer').getBoundingClientRect().top+scrollY,tone:'dark'});requestPaint()}
 addEventListener('scroll',requestPaint,{passive:true});addEventListener('resize',measure);
 new ResizeObserver(measure).observe($('main'));document.fonts.ready.then(measure);measure();
-const dialog=$('.work-film-dialog');
-if(dialog){
- const mount=$('[data-work-player]');let opener;
- $$('[data-work-film]').forEach(link=>link.addEventListener('click',event=>{
-  if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||!dialog.showModal)return;
-  event.preventDefault();opener=link;
-  const iframe=document.createElement('iframe');
-  iframe.src=`https://www.youtube-nocookie.com/embed/${link.dataset.workFilm}?autoplay=1&rel=0`;
-  iframe.title=link.dataset.filmTitle;iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';iframe.allowFullscreen=true;iframe.referrerPolicy='strict-origin-when-cross-origin';
-  $('[data-work-film-title]').textContent=link.dataset.filmTitle;$('[data-work-external]').href=link.href;
-  mount.replaceChildren(iframe);dialog.showModal();document.body.classList.add('work-film-open');
- }));
- $('[data-work-close]').addEventListener('click',()=>dialog.close());
- dialog.addEventListener('close',()=>{mount.replaceChildren();document.body.classList.remove('work-film-open');opener?.focus({preventScroll:true})});
- dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close()}});
-}

@@ -14,3 +14,6 @@
 .case-story>p+p{margin-top:24px}.case-story-detail{margin-top:40px}.case-story-detail h3{font-size:24px;font-weight:500;letter-spacing:-.035em;margin-bottom:14px}.case-story-detail p{font-size:20px;line-height:1.5;letter-spacing:-.02em}
 
 .case-atlas .case-heading h1{font-size:clamp(48px,6.3vw,92px);overflow-wrap:normal}@media(max-width:760px){.case-atlas .case-heading h1{font-size:clamp(42px,11.5vw,68px)}}
+
+.video-case-heading{max-width:1000px;padding:36px 0 45px}.video-case-client{font-size:11px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:14px}.video-case-heading h1{font-size:clamp(40px,5.5vw,78px);font-weight:500;letter-spacing:-.055em;line-height:1.08}.video-case-player{overflow:hidden;border-radius:14px;background:#111;aspect-ratio:16/9}.video-case-player iframe{display:block;width:100%;height:100%;border:0}.video-case-external{margin-top:14px}.video-case .case-next{padding-top:0}.video-case .case-next-copy .video-case-client{font-size:11px;margin:0 0 14px;letter-spacing:.08em}
+@media(max-width:760px){.video-case-heading{padding:24px 0 30px}.video-case-heading h1{font-size:clamp(36px,9vw,54px)}.video-case-player{border-radius:8px}}

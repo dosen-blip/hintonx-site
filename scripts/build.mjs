@@ -5,9 +5,9 @@ import { basePath } from './base-path.mjs';
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { projects, site, solutions } from "../src/site-data.mjs";
+import { projects, site, solutions, videoProjects } from "../src/site-data.mjs";
 import { publicSector, publicSectorCases, publicSectorPath, publicSectorHref } from '../src/publicsector-content.mjs';
-import { renderSolution, renderTemplate, renderPublicSector, renderPublicSectorCase, renderVertical, renderCaseStudy, renderContact, renderHome, renderProjects, renderStudio, renderVideo } from "../src/render.mjs";
+import { renderSolution, renderTemplate, renderPublicSector, renderPublicSectorCase, renderVertical, renderCaseStudy, renderVideoCase, renderContact, renderHome, renderProjects, renderStudio, renderVideo } from "../src/render.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(root, "dist");
@@ -45,6 +45,8 @@ for (const project of projects) {
   await output(`projects/${project.slug}/index.html`, renderCaseStudy(project));
 }
 
+for (const film of videoProjects) await output(`projects/${film.slug}/index.html`, renderVideoCase(film));
+
 await output("layout-catalog.json", JSON.stringify(layoutCatalog));
 await output('_headers', await readFile(resolve(root, 'src/_headers'), 'utf8'));
 await output("styles.css", await readFile(resolve(root, "src/styles.css"), "utf8"));
@@ -62,10 +64,10 @@ for (const asset of publicAssets) {
   if (!asset.startsWith('/')) continue;
   await output(asset.slice(1), await readFile(resolve(root, 'src', asset.slice(1))));
 }
-const indexableRoutes = ['/', '/projects/', '/Studio/', '/Contact/', '/matiadosen/', ...verticals.map(v => `/work/${v.slug}/`), ...projects.map(p => `/projects/${p.slug}/`)];
+const indexableRoutes = ['/', '/projects/', '/Studio/', '/Contact/', '/matiadosen/', ...verticals.map(v => `/work/${v.slug}/`), ...projects.map(p => `/projects/${p.slug}/`), ...videoProjects.map(film => film.href)];
 if (publicSector.indexable) indexableRoutes.push(publicSectorPath, ...publicSectorCases.map(publicSectorHref));
 await output('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexableRoutes.map(path => `  <url><loc>${site.origin}${base}${path}</loc></url>`).join('\n')}\n</urlset>\n`);
 await output('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${site.origin}${base}/sitemap.xml\n`);
 await output("404.html", renderHome());
 await output(".nojekyll", "");
-console.log(`Built ${projects.length + verticals.length + publicSectorCases.length + solutions.length + 9} static pages in ${dist}`);
+console.log(`Built ${projects.length + videoProjects.length + verticals.length + publicSectorCases.length + solutions.length + 9} static pages in ${dist}`);

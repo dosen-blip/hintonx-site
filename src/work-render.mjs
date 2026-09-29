@@ -17,12 +17,12 @@ function image(src, alt, {eager = false, drift = false, sizes = '(max-width: 760
   return `<img src="${esc(src)}" srcset="${srcset}" sizes="${sizes}" alt="${esc(alt)}" width="${width}" height="${height}" loading="${eager?'eager':'lazy'}" decoding="async"${drift?' data-work-drift':''}>`;
 }
 function gridCard(card) {
- const film=card.filmId?` data-work-film="${esc(card.filmId)}" data-film-title="${esc(card.title)}"`:'';
+
  return `<article class="work-grid-card" data-work-card data-categories="${esc(JSON.stringify(card.categories))}">
- <a class="work-media work-grid-art" href="${esc(card.href)}"${film} aria-label="${card.filmId?'Watch':'Explore'} ${esc(card.client)} — ${esc(card.title)}">${image(card.image.src,card.image.alt,{intrinsic:card.image,sizes:'(max-width:640px) calc(100vw - 40px), (max-width:1100px) 45vw, 30vw'})}${card.filmId?'<span class="work-image-arrow" aria-hidden="true">▶</span>':''}</a>
- ${!card.filmId?`<p class="work-card-client">${esc(card.client)}</p>`:''}
- <h2><a href="${esc(card.href)}"${film}>${(card.titleLines || [card.title]).map(esc).join('<br>')}</a></h2>
- <a class="work-link" href="${esc(card.href)}"${film}>View Case Study${arrow}</a></article>`;
+ <a class="work-media work-grid-art${card.filmId?' work-grid-art-film':''}" href="${esc(card.href)}" aria-label="${card.filmId?'Watch':'Explore'} ${esc(card.client)} — ${esc(card.title)}">${image(card.image.src,card.image.alt,{intrinsic:card.image,sizes:'(max-width:640px) calc(100vw - 40px), (max-width:1100px) 45vw, 30vw'})}${card.filmId?'<span class="work-image-arrow" aria-hidden="true">▶</span>':''}</a>
+ <p class="work-card-client">${esc(card.client)}</p>
+ <h2><a href="${esc(card.href)}">${(card.titleLines || [card.title]).map(esc).join('<br>')}</a></h2>
+ <a class="work-link" href="${esc(card.href)}">View Case Study${arrow}</a></article>`;
 }
 export function workBody() {
  return `<section class="work-band work-dark work-opening work-grid-opening" data-work-tone="dark"><div class="work-container">
@@ -33,8 +33,7 @@ export function workBody() {
  <div class="work-filters" role="group" aria-label="Filter case studies">${workFilters.map((filter,index)=>`<button type="button" data-work-filter="${esc(filter)}" aria-pressed="${index===0}" aria-controls="work-grid">${esc(filter)}</button>`).join('')}</div>
  <p class="work-sr" role="status" aria-live="polite" data-work-status></p>
  <div class="work-grid" id="work-grid">${workCards.map(gridCard).join('')}</div></div></section>
- <section class="work-band work-light work-invitation" data-work-tone="light"><div class="work-container"><div class="work-marker"><span>What comes next?</span><span>Your project starts with a conversation</span></div><div><h2>Let’s make<br>what’s next.</h2><a class="work-contact" href="/Contact/">Start a project ${arrow}</a></div><p>An idea, a challenge, a different possibility.<br>We’d like to hear it.</p></div></section>
- <dialog class="work-film-dialog" aria-label="Project film"><div class="work-film-toolbar"><span data-work-film-title>Film</span><button type="button" data-work-close>Close <span aria-hidden="true">×</span></button></div><div data-work-player></div><a data-work-external href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Watch on YouTube ${arrow}</a></dialog>`;
+ <section class="work-band work-light work-invitation" data-work-tone="light"><div class="work-container"><div class="work-marker"><span>What comes next?</span><span>Your project starts with a conversation</span></div><div><h2>Let’s make<br>what’s next.</h2><a class="work-contact" href="/Contact/">Start a project ${arrow}</a></div><p>An idea, a challenge, a different possibility.<br>We’d like to hear it.</p></div></section>`;
 }
 
 // Reuse the Work page's full-width feature layout on Solution pages.

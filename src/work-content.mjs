@@ -18,22 +18,23 @@ const categories = {
  'federal-judicial-affairs-phoenix':['UX Design','Web Applications','Web design'],
  'cbsa-import-information':['UX Design','Web design'],
 };
+const clientName = item => ['ISED','CBSA','OSFI'].includes(item.shortClient) ? item.client.replace(/ \(ISED\)$/, '') : item.shortClient || item.client;
 const featureCopy = new Map(solutions[0].featuredProjects.map(feature => [feature.slug,feature]));
 const order = ['government-of-alberta-atlas','innodata','social-platform','mobile-app','1valet','press','spectrum-management-platform','cbsa-connect','canada-border-services-agency'];
 export const workCards = [
  ...order.map(slug => {
   const project = projects.find(item => item.slug === slug), feature = featureCopy.get(slug);
-  return {id:slug,href:`/projects/${slug}/`,client:project.shortClient||project.client,
+  return {id:slug,href:`/projects/${slug}/`,client:clientName(project),
    title:feature ? feature.heading.join(' ') : project.tagline,
    description:slug==='mobile-app' ? 'A personal survey app that turns an iMessage conversation into quick feedback from friends.' : feature?.description || project.description,
    category:slug==='mobile-app' ? 'Consumer / iOS' : project.title,
    image:{src:project.thumbnail,alt:project.alt},categories:categories[slug]};
  }),
  ...publicSectorCases.filter(story=>!projects.some(project=>project.slug===story.slug)).map(story=>({
-  id:story.slug,href:publicSectorHref(story),client:story.shortClient,title:story.title,
+  id:story.slug,href:publicSectorHref(story),client:clientName(story),title:story.title,
   description:story.summary,category:'Public sector',image:story.hero,categories:categories[story.slug]
  })),
- ...videoProjects.map((film,index)=>({id:`film-${index}`,href:`https://www.youtube.com/watch?v=${film.src.match(/vi_webp\/([^/]+)/)[1]}`,filmId:film.src.match(/vi_webp\/([^/]+)/)[1],client:film.title,title:film.title,description:film.subtitle,category:'Videography',image:{src:film.src,alt:`${film.title} — film still`},categories:['Videography']})),
+ ...videoProjects.map((film,index)=>({id:`film-${index}`,href:film.href,filmId:film.id,client:film.client,title:film.title,description:film.subtitle,category:'Videography',image:{src:film.src,alt:`${film.title} — film still`},categories:['Videography']})),
 ];
 
 // Two-line editorial breaks keep card titles readable without truncation.
@@ -55,8 +56,9 @@ const titleLines = {
  'film-0':['The','Legend'],
  'film-1':['Creativity in','Public Sector'],
  'film-2':['The 2024','Tennis Season'],
- 'film-3':['Adobe and','Service Canada'],
- 'film-4':['Novak','Djokovic'],
- 'film-6':['100','Mobile'],
+ 'film-3':['Adobe and Service Canada','Promo Video'],
+ 'film-4':['Novak Djokovic Book Series','Video Promo'],
+ 'film-5':['ToldYa','Video Promo'],
+ 'film-6':['100','Mobile App'],
 };
 for (const card of workCards) card.titleLines = titleLines[card.id] || [card.title];

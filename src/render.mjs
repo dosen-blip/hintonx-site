@@ -2,7 +2,7 @@ import {videoBackgroundMedia} from './video-background.mjs';
 import {verticalBody} from './vertical-render.mjs';
 import {serviceContent} from './service-content.mjs';
 import { renderIcons } from './icons.mjs';
-import { caseBody } from './case-render.mjs';
+import { caseBody, videoCaseBody } from './case-render.mjs';
 import { workBody, solutionProjectFeatures } from './work-render.mjs';
 import { homeBody, studioIntroduction } from './home-render.mjs';
 import { templateBody } from './template-render.mjs';
@@ -130,6 +130,10 @@ export function renderCaseStudy(project) {
   return layout({ title: `${project.client} — HintonX`, description: project.description, pageClass: "case-page", body: caseBody(project) });
 }
 
+export function renderVideoCase(film) {
+ return layout({title:`${film.title} — HintonX`,description:`${film.client} — ${film.title}`,pageClass:'case-page',canonicalPath:film.href,socialImage:film.src,body:videoCaseBody(film)});
+}
+
 export function renderStudio() {
   return layout({ title: "Studio — HintonX", pageClass: "studio-page", body: `
     <section class="page-intro page-intro--wide container">
@@ -170,7 +174,7 @@ export function renderVideo() {
       <p>HintonX offers end-to-end video production services, led by videographer Matia Dosen, supporting clients across Ottawa and beyond—from Adobe and public-sector organizations to sports brands, athletes, and publications.</p>
       <p>From filming and photography to editing, sound engineering, and final production, we bring every element together into polished, engaging videos that capture attention and leave a lasting impression.</p>
     </section>
-    <section class="video-grid container">${videoProjects.map(video => `<article><div class="video-thumb"><img src="${video.src}" alt="${esc(video.title)}" loading="lazy"><span class="play-mark">▶</span></div><h2>${esc(video.title)}</h2><p>${esc(video.subtitle)}</p></article>`).join("")}</section>` });
+    <section class="video-grid container">${videoProjects.map(video => `<article><a href="${esc(video.href)}" aria-label="View ${esc(video.title)} case study"><div class="video-thumb"><img src="${video.src}" alt="${esc(video.title)}" loading="lazy"><span class="play-mark">▶</span></div><h2>${esc(video.title)}</h2></a><p>${esc(video.client)}</p></article>`).join("")}</section>` });
 }
 
 export function renderVertical(v){return layout({title:`${v.title} — HintonX`,description:serviceContent[v.slug].intro,pageClass:"vertical-page",body:verticalBody(v)})}

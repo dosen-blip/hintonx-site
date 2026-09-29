@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { publicSector, publicSectorCases, publicSectorHref } from '../src/publicsector-content.mjs';
 import { publicSectorCaseBody, publicSectorVisual } from '../src/publicsector-render.mjs';
 import { renderPublicSectorCase } from '../src/render.mjs';
-import { site, projects } from '../src/site-data.mjs';
+import { site, projects, videoProjects } from '../src/site-data.mjs';
 
 test('all seven routes have unique metadata, valid breadcrumbs and preview indexing protection', async () => {
   const titles = new Set(), descriptions = new Set();
@@ -35,7 +35,7 @@ test('preview routes are excluded from the sitemap without blocking crawlers fro
   const robots = await readFile(new URL('../dist/robots.txt', import.meta.url),'utf8');
   assert.doesNotMatch(sitemap,/404/);
   assert.equal(sitemap.includes('/publicsector/'), publicSector.indexable);
-  assert.equal((sitemap.match(/<loc>/g)||[]).length,10 + projects.length + (publicSector.indexable ? 7 : 0));
+  assert.equal((sitemap.match(/<loc>/g)||[]).length,10 + projects.length + videoProjects.length + (publicSector.indexable ? 7 : 0));
   assert.match(robots,/Sitemap: https:\/\/hintonx-site.pages.dev/);
   assert.doesNotMatch(robots,/Disallow/);
   const previous = publicSector.indexable;

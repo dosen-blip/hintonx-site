@@ -27,3 +27,23 @@ test('filters select one badge, hide non-matches and restore the full grid',()=>
  }
  buttons[0].click();assert.ok(elements.every(element=>!element.hidden));assert.equal(buttons[0].pressed,true);
 });
+
+test('each video card opens its own case page with an inline player and no modal trigger',async()=>{
+ const {renderVideoCase,renderProjects,renderHome,renderVideo,renderVertical}=await import('../src/render.mjs');
+ const {verticals}=await import('../src/verticals.mjs');
+ const {readFileSync}=await import('node:fs');
+ const routes=new Set();
+ for(const film of videoProjects){
+  assert.ok(film.client);assert.ok(!routes.has(film.href));routes.add(film.href);
+  const card=workCards.find(card=>card.filmId===film.id);
+  assert.equal(card.href,film.href);assert.equal(card.client,film.client);
+  const html=renderVideoCase(film);
+  assert.ok(html.includes(`youtube-nocookie.com/embed/${film.id}?rel=0`));
+  assert.ok(!html.includes('autoplay=1'));assert.ok(!html.includes('case-film-dialog'));
+  assert.ok(readFileSync(new URL(`../dist${film.href}index.html`,import.meta.url),'utf8').includes(`<iframe`));
+ }
+ assert.doesNotMatch(renderProjects(),/data-work-film=/);
+ assert.doesNotMatch(renderHome(),/data-home-film=/);
+ assert.doesNotMatch(renderVertical(verticals.find(v=>v.slug==='video')),/data-service-film=/);
+ for(const film of videoProjects)assert.ok(renderVideo().includes(`href="${film.href}"`));
+});

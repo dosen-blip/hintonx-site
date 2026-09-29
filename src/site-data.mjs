@@ -212,11 +212,11 @@ export const homeServices = [
 ];
 
 export const videoProjects = [
-  ["The Legend", "Opening Sequence Teaser for the Upcoming Documentary", "iUXu4dyxbSI", "maxresdefault"],
-  ["Creativity in Public Sector", "Client Adobe", "hYZgGD9qSzY", "sddefault"],
-  ["The 2024 Tennis Season", "Official Book Trailer", "Kjk2cX7xaNU", "sddefault"],
-  ["Adobe and Service Canada", "Promo Video", "qzKlpU0CvGM", "sddefault"],
-  ["Novak Djokovic", "Year End #1 Yearbook Collection", "3mxLcNnxfNU", "sddefault"],
-  ["ToldYa", "Mobile App Promo", "5OH6sWLEL8c", "sddefault"],
-  ["100 Mobile", "Message App Promo", "bmYRh4Yy1nk", "sddefault"],
-].map(([title, subtitle, id, quality]) => ({ title, subtitle, src: `https://i.ytimg.com/vi_webp/${id}/${quality}.webp` }));
+  ["The Legend", "Opening Sequence Teaser for the Upcoming Documentary", "iUXu4dyxbSI", "maxresdefault", "Hinton X", "the-legend-video"],
+  ["Creativity in Public Sector", "Client Adobe", "hYZgGD9qSzY", "sddefault", "Adobe", "creativity-in-public-sector-video"],
+  ["The 2024 Tennis Season", "Official Book Trailer", "Kjk2cX7xaNU", "sddefault", "Hinton Publishing", "2024-tennis-season-video"],
+  ["Adobe and Service Canada Promo Video", "Promo Video", "qzKlpU0CvGM", "sddefault", "Adobe", "adobe-service-canada-video"],
+  ["Novak Djokovic Book Series Video Promo", "Year End #1 Yearbook Collection", "3mxLcNnxfNU", "sddefault", "Novak Djokovic Foundation", "novak-djokovic-book-series-video"],
+  ["ToldYa Video Promo", "Mobile App Promo", "5OH6sWLEL8c", "sddefault", "Hinton Technologies", "toldya-video"],
+  ["100 Mobile App", "Message App Promo", "bmYRh4Yy1nk", "sddefault", "100 Inc", "100-mobile-app-video"],
+].map(([title, subtitle, id, quality, client, slug]) => ({ title, subtitle, id, client, slug, href: `/projects/${slug}/`, src: `https://i.ytimg.com/vi_webp/${id}/${quality}.webp` }));
