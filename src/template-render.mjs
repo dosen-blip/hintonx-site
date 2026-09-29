@@ -44,7 +44,7 @@ export function templateContainers({studio, contact, video}) {
   // preview at the wheel boundary so Hero can be selected independently.
   const home = homeBody().replace('<div class="wheel-track"', '</section><section class="home-band band-black"><div class="wheel-track"');
   group('home', 'Home', 'home', home, ['Hero', 'Selected project collection', 'Studio introduction and clients', 'Solutions accordion', 'Services accordion', 'Featured film', 'Featured editorial story', 'Project invitation']);
-  group('work', 'Work', 'work-page', workBody(), ['Work introduction and discipline navigation', 'Full-width project feature', 'Paired projects', 'Editorial feature', 'Project index', 'Work invitation']);
+  group('work', 'Work', 'work-page', workBody(), ['Work video introduction', 'Case-study grid and filters', 'Work invitation']);
   const service = slug => verticalBody(verticals.find(v => v.slug === slug));
   group('service', 'Services', 'vertical-page service-page', service('product-design'), ['Service hero', 'Capabilities', 'Selected service work and related projects', 'Approach', 'Service enquiry']);
   group('branding', 'Services', 'vertical-page service-page', service('branding'), [null, null, 'Editorial service feature', null, null]);

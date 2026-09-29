@@ -1,3 +1,5 @@
+import {initWorkFilters} from './work-filter.mjs';
+document.querySelectorAll('[data-work-gallery]').forEach(initWorkFilters);
 const picker = document.querySelector('.template-picker');
 const inputs = [...picker.querySelectorAll('input')];
 const containers = new Map([...document.querySelectorAll('[data-template-container]')].map(el => [el.dataset.templateContainer, el]));

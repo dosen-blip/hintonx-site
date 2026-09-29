@@ -24,7 +24,7 @@ Do not invent a universal spacing scale or normalize all pages as part of a smal
 ## Match the page family
 
 - **Home:** preserve the coordinated headline/project spotlight, desktop wheel and mobile card stack. Use the source-of-truth interaction details when touching these features. Section headings carry the hierarchy; removed eyebrows, counters and explanatory captions stay absent unless requested.
-- **Work:** retain the restrained heading, cobalt punctuation and discipline navigation. Reuse its portfolio treatment rather than importing service-page structure.
+- **Work:** retain the screenshot-approved opening copy, cobalt punctuation, Product Design background video and image-led grid. Use the existing filter badges and three/two/one-column breakpoints; keep case routes and supplied-reference captions.
 - **Services:** reuse introduction/media, capabilities, selected work, approach and enquiry. Preserve curated membership and contribution wording. Service pages use the shared Services menu without the Work discipline bar.
 - **Case studies:** reuse title/lead media, overview/facts, gallery, result and next-project sequence. Preserve Hinton Press's editorial spacing and compact single-image cases.
 - **Public Sector Solutions:** reuse its overview and case templates. Consult `docs/PUBLIC_SECTOR_REVIEW.md` for incomplete material; keep draft/placeholder distinctions and indexing state until content is approved.
