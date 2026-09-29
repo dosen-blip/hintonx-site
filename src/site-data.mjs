@@ -1,3 +1,4 @@
+import {publicSectorCases} from './publicsector-content.mjs';
 import solution0 from './Solution/product-design.mjs';
 import solution1 from './Solution/web-ecommerce.mjs';
 import solution2 from './Solution/ai-enablement.mjs';
@@ -19,6 +20,9 @@ export const site = {
     { label: "X", href: "https://x.com/TonyDosen" },
   ],
 };
+
+const atlas = publicSectorCases.find(story => story.slug === 'government-of-alberta-atlas');
+const atlasVisual = atlas.images[0];
 
 export const projects = [
   {
@@ -170,6 +174,22 @@ export const projects = [
       { src: "https://framerusercontent.com/images/aKmcEyuFuwd83CmBsTCs1JD9WPg.png?width=2500&height=1321" },
       { src: "https://framerusercontent.com/images/vruuGjFDbV0yiNLQoq5p3GxCxc.png?lossless=1&width=2500&height=1321" },
     ],
+  },
+  {
+    slug: atlas.slug,
+    client: atlas.client,
+    title: atlas.title,
+    thumbnail: `${atlasVisual.src}?width=${atlasVisual.width}&height=${atlasVisual.height}`,
+    alt: atlasVisual.alt,
+    tagline: atlas.headline,
+    description: atlas.overview,
+    challenge: atlas.challenge,
+    contribution: atlas.contribution,
+    services: atlas.services.split(' · '),
+    industries: atlas.industry,
+    date: '',
+    outcome: atlas.outcome,
+    media: [atlasVisual],
   },
 ];
 

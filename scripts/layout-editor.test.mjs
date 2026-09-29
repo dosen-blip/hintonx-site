@@ -7,7 +7,7 @@ import {renderHome,renderCaseStudy} from '../src/render.mjs';
 import {projects} from '../src/site-data.mjs';
 const catalog=JSON.parse(readFileSync(new URL('../dist/layout-catalog.json',import.meta.url)));
 test('all real pages have unique stable sections and compatible default assignments',()=>{
- const state=defaults(catalog);assert.equal(catalog.length,29);
+ const state=defaults(catalog);assert.equal(catalog.length,21 + projects.length);
  for(const p of catalog){assert.ok(p.slots.length);assert.equal(new Set(p.slots.map(s=>s.key)).size,p.slots.length);assert.equal(state.templates[state.assignments[p.path]].family,p.family);}
  assert.deepEqual(validateState(state,catalog),state);
 });
@@ -22,7 +22,7 @@ test('assigning a template affects only chosen pages and never mutates content',
  const state=defaults(catalog),before=JSON.stringify(catalog),p=catalog.find(p=>p.family==='case');
  state.assignments[p.path]='case-alternative';
  assert.equal(linkedPages(state,catalog,'case-alternative').length,1);
- assert.equal(linkedPages(state,catalog,'case').length,7);
+ assert.equal(linkedPages(state,catalog,'case').length,projects.length - 1);
  assert.equal(JSON.stringify(catalog),before);
  assert.equal(state.templates.case.slots[0].design.variant,undefined);
 });

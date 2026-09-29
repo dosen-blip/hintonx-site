@@ -13,7 +13,7 @@ The current Jira pass read all issues in SCRUM, including descriptions, attachme
 | [SCRUM-5](https://tonysdosen.atlassian.net/browse/SCRUM-5) | Shared responsive behavior, content, client treatments, metadata and images | Implemented; final content and indexing review remain open |
 | [SCRUM-6](https://tonysdosen.atlassian.net/browse/SCRUM-6) | `/publicsector/` | Overview, eight services, recognition, 13 grouped clients, six cards and contact action; OSFI overview visual |
 | [SCRUM-7](https://tonysdosen.atlassian.net/browse/SCRUM-7) | `/publicsector/osfi-oasis/` | OSFI1 hero/card and OSFI2 workflow gallery |
-| [SCRUM-12](https://tonysdosen.atlassian.net/browse/SCRUM-12) | `/publicsector/government-of-alberta-atlas/` | GOVA1 hero/card and GOV2 design-system reference; draft copy retained |
+| [SCRUM-12](https://tonysdosen.atlassian.net/browse/SCRUM-12) | `/publicsector/government-of-alberta-atlas/` | GOVA1 hero/card and GOV2 design-system reference; final user-supplied copy replaces the draft |
 | [SCRUM-8](https://tonysdosen.atlassian.net/browse/SCRUM-8) | `/publicsector/ised-spectrum-cloud/` | ISED dashboard visual from the linked portfolio page |
 | [SCRUM-9](https://tonysdosen.atlassian.net/browse/SCRUM-9) | `/publicsector/cbsa-traveller-modernization/` | ELVIS mobile visual and two design-guidance/flow galleries from the linked portfolio page |
 | [SCRUM-10](https://tonysdosen.atlassian.net/browse/SCRUM-10) | `/publicsector/federal-judicial-affairs-phoenix/` | Supplied OSSNR report visual, captioned explicitly as a separate project |
@@ -41,10 +41,10 @@ Each source has 640, 1280 and 1920-pixel WebP exports plus a 1920-pixel progress
 
 ## Remaining content decisions
 
-- Approve Atlas draft material and supply final Services and Outcome copy. Both missing fields remain visibly labelled.
+- Atlas copy is complete from the user’s September 29 request, including Services and Outcome. Its portfolio version leads the Product Design page; section-wide indexing approval remains separate.
 - Confirm the overview's “Since 2013” wording alongside the 2010–2011 engagement. Existing attribution to Tony Dosen and HintonX is retained.
 - Review final client names, project titles, dates, card summaries, metadata and captions. The qualified CBSA processing-time outcome and ongoing OSFI description are preserved.
-- The supplied Markdown snapshot has been reviewed; it contains no additional case-study copy or new actionable to-do items. Its editorial labels, stray sentence and internal non-publication note are not rendered. Atlas remains a clearly labelled development draft under the user's existing scaffold authorization; the source still lacks final Services and Outcome text.
+- The supplied Markdown snapshot has been reviewed; it contains no additional case-study copy or new actionable to-do items. Its editorial labels, stray sentence and internal non-publication note are not rendered. The later September 29 user request supplies Atlas’s final copy and supersedes that snapshot for Atlas.
 - Optional recognition imagery was not supplied. Recognition remains text with a case-study link.
 - All 13 client names remain text treatments; no independent official logo exports or mark-use instructions were supplied. Embedded marks within the supplied project mockups remain unchanged.
 - Seven 1200×630 social images remain the labelled HintonX preview artwork pending final review.

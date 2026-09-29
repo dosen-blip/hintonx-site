@@ -7,12 +7,13 @@ const href = p => `/projects/${p.slug}/`;
 const arrow = '<span aria-hidden="true">↗</span>';
 const link = (url, label) => `<a class="work-link" href="${url}">${label}${arrow}</a>`;
 const marker = (number, label, aside = '') => `<div class="work-marker"><span>${number} / ${label}</span><span>${aside}</span></div>`;
-function image(src, alt, {eager = false, drift = false, sizes = '(max-width: 760px) 100vw, 60vw'} = {}) {
-  if (new URL(src).hostname === 'i.ytimg.com') {
+function image(src, alt, {eager = false, drift = false, sizes = '(max-width: 760px) 100vw, 60vw', intrinsic = null} = {}) {
+  if (new URL(src,'https://local.test').hostname === 'i.ytimg.com') {
     return `<img src="${esc(src)}" alt="${esc(alt)}" width="1280" height="720" loading="${eager?'eager':'lazy'}" decoding="async"${drift?' data-work-drift':''}>`;
   }
-  const u = new URL(src), width = Number(u.searchParams.get('width')) || 2500, height = Number(u.searchParams.get('height')) || 1326;
-  const srcset = [640,1024,1600,2048].map(n => {const url = new URL(src);url.searchParams.set('scale-down-to', n);return `${esc(url.href)} ${n}w`;}).join(', ');
+  const u = new URL(src,'https://local.test'), width = intrinsic?.width || Number(u.searchParams.get('width')) || 2500, height = intrinsic?.height || Number(u.searchParams.get('height')) || 1326;
+  if (src.startsWith('/')) return `<img src="${esc(src)}" alt="${esc(alt)}" width="${width}" height="${height}" loading="${eager?'eager':'lazy'}" decoding="async"${drift?' data-work-drift':''}>`;
+  const srcset = [640,1024,1600,2048].map(n => {const url = new URL(src,'https://local.test');url.searchParams.set('scale-down-to', n);return `${esc(url.href)} ${n}w`;}).join(', ');
   return `<img src="${esc(src)}" srcset="${srcset}" sizes="${sizes}" alt="${esc(alt)}" width="${width}" height="${height}" loading="${eager?'eager':'lazy'}" decoding="async"${drift?' data-work-drift':''}>`;
 }
 function paired(p, number, title, description, category) {
@@ -59,7 +60,7 @@ export function solutionProjectFeatures(features=[]) {
     return `<section class="work-page work-band work-light work-platforms solution-project${index % 2 === 1 ? ' solution-project-grey' : ''}" id="solution-project-${esc(p.slug)}" data-tone="light"><div class="work-container">
       ${marker(String(index+1).padStart(2,'0'),esc(feature.label),esc(feature.category))}
       <div class="work-chapter-heading"><h2>${feature.heading.map(esc).join('<br>')}</h2><div><p>${esc(feature.description)}</p>${link(href(p),`Explore ${esc(name(p))}`)}</div></div>
-      <a class="work-media work-feature-art" href="${href(p)}" aria-label="Explore the ${esc(name(p))} case study">${image(p.media[feature.media].src,p.alt,{sizes:'(max-width:760px) calc(100vw - 40px), (max-width:1100px) calc(100vw - 70px), (max-width:1440px) calc(100vw - 100px), 1340px'})}<span class="work-image-arrow" aria-hidden="true">↗</span></a>
+      <a class="work-media work-feature-art" href="${href(p)}" aria-label="Explore the ${esc(name(p))} case study">${image(p.media[feature.media].src,p.alt,{intrinsic:p.media[feature.media],sizes:'(max-width:760px) calc(100vw - 40px), (max-width:1100px) calc(100vw - 70px), (max-width:1440px) calc(100vw - 100px), 1340px'})}<span class="work-image-arrow" aria-hidden="true">↗</span></a>
       <div class="work-feature-notes"><div><span class="work-label">The challenge</span><p>${esc(feature.challenge)}</p></div><div><span class="work-label">Our part</span><p>${esc(feature.contribution)}</p></div><div><span class="work-label">The disciplines</span><ul>${p.services.map(service=>`<li>${esc(service)}</li>`).join('')}</ul></div></div>
     </div></section>`;
   }).join('');

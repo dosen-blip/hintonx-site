@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { publicSector, publicSectorCases, publicSectorHref } from '../src/publicsector-content.mjs';
 import { publicSectorCaseBody, publicSectorVisual } from '../src/publicsector-render.mjs';
 import { renderPublicSectorCase } from '../src/render.mjs';
-import { site } from '../src/site-data.mjs';
+import { site, projects } from '../src/site-data.mjs';
 
 test('all seven routes have unique metadata, valid breadcrumbs and preview indexing protection', async () => {
   const titles = new Set(), descriptions = new Set();
@@ -35,7 +35,7 @@ test('preview routes are excluded from the sitemap without blocking crawlers fro
   const robots = await readFile(new URL('../dist/robots.txt', import.meta.url),'utf8');
   assert.doesNotMatch(sitemap,/404/);
   assert.equal(sitemap.includes('/publicsector/'), publicSector.indexable);
-  assert.equal((sitemap.match(/<loc>/g)||[]).length,18 + (publicSector.indexable ? 7 : 0));
+  assert.equal((sitemap.match(/<loc>/g)||[]).length,10 + projects.length + (publicSector.indexable ? 7 : 0));
   assert.match(robots,/Sitemap: https:\/\/hintonx-site.pages.dev/);
   assert.doesNotMatch(robots,/Disallow/);
   const previous = publicSector.indexable;
@@ -61,7 +61,7 @@ test('supplied claims and technical terminology survive content preparation', ()
   assert.match(publicSectorCases[0].work.join(' '),/C# and \.NET/);
   assert.match(publicSectorCases[0].outcome,/ongoing work/);
   const alberta = publicSectorCases.find(s => s.jira === 'SCRUM-12');
-  assert.equal(alberta.draft,true); assert.equal(alberta.services,null); assert.equal(alberta.outcome,null);
+  assert.equal(alberta.draft,false); assert.match(alberta.services,/AI-Assisted Prototyping/); assert.match(alberta.outcome,/working prototypes/);
 });
 
 test('neighbour navigation follows display order and does not wrap at the ends', () => {

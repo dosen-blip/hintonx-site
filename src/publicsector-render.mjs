@@ -5,7 +5,7 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 const arrow = icon('↗');
 const dot = '<span class="ps-dot">.</span>';
 const pending = label => `<p class="ps-pending">${esc(label)} — content pending.</p>`;
-const text = (value, label) => value ? `<p>${esc(value)}</p>` : pending(label);
+const text = (value, label) => value ? value.split('\n\n').map(paragraph => `<p>${esc(paragraph)}</p>`).join('') : pending(label);
 const caseEvent = story => `data-ps-event="publicsector_case_study_click" data-ps-case="${esc(story.slug)}"`;
 
 // Approved images: {src, webpSrcset?, srcset?, width, height, alt, caption?}.
@@ -56,8 +56,8 @@ function neighbours(story) {
 
 export function publicSectorCaseBody(story) {
   return `<article class="ps-page" data-ps-current-case="${esc(story.slug)}"><section class="ps-band ps-dark ps-opening ps-case-opening" data-ps-tone="dark"><div class="ps-container"><nav class="ps-breadcrumb" aria-label="Breadcrumb"><a href="${publicSectorPath}">Public Sector</a><span aria-hidden="true">/</span><span aria-current="page">${esc(story.shortClient)}</span></nav><h1>${esc(story.client)}${dot}</h1><p class="ps-project-title">${esc(story.title)}</p><p class="ps-date">${esc(story.date)}</p>${story.draft ? '<p class="ps-draft">Draft content — pending approval</p>' : ''}${publicSectorVisual(story.hero,{eager:true})}</div></section>
-    <section class="ps-band ps-light" data-ps-tone="light"><div class="ps-container ps-split"><div><h2>The project${dot}</h2><p class="ps-project-name">${esc(story.project)}</p></div><div class="ps-prose">${story.overview ? `<div><h2>Overview</h2><p>${esc(story.overview)}</p></div>` : ''}<div><h2>Challenge</h2>${text(story.challenge,'Challenge')}</div><div><h2>What was done</h2>${story.work?.length ? `<ul>${story.work.map(item => `<li>${esc(item)}</li>`).join('')}</ul>` : pending('What was done')}</div></div></div></section>
+    <section class="ps-band ps-light" data-ps-tone="light"><div class="ps-container ps-split"><div><h2>${esc(story.headline || 'The project')}${story.headline?'':dot}</h2><p class="ps-project-name">${esc(story.project)}</p></div><div class="ps-prose">${story.overview ? `<div><h2>Overview</h2>${text(story.overview,'Overview')}</div>` : ''}<div><h2>Challenge</h2>${text(story.challenge,'Challenge')}</div><div><h2>${story.contribution?'Our part':'What was done'}</h2>${story.contribution?text(story.contribution):''}${story.work?.length ? `<ul>${story.work.map(item => `<li>${esc(item)}</li>`).join('')}</ul>` : pending('What was done')}</div></div></div></section>
     ${story.images?.length ? `<section class="ps-band ps-dark ps-gallery-band" data-ps-tone="dark" aria-label="Project gallery"><div class="ps-container ps-gallery">${story.images.map(media => publicSectorVisual(media)).join('')}</div></section>` : ''}
-    <section class="ps-band ps-light ps-details" data-ps-tone="light"><div class="ps-container ps-split"><div><h2>Services${dot}</h2>${text(story.services,'Services')}</div><div><h2>Outcome${dot}</h2>${text(story.outcome,'Outcome')}${story.slug === 'ised-spectrum-cloud' ? `<a class="ps-text-link" href="${publicSectorPath}#recognition">ISED recognition 2023 ${arrow}</a>` : ''}</div></div></section>
+    <section class="ps-band ps-light ps-details" data-ps-tone="light"><div class="ps-container ps-split"><div><h2>Services${dot}</h2>${text(story.services,'Services')}${story.industry?`<h2>Industry${dot}</h2>${text(story.industry)}`:''}</div><div><h2>Outcome${dot}</h2>${text(story.outcome,'Outcome')}${story.slug === 'ised-spectrum-cloud' ? `<a class="ps-text-link" href="${publicSectorPath}#recognition">ISED recognition 2023 ${arrow}</a>` : ''}</div></div></section>
     <section class="ps-band ps-dark" data-ps-tone="dark"><div class="ps-container"><a class="ps-text-link" href="${publicSectorPath}">Back to Public Sector ${arrow}</a>${neighbours(story)}</div></section>${contact(story)}</article>`;
 }

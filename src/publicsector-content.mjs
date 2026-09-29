@@ -186,18 +186,18 @@ export const publicSectorCases = [
     "jira": "SCRUM-12",
     "client": "Government of Alberta",
     "shortClient": "Government of Alberta",
-    "title": "Atlas Intake and Case Management for Disability Income Assistance",
-    "project": "Atlas Intake and Case Management for Disability Income Assistance",
+    "title": "Atlas — Intake and Case Management for Disability Income Assistance",
+    "project": "Atlas — Intake and Case Management for Disability Income Assistance",
     "date": "2023 to 2026",
-    "summary": "Service flows and interface design for disability-income intake and case management.",
-    "overview": "Atlas, also known as Atlas Intake Management and Atlas Case Management, is a Government of Alberta digital platform supporting disability-income programs within Alberta Assisted Living and Social Services. The work helped modernize how applications, eligibility decisions, client information, income, benefits and case activity are managed for AISH and the introduction of ADAP through Disability Income Assistance. The platform moves complex, policy-driven work toward a more connected digital workflow that gives caseworkers clearer information and helps eligible Albertans access financial, health and employment supports.",
-    "challenge": "Caseworkers needed to complete sensitive, high-consequence work across complex program rules, dated household relationships, income reporting periods and benefit calculations. Fragmented processes and inconsistent interfaces made information harder to interpret and increased the risk of errors when a client's circumstances changed within an annual benefit period. Teams needed a shared, accessible design direction that could be tested before implementation and translated into production-ready requirements.",
+    "summary": "Human-centred design and AI-assisted prototyping for disability income assistance.",
+    "overview": "Atlas is the Government of Alberta’s digital platform supporting disability and income assistance programs, including ADAP and AISH. It provides end-to-end management of client intake, eligibility assessment, case management, and benefit payment processing.\n\nHintonX supports Atlas’s ongoing digital transformation through human-centred design and AI-assisted prototyping. We help teams translate complex policy requirements into clear, accessible experiences, accelerating delivery while keeping caseworkers and the Albertans they serve at the centre of design decisions.",
+    "challenge": "Modernizing benefits administration requires navigating complex eligibility rules, income calculations, household changes, and sensitive client information. Teams need to deliver faster while ensuring caseworkers can confidently understand information, review changes, and process benefits.",
     "work": [
       "Translated policy, operational needs and caseworker tasks into service flows, information architecture, interaction patterns and detailed interface requirements.",
       "Designed and prototyped intake and case-management experiences covering client information, eligibility, household members, income, benefits, payments and related case activity."
     ],
-    "services": null,
-    "outcome": null,
+    "services": "Service Design · UX/UI Design · Product Strategy · AI-Assisted Prototyping · Design Systems · Accessibility",
+    "outcome": "Delivery teams gained working prototypes, reusable design patterns, and clearer implementation requirements for critical workflows. AI-assisted iteration supports faster exploration and review, while human-centred design keeps the focus on accessible, reliable services for caseworkers and Albertans.",
     "hero": {
       "src": "/assets/publicsector/alberta-atlas.jpg",
       "width": 4147,
@@ -208,19 +208,22 @@ export const publicSectorCases = [
     "images": [
       {
         "src": "/assets/publicsector/alberta-design-system.jpg",
-        "width": 4147,
-        "height": 3240,
+        "width": 1920,
+        "height": 1500,
         "alt": "Government of Alberta design-system website displayed on a desktop monitor.",
         "webpSrcset": "/assets/publicsector/alberta-design-system-640.webp 640w, /assets/publicsector/alberta-design-system-1280.webp 1280w, /assets/publicsector/alberta-design-system-1920.webp 1920w",
         "caption": "Government of Alberta design-system reference supplied with the Atlas case study."
       }
     ],
-    "draft": true,
+    "draft": false,
     "metadata": {
       "title": "Government of Alberta Atlas | HintonX",
-      "description": "Draft case study of intake and case-management design for Government of Alberta disability-income programs.",
+      "description": "Human-centred design and AI-assisted prototyping for disability income assistance.",
       "socialImage": "/assets/publicsector/government-of-alberta-atlas-share.png"
-    }
+    },
+    "headline": "Accelerating delivery. Putting people first.",
+    "contribution": "HintonX brings together service design, product strategy, and front-end prototyping to support faster, more informed delivery.",
+    "industry": "Government · Social Services · Digital Transformation"
   },
   {
     "slug": "ised-spectrum-cloud",

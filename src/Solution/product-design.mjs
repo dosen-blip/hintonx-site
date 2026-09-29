@@ -1,3 +1,6 @@
+import {publicSectorCases} from '../publicsector-content.mjs';
+const atlas = publicSectorCases.find(story => story.slug === 'government-of-alberta-atlas');
+
 export default {
   slug: 'product-design',
   title: 'Product design & development',
@@ -12,6 +15,16 @@ export default {
     clients: ['Adobe', 'Innodata', '1VALET', 'RealDecoy', 'ISED', 'CBSA'],
   },
   featuredProjects: [
+    {
+      slug: atlas.slug,
+      label: 'Public sector',
+      category: 'Government of Alberta / Atlas',
+      heading: ['Accelerating delivery.', 'Putting people first.'],
+      description: atlas.summary,
+      challenge: atlas.challenge,
+      contribution: atlas.contribution,
+      media: 0,
+    },
     {
       slug: 'innodata',
       label: 'Enterprise workflows',

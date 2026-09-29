@@ -84,3 +84,4 @@
 /* Galleries introduce a dark band, so restore space above the following light section. */
 .ps-gallery-band+.ps-details{padding-top:112px}
 @media(max-width:760px){.ps-gallery-band+.ps-details{padding-top:72px}}
+.ps-details p+h2{margin-top:40px}
