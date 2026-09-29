@@ -1,6 +1,4 @@
 import {workCards,workFilters} from './work-content.mjs';
-import {videoBackgroundMedia} from './video-background.mjs';
-import productDesign from './Solution/product-design.mjs';
 import {projects} from './site-data.mjs';
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const project = slug => projects.find(p => p.slug === slug);
@@ -22,13 +20,11 @@ function gridCard(card) {
  const film=card.filmId?` data-work-film="${esc(card.filmId)}" data-film-title="${esc(card.title)}"`:'';
  return `<article class="work-grid-card" data-work-card data-categories="${esc(JSON.stringify(card.categories))}">
  <a class="work-media work-grid-art" href="${esc(card.href)}"${film} aria-label="${card.filmId?'Watch':'Explore'} ${esc(card.client)} — ${esc(card.title)}">${image(card.image.src,card.image.alt,{intrinsic:card.image,sizes:'(max-width:640px) calc(100vw - 40px), (max-width:1100px) 45vw, 30vw'})}<span class="work-image-arrow" aria-hidden="true">${card.filmId?'▶':'↗'}</span></a>
- ${card.image.caption?`<p class="work-card-reference">${esc(card.image.caption)}</p>`:''}
- <div class="work-grid-meta"><span>${esc(card.client)}</span><span>${esc(card.category)}</span></div>
- <h2><a href="${esc(card.href)}"${film}>${esc(card.title)}</a></h2><p class="work-grid-description">${esc(card.description)}</p>
- <a class="work-link" href="${esc(card.href)}"${film}>${card.filmId?'Watch film':'Explore the project'}${arrow}</a></article>`;
+ <h2><a href="${esc(card.href)}"${film}>${(card.titleLines || [card.title]).map(esc).join('<br>')}</a></h2>
+ <a class="work-link" href="${esc(card.href)}"${film}>${card.filmId?'Watch video':'Explore the project'}${arrow}</a></article>`;
 }
 export function workBody() {
- return `<section class="work-band work-dark work-opening work-grid-opening video-background" data-work-tone="dark" style="--video-overlay:.65">${videoBackgroundMedia(productDesign.heroMedia)}<div class="work-container">
+ return `<section class="work-band work-dark work-opening work-grid-opening" data-work-tone="dark"><div class="work-container">
  <div class="work-opening-top"><p>Selected projects.<br>Different challenges. Shared curiosity.</p><a href="#work-index" class="work-index-jump">Explore the index <span aria-hidden="true">↓</span></a></div>
  <div class="work-wordmark"><h1>Work<span>.</span></h1></div>
  <div class="work-opening-bottom"><p>Digital experiences, connected platforms<br>and brands with a point of view.</p></div></div></section>

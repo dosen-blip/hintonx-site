@@ -35,3 +35,28 @@ export const workCards = [
  })),
  ...videoProjects.map((film,index)=>({id:`film-${index}`,href:`https://www.youtube.com/watch?v=${film.src.match(/vi_webp\/([^/]+)/)[1]}`,filmId:film.src.match(/vi_webp\/([^/]+)/)[1],client:film.title,title:film.title,description:film.subtitle,category:'Videography',image:{src:film.src,alt:`${film.title} — film still`},categories:['Videography']})),
 ];
+
+// Two-line editorial breaks keep card titles readable without truncation.
+const titleLines = {
+ 'government-of-alberta-atlas':['Accelerating delivery.','Putting people first.'],
+ 'innodata':['Complex workflows.','Clearer experiences.'],
+ 'social-platform':['Real-time Sports','Prediction'],
+ 'mobile-app':['A conversation.','More possibilities.'],
+ '1valet':['A better way','to come home.'],
+ 'press':['A Global Publisher','of Sports Excellence'],
+ 'spectrum-management-platform':['A national platform.','A clearer experience.'],
+ 'cbsa-connect':['Admin Portal','+ Mobile App'],
+ 'canada-border-services-agency':['Enhancing Border Intelligence','with Machine Learning'],
+ 'osfi-oasis':['OASIS Operational Actuarial','System Integrated Services'],
+ 'ised-spectrum-cloud':['Spectrum Cloud and','Pulsar Data Platforms'],
+ 'cbsa-traveller-modernization':['Traveller Modernization','and Digital Traveller Products'],
+ 'federal-judicial-affairs-phoenix':['Phoenix Web Application','and Online Services Portal'],
+ 'cbsa-import-information':['Commercial Architecture','and Import Information'],
+ 'film-0':['The','Legend'],
+ 'film-1':['Creativity in','Public Sector'],
+ 'film-2':['The 2024','Tennis Season'],
+ 'film-3':['Adobe and','Service Canada'],
+ 'film-4':['Novak','Djokovic'],
+ 'film-6':['100','Mobile'],
+};
+for (const card of workCards) card.titleLines = titleLines[card.id] || [card.title];

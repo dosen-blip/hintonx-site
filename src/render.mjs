@@ -93,7 +93,7 @@ ${pageClass === "publicsector-page" ? '<link rel="stylesheet" href="/publicsecto
 ${pageClass === "vertical-page" ? '<script src="/vertical.js" type="module"></script>' : ''}
 ${pageClass === 'solution-page' ? '<link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/work.css">' : ''}
 ${pageClass === 'template-page' ? '<link rel="stylesheet" href="/home.css"><link rel="stylesheet" href="/work.css"><link rel="stylesheet" href="/case.css"><link rel="stylesheet" href="/publicsector.css">' : ''}<link rel="stylesheet" href="/accent.css?v=20260910-film">${pageClass === 'template-page' ? '<link rel="stylesheet" href="/template.css"><script src="/template.js" type="module"></script>' : ''}
-${["home", "template-page", "solution-page", "work-page"].includes(pageClass) ? '<link rel="stylesheet" href="/video-background.css"><script src="/video-background.js" type="module"></script>' : ''}
+${["home", "template-page", "solution-page"].includes(pageClass) ? '<link rel="stylesheet" href="/video-background.css"><script src="/video-background.js" type="module"></script>' : ''}
 ${pageClass === "template-page" ? '<script src="/opening.js" type="module"></script>' : ''}
 ${pageClass === "solution-page" ? '<link rel="stylesheet" href="/solution.css"><script src="/solution.js" type="module"></script>' : ''}
 </head>
